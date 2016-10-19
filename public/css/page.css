@@ -1,0 +1,30 @@
+html {
+  background-color: #b4dcc0;
+}
+#body {
+  background-color: #b4dcc0;
+}
+#navbar {
+  background-color: #0c6950;
+  text-decoration: none;
+  font-size: 130%;
+}
+#navbar li {
+  position: relative;
+  right: 20px;
+}
+#logo {
+  height: 95%;
+  width: 13%;
+}
+#filler {
+  height: 60%;
+  width: 60%;
+}
+#search {
+  background-color: white;
+  color: black;
+  padding-left: 5px;
+  margin-top: 7px;
+}
+
