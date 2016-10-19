@@ -1,5 +1,4 @@
-var app = angular.module('beerme', [
-  'beers',
+var app = angular.module('bakpak', [
   'ngRoute'
 ])
 
