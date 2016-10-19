@@ -20,9 +20,7 @@ app.all("/api/*", function (req, res, next) {
     return next();
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+app.listen(process.env.PORT || 5000)
 
 // export our app for testing and flexibility, required by index.js
 module.exports = app;
