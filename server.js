@@ -20,7 +20,7 @@ app.all("/api/*", function (req, res, next) {
     return next();
 });
 
-app.listen(process.env.PORT || 5000)
+app.listen(process.env.PORT || 3000)
 
 // export our app for testing and flexibility, required by index.js
 module.exports = app;
