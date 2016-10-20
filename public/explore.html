@@ -1,13 +1,14 @@
 <div>
 <LABEL>WHERE?</LABEL>
 <input type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
-<button type='submit' ng-click='weatherApi(); restaurantsApi(); artsApi(); promosApi()' >EXPLORE</button>
+<button type='submit' ng-click='weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi()' >EXPLORE</button>
 <div>
   <div><h4> {{weather.weather[0].description}}</h4><h5> {{weather.main.temp}} </h5></div>
   <div ng-repeat="result in results"> <b>Food:</b> {{result.name}} : {{result.formatted_address}} <br> Rating :
   {{result.rating}}</div>
   <div ng-repeat="art in arts"> <b>Arts:</b> {{art.name}} : {{art.formatted_address}} </div>
   <div ng-repeat="deal in promos"> <b>Deals:</b> {{deal.deal.title}} : {{deal.deal.short_title}} </div>
+  <div ng-repeat="event in events"> <b>Event:</b> {{event.title[0]}} </div>
 
 </div>
 </div>

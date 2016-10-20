@@ -36,7 +36,7 @@ angular.module('bakpak.explore', [])
 		})
 		.then(function(data){
 		  $scope.arts = data.data.results;
-		  console.log(data)
+
 
 		})
 	}
@@ -48,7 +48,21 @@ angular.module('bakpak.explore', [])
 		})
 		.then(function(data){
 		  $scope.promos = data.data.deals;
-		  console.log($scope.promos)
+
+
+		})
+	}	
+	$scope.eventsApi = function(){
+		$http({
+		  method: 'POST',
+		  url: '/events',
+		  data: {city: $scope.city}
+		})
+		.then(function(data){
+		  $scope.events = data.data.search.events[0].event;
+		  console.log(data);
+		  console.log('events:', $scope.events)
+
 
 		})
 	}

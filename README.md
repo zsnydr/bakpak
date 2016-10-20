@@ -46,4 +46,4 @@ From within the root directory:
 
 ## Contributing
 
-See [CONTRIBUITING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.

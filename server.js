@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var keys  = require("./config.js");
 var request = require('request');
 var query  = require("./query.js");
+var parseString = require('xml2js').parseString;
 
 var app = express();
 
@@ -61,6 +62,25 @@ app.post('/promos', function(req,res){
       console.log(error);
     }
     res.end(resp.body);
+  })
+})
+
+app.post('/events', function(req,res){
+  query.city = req.body.city;
+  var queryEvents = query.events + keys.eventful + '&location=' + query.city + '&date=Future';
+
+  request(queryEvents, function(error, resp, body){
+    if(error) {
+      console.log(error);
+    }
+
+    parseString(resp.body, function(err, result){
+      console.log(result);
+      res.end(JSON.stringify(result));
+    });
+    
+
+    
   })
 })
 
