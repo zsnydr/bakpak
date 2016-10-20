@@ -52,5 +52,17 @@ app.post('/weather', function(req,res){
   })
 })
 
+app.post('/promos', function(req,res){
+  query.city = req.body.city;
+  var queryPromos = query.promos + keys.sqoot + '&location=' + query.city;
+
+  request(queryPromos, function(error, resp, body){
+    if(error) {
+      console.log(error);
+    }
+    res.end(resp.body);
+  })
+})
+
 app.listen(process.env.PORT || 3000)
 

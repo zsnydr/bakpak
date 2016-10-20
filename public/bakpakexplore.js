@@ -5,6 +5,7 @@ angular.module('bakpak.explore', [])
 	$scope.results = [];
 	$scope.weather;
 	$scope.arts;
+	$scope.promos;
 	$scope.restaurantsApi = function(){
 		$http({
 		  method: 'POST',
@@ -36,6 +37,18 @@ angular.module('bakpak.explore', [])
 		.then(function(data){
 		  $scope.arts = data.data.results;
 		  console.log(data)
+
+		})
+	}
+	$scope.promosApi = function(){
+		$http({
+		  method: 'POST',
+		  url: '/promos',
+		  data: {city: $scope.city}
+		})
+		.then(function(data){
+		  $scope.promos = data.data.deals;
+		  console.log($scope.promos)
 
 		})
 	}
