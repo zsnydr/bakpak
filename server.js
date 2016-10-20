@@ -31,6 +31,7 @@ app.post('/arts', function(req,res){
   query.city = req.body.city;
   var queryArts = query.museum + query.city + '&key=' + keys.google;
 
+<<<<<<< HEAD
   request(queryArts, function(error, resp, body){
     if(error) {
       console.log(error);
@@ -56,4 +57,7 @@ var port = process.env.PORT || 8888;
 app.listen(port, function(){
 	console.log("App listening on port: ", port);
 });
+=======
+app.listen(process.env.PORT || 3000)
+>>>>>>> master
 

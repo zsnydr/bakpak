@@ -1,6 +1,11 @@
 var app = angular.module('bakpak', [
+<<<<<<< HEAD
   'ngRoute',
   'bakpak.explore'])
+=======
+  'ngRoute'
+])
+>>>>>>> master
 
 app.config(function ($routeProvider) {
   $routeProvider
