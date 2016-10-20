@@ -1,14 +1,15 @@
 var app = angular.module('bakpak', [
-  'ngRoute'
-])
+  'ngRoute',
+  'bakpak.explore'])
 
-app.config(function ($routeProvider, $httpProvider) {
+app.config(function ($routeProvider) {
   $routeProvider
     .when('/explore', {
-      templateUrl: 'public/explore.html',
+      templateUrl: './public/explore.html',
+      controller: 'exploreController'
     })
     .when('/reserve', {
-      templateUrl: 'public/reserve.html'
+      templateUrl: './public/reserve.html'
     })
     .otherwise({
       redirectTo: '/',
