@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div>
 <LABEL>WHERE?</LABEL>
 <input type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
@@ -10,5 +11,21 @@
   <div ng-repeat="deal in promos"> <b>Deals:</b> {{deal.deal.title}} : {{deal.deal.short_title}} </div>
   <div ng-repeat="event in events"> <b>Event:</b> {{event.title[0]}} </div>
 
+=======
+<div class="container">
+<div class="row">
+  <div class="col s4"><h4> {{weather.weather[0].description}}</h4><h5> {{weather.main.temp}} </h5></div>
 </div>
+<div class="row">
+  <div class="col s6">
+  <h4> Restaurants </h4>
+  <div ng-repeat="result in results | limitTo: 10"> <b> {{result.name}} : </b>{{result.formatted_address}} <br> Rating :
+  {{result.rating}}</div>
+  </div>
+  <div class="col s6"> 
+  <h4> Places to Visit </h4>
+  <div ng-repeat="art in arts | limitTo: 10"> <b> {{art.name}} : </b>{{art.formatted_address}} </div>
+  </div>
+</div>
+>>>>>>> 06908761acc5e50cb937a3e7ea81a93a76580b76
 </div>
