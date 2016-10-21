@@ -18,18 +18,13 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li ><a href="/#/explore">EXPLORE</a></li>
               <li ><a href="/#/reserve">RESERVE</a></li>
-              <li>
-                <form>  
-                  <input placeholder="Where are we going?" id=search type="search" required />
-                </form>
-              </li>
             </ul>
         </div>
       </nav>
-      <div class="container">
-        <LABEL>WHERE?</LABEL>
+      <div class="container" id="inputarea">
+        <LABEL id="label">Where are we going?</LABEL>
           <div class="center-align">
-            <input type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
+            <input id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
               <a href="/#/explore" class="waves-effect waves-light btn" ng-click='weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi()'> EXPLORE </a>
               <a href="/#/reserve" class="waves-effect waves-light btn">RESERVE </a>
           </div>
