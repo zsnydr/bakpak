@@ -5,6 +5,9 @@ var request = require('request');
 var query  = require("./query.js");
 var parseString = require('xml2js').parseString;
 
+var QPXClient = require('qpx-client');//for qpx
+util = require('util');//for qpx
+
 var app = express();
 
 app.use(bodyParser.json());
@@ -75,14 +78,68 @@ app.post('/events', function(req,res){
     }
 
     parseString(resp.body, function(err, result){
-      console.log(result);
+      // console.log(result);
       res.end(JSON.stringify(result));
     });
-    
 
-    
   })
 })
+
+options = { //for qpx
+  key: keys.google,
+  timeout: 15000
+}
+
+// searchConfig = {
+//   body: {
+//     "request":{
+//       "passengers":{
+//         "adultCount": 1
+//       },
+//       "slice": [
+//         {
+//           "origin": "SFO",
+//           "destination": "LAX",
+//           "date": "2016-10-22"
+//         }
+//       ],
+//       "solutions": 2
+//     }
+//   }
+// }
+qpxClient = new QPXClient(options);
+
+app.post('/flights', function(req,res){
+  searchConfig = {
+    body: {
+      "request":{
+       "passengers":{
+          "adultCount": 1
+        },
+        "slice": [
+          {
+            "origin": "SFO",
+            "destination": "LAX",
+            "date": "2016-10-22"
+          }
+        ],
+        "solutions": 2
+      }
+    }
+  }
+  qpxClient.search(searchConfig, function(err,data){
+    if(err){
+      console.log('ERROR' + err);
+    }else{
+      res.send(data);
+    }
+  })
+
+});
+
+
+
+
 
 app.listen(process.env.PORT || 3000)
 

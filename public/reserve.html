@@ -1,1 +1,18 @@
 <h1> reserve </h1>
+<div ng-repeat="flight in flights"> 
+Origin: 
+{{flight.slice[0].segment[0].leg[0].origin}}
+Destination:
+{{flight.slice[0].segment[0].leg[0].destination}}
+Duration:
+{{flight.slice[0].segment[0].leg[0].duration}} Mins
+Departure Time:
+{{flight.slice[0].segment[0].leg[0].departureTime}}
+ArrivalTime:
+{{flight.slice[0].segment[0].leg[0].arrivalTime}}
+Carrier:
+{{flight.slice[0].segment[0].flight.carrier}}
+Seat:
+{{flight.slice[0].segment[0].cabin}}
+Price:
+{{flight.saleTotal}}</div>
