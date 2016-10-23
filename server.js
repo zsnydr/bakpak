@@ -59,7 +59,6 @@ app.post('/weather', function(req,res){
 app.post('/promos', function(req,res){
   query.city = req.body.city;
   var queryPromos = query.promos + keys.sqoot + '&location=' + query.city;
-
   request(queryPromos, function(error, resp, body){
     if(error) {
       console.log(error);
@@ -71,7 +70,6 @@ app.post('/promos', function(req,res){
 app.post('/events', function(req,res){
   query.city = req.body.city;
   var queryEvents = query.events + keys.eventful + '&location=' + query.city + '&date=Future';
-
   request(queryEvents, function(error, resp, body){
     if(error) {
       console.log(error);
@@ -93,7 +91,6 @@ app.post('/translate', function(req,res){
     if(error) {
       console.log(error);
     }
-    console.log('response', resp.body);
     res.end(resp.body);    
   })
 })

@@ -20,11 +20,11 @@
 <div class ="row">
   <div id="left" class="col s5 offset-s1 explore"> 
   <h4 class="label"> Deals </h4>
-  <div ng-repeat="deal in promos"> <b> {{deal.deal.title}} : </b>{{deal.deal.short_title}} </div>
+  <div ng-repeat="deal in promos"> <b><a href ={{deal.deal.url}}> {{deal.deal.title}} </a>: </b>{{deal.deal.short_title}} </div>
   </div>
   <div class="col s5 explore"> 
   <h4 class="label"> Events </h4>
-  <div ng-repeat="event in events"> <b> {{event.title[0]}} </b></div>
+  <div ng-repeat="event in events"> <b> <a href = {{event.url[0]}}>{{event.title[0]}} </a></b></div>
   </div>
 </div>
 <div>
