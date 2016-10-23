@@ -72,7 +72,7 @@ angular.module('bakpak.explore', [])
 		$http({
 			method: 'POST',
 			url: '/flights',
-			data:{city: $scope.city}
+			data:{origin: $scope.origin, destination: $scope.destination, date: $scope.date}
 		})
 		.then(function(data){
 			$scope.flights = data.data.trips.tripOption;

@@ -90,23 +90,6 @@ options = { //for qpx
   timeout: 15000
 }
 
-// searchConfig = {
-//   body: {
-//     "request":{
-//       "passengers":{
-//         "adultCount": 1
-//       },
-//       "slice": [
-//         {
-//           "origin": "SFO",
-//           "destination": "LAX",
-//           "date": "2016-10-22"
-//         }
-//       ],
-//       "solutions": 2
-//     }
-//   }
-// }
 qpxClient = new QPXClient(options);
 
 app.post('/flights', function(req,res){
@@ -118,12 +101,12 @@ app.post('/flights', function(req,res){
         },
         "slice": [
           {
-            "origin": "SFO",
-            "destination": "LAX",
-            "date": "2016-10-22"
+            "origin": req.body.origin,
+            "destination": req.body.destination,
+            "date": req.body.date
           }
         ],
-        "solutions": 2
+        "solutions": 10
       }
     }
   }

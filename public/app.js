@@ -8,7 +8,8 @@ app.config(function ($routeProvider) {
       templateUrl: './public/explore.html',
     })
     .when('/reserve', {
-      templateUrl: './public/reserve.html'
+      templateUrl: './public/reserve.html',
+      controller : 'exploreController'
     })
     .otherwise({
       redirectTo: '/',
