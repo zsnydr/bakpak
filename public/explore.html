@@ -17,14 +17,6 @@
   </div>
 </div>
 
-  <div ng-repeat="art in arts"> <b>Arts:</b> {{art.name}} : {{art.formatted_address}} </div>
-  <div ng-repeat="deal in promos"> <b>Deals:</b> {{deal.deal.title}} : {{deal.deal.short_title}} </div>
-  <div ng-repeat="event in events"> <b>Event:</b> {{event.title[0]}} </div>
-
-<div>
-  <input type="text" ng-model='translate' placeholder="Input" /> </div>
-  <button type='submit' ng-click='translateApi()' >TRANSLATE</button>
-
 <div class ="row">
   <div id="left" class="col s5 offset-s1 explore"> 
   <h4 class="label"> Deals </h4>
@@ -35,6 +27,9 @@
   <div ng-repeat="event in events"> <b> {{event.title[0]}} </b></div>
   </div>
 </div>
+<div>
+  <input type="text" ng-model='translate' placeholder="TRANSLATE A PHRASE" /> </div>
+  <button type='submit' ng-click='translateApi()' >TRANSLATE</button>
 
 
 </div>

@@ -93,7 +93,7 @@ app.post('/translate', function(req,res){
     if(error) {
       console.log(error);
     }
-    console.log(resp.body);
+    console.log('response', resp.body);
     res.end(resp.body);    
   })
 })

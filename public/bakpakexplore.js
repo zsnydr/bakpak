@@ -83,6 +83,7 @@ angular.module('bakpak.explore', [])
 	};	
 
 	$scope.translateApi = function(){
+				console.log('client', $scope.translate);
 		$http({
 		  method: 'POST',
 		  url: '/translate',
@@ -91,7 +92,7 @@ angular.module('bakpak.explore', [])
 		.then(function(data){
 		  $scope.translate = data.data.text[0];
 		})
-		console.log($scope.translate);
+
 
 	}
 })
