@@ -59,7 +59,6 @@ app.post('/weather', function(req,res){
 app.post('/promos', function(req,res){
   query.city = req.body.city;
   var queryPromos = query.promos + keys.sqoot + '&location=' + query.city;
-
   request(queryPromos, function(error, resp, body){
     if(error) {
       console.log(error);
@@ -71,7 +70,6 @@ app.post('/promos', function(req,res){
 app.post('/events', function(req,res){
   query.city = req.body.city;
   var queryEvents = query.events + keys.eventful + '&location=' + query.city + '&date=Future';
-
   request(queryEvents, function(error, resp, body){
     if(error) {
       console.log(error);
@@ -82,6 +80,18 @@ app.post('/events', function(req,res){
       res.end(JSON.stringify(result));
     });
 
+  })
+})
+app.post('/translate', function(req,res){
+  query.text=req.body.inputText
+  query.country = 'en-it';
+  var queryTranslate = query.translate + keys.yandex + '&text=' + query.text + '&lang=' + query.country;
+
+  request(queryTranslate, function(error, resp, body){
+    if(error) {
+      console.log(error);
+    }
+    res.end(resp.body);    
   })
 })
 
