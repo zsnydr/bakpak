@@ -17,7 +17,6 @@ angular.module('bakpak.explore', [])
 		})
 		.then(function(data){
 		  $scope.hotels = data.data.results;
-		  console.log(data.data.results);
 		})
 	}
 
@@ -29,7 +28,6 @@ angular.module('bakpak.explore', [])
 		})
 		.then(function(data){
 		  $scope.results = data.data.results;
-
 		})
 	}
 	$scope.weatherApi = function(){
@@ -53,7 +51,7 @@ angular.module('bakpak.explore', [])
 		.then(function(data){
 		  $scope.arts = data.data.results;
 
-
+		   console.log('here', data.data.results);
 		})
 	}
 	$scope.promosApi = function(){
@@ -76,10 +74,6 @@ angular.module('bakpak.explore', [])
 		})
 		.then(function(data){
 		  $scope.events = data.data.search.events[0].event;
-		  console.log(data);
-		  console.log('events:', $scope.events)
-
-
 		})
 	}
 

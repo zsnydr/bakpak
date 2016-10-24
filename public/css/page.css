@@ -54,9 +54,16 @@ a {
   background-color: rgba(238, 251, 244, 0.6);
   margin-right: 20px;
   padding-bottom: 5px;
+  position: relative;
 }
 .google:hover{
   color: blue;
+}
+.icon {
+  position: absolute;
+  right: 5;
+  height: 50px;
+  width: 50px;
 }
 @font-face {
     font-family: 'sansblack';

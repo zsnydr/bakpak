@@ -1,4 +1,4 @@
-<div class="container">
+
 <div class="row">
   <div class="col s4 offset-s4 center"><h4 class="label"> {{weather.weather[0].description}}</h4><h5> {{weather.main.temp}} </h5></div>
 </div>
@@ -8,14 +8,17 @@
   <div id="left" class="col s5 offset-s1 explore">
   <h4 class="label"> Restaurants </h4>
   <div ng-repeat="result in results | limitTo: 10"> 
+  <img class="icon" src={{result.icon}}></img>
   <a class="google" href="https://www.google.com/#q={{result.name}}" target="_blank"> <b> {{result.name}} </b> </a> <br> {{result.formatted_address}} <br> Rating :
-  {{result.rating}}</div>
-
+  {{result.rating}} </br>
+  </div>
   </div>
   <div class="col s5 explore"> 
   <h4 class="label"> Places to Visit </h4>
   <div ng-repeat="art in arts | limitTo: 10"> 
-  <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a> <br>{{art.formatted_address}} </div>
+  <img class="icon" src={{art.icon}}></img>
+  <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a> <br>{{art.formatted_address}} </br>
+  Place Type: {{art.types[0]}} </br> Open Now? {{art.opening_hours.open_now}} </div>
   </div>
 </div>
 
@@ -25,6 +28,7 @@
   <div ng-repeat="deal in promos"> <b><a class="google" href ={{deal.deal.url}} target="_blank"> {{deal.deal.title}} </a>  </b>
   </br> {{deal.deal.short_title}} </div>
   </div>
+
   <div class="col s5 explore"> 
   <h4 class="label"> Events </h4>
   <div ng-repeat="event in events"> <b> <a class="google" href = {{event.url[0]}} target="_blank">{{event.title[0]}} </a></b></br> 
@@ -38,7 +42,7 @@
   <input id= "input" type="text" ng-model='translate' placeholder="What can we translate for you?" /> 
    <a class="waves-effect waves-light btn" type='submit' ng-click='translateApi()' >TRANSLATE </a>
 </div>
-</div>
+
 
 
 
