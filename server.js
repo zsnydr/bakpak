@@ -68,6 +68,8 @@ app.post('/weather', function(req,res){
   })
 })
 
+
+
 app.post('/promos', function(req,res){
   query.city = req.body.city;
   var queryPromos = query.promos + keys.sqoot + '&location=' + query.city;
@@ -94,6 +96,7 @@ app.post('/events', function(req,res){
 
   })
 })
+
 app.post('/translate', function(req,res){
   query.text=req.body.inputText
   query.country = 'en-' + req.body.country;
@@ -141,6 +144,22 @@ app.post('/flights', function(req,res){
   })
 
 });
+
+app.post('/images', function(req,res){
+  query.city = req.body.city;
+  var options = {
+    url: 'https://api.cognitive.microsoft.com/bing/v5.0/images/search?q='+query.city+'&mkt=en-us&size=wallpaper',
+    headers: {
+      'Ocp-Apim-Subscription-Key': '46f42b01258b4a46836eb4bcd886c7b1'
+    },
+  }
+  request(options, function(error, resp, body){
+    if(error) {
+      console.log(error);
+    }
+    res.end(resp.body);    
+  })
+})
 
 app.listen(process.env.PORT || 3000)
 

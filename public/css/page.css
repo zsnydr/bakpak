@@ -1,11 +1,21 @@
 html {
   background-color: #b4dcc0;
+  background-size: cover;                      /* <------ */
+  background-repeat: no-repeat;
+  background-position: center center;  
+}
+body {
+  background-size: cover;                      /* <------ */
+  background-position: center center; 
 }
 a {
   color: black;
 }
 select {
   margin-bottom: 8px;
+}
+#spacer {
+  margin-bottom: 10px;
 }
 #body {
   background-color: #b4dcc0;
@@ -54,11 +64,15 @@ select {
   font-family: 'sansblack';
 }
 .explore {
-  background-color: rgba(238, 251, 244, 0.6);
+  background-color: rgba(238, 251, 244, 0.8);
   margin-right: 20px;
   padding-bottom: 5px;
   position: relative;
 }
+.explore2 {
+  background-color: rgba(238, 251, 244, 0.8);
+}
+
 .google:hover{
   color: blue;
 }

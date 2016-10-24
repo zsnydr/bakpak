@@ -5,7 +5,7 @@ var keys = {
 	eventful: 'pvzhm2F4B5MwtBbB',
 
 	// google: 'AIzaSyA5uw6lUl_UMbbU1Q44sMhHDnzuh01Xs7M',
-	google: 'AIzaSyC4bdaVcDwKdl-iNcFUkOuwi0_pzptNfZ0',
+	google: 'AIzaSyBEiWX4eo8AqQLopbe_QeiQ5CmDkDlBs6Y',
 	yandex: 'trnsl.1.1.20161013T163156Z.2567488658ef9612.1c3f578efcfa73e08cf35738bc170a455c03fcd8'
 }
 

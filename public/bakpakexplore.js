@@ -5,6 +5,7 @@ angular.module('bakpak.explore', [])
 	$scope.results = [];
 	$scope.weather;
 	$scope.arts;
+	$scope.images;
 	$scope.promos;
 	$scope.flights;
 	$scope.translate;
@@ -266,7 +267,7 @@ angular.module('bakpak.explore', [])
 		  $scope.hotels = data.data.results;
 		})
 	}
-
+	
 	$scope.restaurantsApi = function(){
 		$http({
 		  method: 'POST',
@@ -324,6 +325,18 @@ angular.module('bakpak.explore', [])
 		})
 	}
 
+	$scope.imagesApi = function(){
+		$http({
+		  method: 'POST',
+		  url: '/images',
+		  data: {city: $scope.city}
+		})
+		.then(function(data){
+		  console.log('images', data.data.value)
+		  $scope.images = data.data.value;
+		})
+	}
+
 	$scope.flightsApi = function(){
 		$http({
 			method: 'POST',
@@ -334,7 +347,7 @@ angular.module('bakpak.explore', [])
 			$scope.flights = data.data.trips.tripOption;
 			// console.log("line 79", data.data.trips.tripOption[0].slice[0].segment[0]);
 		})
-	};	
+	};
 
 	$scope.translateApi = function(){
 		console.log('client', $scope.translate);
