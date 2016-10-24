@@ -6,7 +6,7 @@
 <a href="/#/reserve" class="waves-effect waves-light btn" ng-click='flightsApi(); '>Find Flights </a>
 <div class="row">
 </br>
-<div id="left" class="col s5 offset-s1 explore">
+<div id="left" class="col s4 offset-s1 explore">
 	<h4 class="label"> Flights </h4>
 <div ng-repeat="flight in flights"> 
 	Origin: {{flight.slice[0].segment[0].leg[0].origin}}
@@ -28,9 +28,10 @@
 	</br>
 </div>
 </div>
-<div class="col s5 explore">
+<div class="col s6 explore">
   <h4 class="label"> Hotels </h4>
-  <div ng-repeat="hotel in hotels | limitTo: 10"> <b> {{hotel.name}} : </b> <br> {{hotel.formatted_address}} <br> Rating :
+  <div ng-repeat="hotel in hotels | limitTo: 10"> 
+  <a href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} : </b> </a> <br> {{hotel.formatted_address}} <br> Rating :
   {{hotel.rating}}
 </div>
 </div>
