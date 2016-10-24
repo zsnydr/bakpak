@@ -2,7 +2,9 @@ html {
   background-color: #b4dcc0;
   background-size: cover;                      /* <------ */
   background-repeat: no-repeat;
-  background-position: center center;  
+  background-position: center center; 
+  background-attachment: fixed;
+  min-height: 100%; 
 }
 body {
   background-size: cover;                      /* <------ */
