@@ -24,7 +24,8 @@
   </div>
   <div class="col s5 explore"> 
   <h4 class="label"> Events </h4>
-  <div ng-repeat="event in events"> <b> <a href = {{event.url[0]}}>{{event.title[0]}} </a></b></div>
+  <div ng-repeat="event in events"> <b> <a href = {{event.url[0]}}>{{event.title[0]}} </a></b></br> 
+  Venue: <a href = {{event.venue_url[0]}}> {{event.venue_name[0]}}</a></div>
   </div>
 </div>
 

@@ -1,6 +1,12 @@
 html {
   background-color: #b4dcc0;
 }
+a {
+  color: black;
+}
+a:hover {
+  color: blue;
+}
 #body {
   background-color: #b4dcc0;
 }
