@@ -8,6 +8,19 @@ angular.module('bakpak.explore', [])
 	$scope.promos;
 	$scope.flights;
 	$scope.translate;
+
+	$scope.hotelsApi = function(){
+		$http({
+		  method: 'POST',
+		  url: '/hotels',
+		  data: {city: $scope.city}
+		})
+		.then(function(data){
+		  $scope.hotels = data.data.results;
+		  console.log(data.data.results);
+		})
+	}
+
 	$scope.restaurantsApi = function(){
 		$http({
 		  method: 'POST',
@@ -83,7 +96,7 @@ angular.module('bakpak.explore', [])
 	};	
 
 	$scope.translateApi = function(){
-				console.log('client', $scope.translate);
+		console.log('client', $scope.translate);
 		$http({
 		  method: 'POST',
 		  url: '/translate',

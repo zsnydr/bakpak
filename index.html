@@ -26,15 +26,13 @@
           <div class="center-align">
             <input id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
               <a href="/#/explore" class="waves-effect waves-light btn" ng-click='weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi()'> EXPLORE </a>
-              <a href="/#/reserve" class="waves-effect waves-light btn">RESERVE </a>
+              <a href="/#/reserve" class="waves-effect waves-light btn" ng-click="hotelsApi()">RESERVE </a>
           </div>
       </div>
       </br>
       <div ng-view></div>
       <script src="/public/app.js"></script>
       <script src="/public/bakpakexplore.js"></script>
-<!--         <script type='text/javascript' src='/public/explore.js'></script>
-        <script type='text/javascript' src='/public/reserve.js'></script> -->
     </body>
   </html>
         

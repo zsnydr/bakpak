@@ -19,6 +19,18 @@ app.get('/', function(req,res){
   	res.send(200).end();
 })
 
+app.post('/hotels', function(req,res){
+  query.city = req.body.city;
+  var queryHotels = query.hotels + query.city + '&key=' + keys.google;
+
+  request(queryHotels, function(error, resp, body){
+    if(error) {
+      console.log(error);
+    }
+    res.end(resp.body);
+  })
+})
+
 app.post('/restaurants', function(req,res){
   query.city = req.body.city;
   var queryRestaurants = query.restaurants + query.city + '&key=' + keys.google;

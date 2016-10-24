@@ -27,10 +27,13 @@
   <div ng-repeat="event in events"> <b> <a href = {{event.url[0]}}>{{event.title[0]}} </a></b></div>
   </div>
 </div>
+
+<div ng-controller="exploreController">
 <div class="container">
   <h4 class="label"> Translate </h4>
   <input id= "input" type="text" ng-model='translate' placeholder="What can we translate for you?" /> 
    <a class="waves-effect waves-light btn" type='submit' ng-click='translateApi()' >TRANSLATE </a>
+</div>
 </div>
 
 
