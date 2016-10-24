@@ -4,6 +4,9 @@ html {
 a {
   color: black;
 }
+select {
+  margin-bottom: 8px;
+}
 #body {
   background-color: #b4dcc0;
 }
