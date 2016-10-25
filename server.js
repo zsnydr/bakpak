@@ -1,23 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
-if(process.env.NODE_ENV !== 'production') {
-  var keys  = require("./config.js");
-} else {
-  var keys = {
-    google: process.env.GOOGLE,
-    weather: process.env.WEATHER,
-    eventful: process.env.EVENTFUL,
-    sqoot: process.env.SQOOT,
-    yandex: process.env.YANDEX
-  }
-}
-
-
-
 var request = require('request');
 var query  = require("./query.js");
 var parseString = require('xml2js').parseString;
+
+require('dotenv').config();
 
 var QPXClient = require('qpx-client');//for qpx
 util = require('util');//for qpx
@@ -35,7 +22,7 @@ app.get('/', function(req,res){
 
 app.post('/hotels', function(req,res){
   query.city = req.body.city;
-    var queryHotels = query.hotels + query.city + '&key=' + keys.google;
+    var queryHotels = query.hotels + query.city + '&key=' + process.env.GOOGLE;
 
   request(queryHotels, function(error, resp, body){
     if(error) {
@@ -47,7 +34,7 @@ app.post('/hotels', function(req,res){
 
 app.post('/restaurants', function(req,res){
   query.city = req.body.city;
-  var queryRestaurants = query.restaurants + query.city + '&key=' + keys.google;
+  var queryRestaurants = query.restaurants + query.city + '&key=' + process.env.GOOGLE;
 
   request(queryRestaurants, function(error, resp, body){
     if(error) {
@@ -59,7 +46,7 @@ app.post('/restaurants', function(req,res){
 
 app.post('/arts', function(req,res){
   query.city = req.body.city;
-  var queryArts = query.museum + query.city + '&key=' + keys.google;
+  var queryArts = query.museum + query.city + '&key=' + process.env.GOOGLE;
 
 
   request(queryArts, function(error, resp, body){
@@ -72,7 +59,7 @@ app.post('/arts', function(req,res){
 
 app.post('/weather', function(req,res){
   query.city = req.body.city;
-  var queryWeather = query.weather + query.city + '&appid=' + keys.weather;
+  var queryWeather = query.weather + query.city + '&appid=' + process.env.WEATHER;
 
   request(queryWeather, function(error, resp, body){
     if(error) {
@@ -86,7 +73,7 @@ app.post('/weather', function(req,res){
 
 app.post('/promos', function(req,res){
   query.city = req.body.city;
-  var queryPromos = query.promos + keys.sqoot + '&location=' + query.city;
+  var queryPromos = query.promos + process.env.SQOOT + '&location=' + query.city;
   request(queryPromos, function(error, resp, body){
     if(error) {
       console.log(error);
@@ -97,7 +84,7 @@ app.post('/promos', function(req,res){
 
 app.post('/events', function(req,res){
   query.city = req.body.city;
-  var queryEvents = query.events + keys.eventful + '&location=' + query.city + '&date=Future';
+  var queryEvents = query.events + process.env.EVENTFUL + '&location=' + query.city + '&date=Future';
   request(queryEvents, function(error, resp, body){
     if(error) {
       console.log(error);
@@ -114,7 +101,7 @@ app.post('/events', function(req,res){
 app.post('/translate', function(req,res){
   query.text=req.body.inputText
   query.country = 'en-' + req.body.country;
-  var queryTranslate = query.translate + keys.yandex + '&text=' + query.text + '&lang=' + query.country;
+  var queryTranslate = query.translate + process.env.YANDEX + '&text=' + query.text + '&lang=' + query.country;
 
   request(queryTranslate, function(error, resp, body){
     if(error) {
@@ -125,7 +112,7 @@ app.post('/translate', function(req,res){
 })
 
 options = { //for qpx
-  key: keys.google,
+  key: process.env.GOOGLE,
   timeout: 15000
 }
 
