@@ -2,7 +2,7 @@ var keys = {
 	weather: '',
 	// google:'',
 	sqoot: '',
-	eventful: '',
+	eventful: 'kLXj2TcXtKGNttjP',
 	yandex: ''
 }
 
