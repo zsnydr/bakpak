@@ -1,6 +1,20 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var keys  = require("./config.js");
+
+if(process.env.NODE_ENV !== 'production') {
+  var keys  = require("./config.js");
+} else {
+  var keys = {
+    google: process.env.GOOGLE,
+    weather: process.env.WEATHER,
+    eventful: process.env.EVENTFUL,
+    sqoot: process.env.SQOOT,
+    yandex: process.env.YANDEX
+  }
+}
+
+
+
 var request = require('request');
 var query  = require("./query.js");
 var parseString = require('xml2js').parseString;
@@ -21,7 +35,7 @@ app.get('/', function(req,res){
 
 app.post('/hotels', function(req,res){
   query.city = req.body.city;
-  var queryHotels = query.hotels + query.city + '&key=' + keys.google;
+    var queryHotels = query.hotels + query.city + '&key=' + keys.google;
 
   request(queryHotels, function(error, resp, body){
     if(error) {
