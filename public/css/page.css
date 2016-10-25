@@ -59,6 +59,11 @@ select {
   font-size: 130%;
   color: #464a51;
 }
+#label2 {
+  font-family: 'sansblack';
+  font-size: 130%;
+  color: #464a51;
+}
 #left {
   margin-right: 10px;
 }
