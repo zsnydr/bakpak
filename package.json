@@ -1,13 +1,9 @@
 {
   "name": "BakPakAttack",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "bakpak2.0",
   "author": "Alina, Conor, Natasha, and Zack",
   "license": "UNLICENSED",
-  "private": true,
-  "engines": {
-    "node": "4.6.0"
-  },
   "scripts": {
     "start": "node server.js",
     "postinstall": "bower install"
