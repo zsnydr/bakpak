@@ -10,7 +10,6 @@ angular.module('bakpak.explore', [])
 	$scope.flights;
 	$scope.translate;
 	$scope.selectedCountry;
-
 	$scope.countries = [
   { name: 'Afghanistan', code: 'ps' },
   { name: 'land Islands', code: 'sv' },
