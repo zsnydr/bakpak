@@ -257,10 +257,6 @@ angular.module('bakpak.explore', [])
   { name: 'Zambia', code: 'en' },
   { name: 'Zimbabwe', code: 'sn' } 
   ];
-<<<<<<< 55761d5eca809c936b0006354ecac17ce3c871a2
-=======
-
->>>>>>> [refactor] delete merge conflicts messages
 
 	$scope.hotelsApi = function(){
 		$http({
