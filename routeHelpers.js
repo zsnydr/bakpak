@@ -34,19 +34,40 @@ db.authenticate().then(function(err) {
 
 module.exports = {
 
-  savePlaces: function(req, res) {
+  newTrip: function(req, res) {
+    console.log('new trip');
+    Trip.findOrCreate({ where: { title: req.body.title, owner_id: req.session.user_id } })
+    .then(function(trip) {
+      req.session.trip_id = trip.get('id');
+      Destination.findOrCreate({ where: { name: req.body.city } })
+      .then(function(destination) {
+        req.session.destination_id = destination.get('id');
+        req.session.destination_name = destination.get('name');
+        DestinationTrip.create({ trip_id: trip.get('id'), destination_id: destination.get('id') })
+        .then(function(desttrip) {
+          res.end({
+            trip_id: trip.get('id'),
+            dest_id: destination.get('id'),
+            dest_name: destination.get('name')
+          });
+        });
+      });
+    });
+  },
+  
+  savePlace: function(req, res) {
     //save places info in the DB Places table
   },
 
-  saveEvents: function(req, res) {
+  saveEvent: function(req, res) {
     //save events info in the DB Events table
   },
 
-  saveRestaurants: function(req, res) {
+  saveRestaurant: function(req, res) {
     //save restaurants info in the DB Restaurants table
   },
 
-  saveHotels: function(req, res) {
+  saveHotel: function(req, res) {
     //save hotels info in the DB Hotels table
   },
 
@@ -122,26 +143,6 @@ module.exports = {
         res.end('no user')
   }},
 
-  newTrip: function(req, res) {
-    console.log('new trip');
-    Trip.findOrCreate({ where: { title: req.body.title, owner_id: req.session.user_id } })
-      .then(function(trip) {
-        req.session.trip_id = trip.get('id');
-        Destination.findOrCreate({ where: { name: req.body.city } })
-          .then(function(destination) {
-            req.session.destination_id = destination.get('id');
-            req.session.destination_name = destination.get('name');
-            DestinationTrip.create({ trip_id: trip.get('id'), destination_id: destination.get('id') })
-              .then(function(desttrip) {
-                res.end({
-                  trip_id: trip.get('id'),
-                  dest_id: destination.get('id'),
-                  dest_name: destination.get('name')
-                });
-              });
-          });
-      });
-  },
 
   postHotels: function(req, res) {
 
