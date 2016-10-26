@@ -1,5 +1,5 @@
 var app = angular.module('bakpak', [
-  'ngRoute', 'bakpak.explore', 'app-services', 'bakpak.auth'])
+  'ngRoute', 'bakpak.explore', 'app-services', 'bakpak.auth', 'bakpak.trips'])
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -10,6 +10,10 @@ app.config(function ($routeProvider) {
     .when('/reserve', {
       templateUrl: './public/explore/reserve.html',
       controller: 'exploreController'
+    })
+    .when('/trips', {
+      templateUrl: './public/account/trips.html',
+      controller: 'tripsController'
     })
     .when('/signin', {
       templateUrl:'./public/auth/signin.html',

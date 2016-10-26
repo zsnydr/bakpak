@@ -1,6 +1,6 @@
 angular.module('bakpak.explore', [])
 
-.controller('exploreController', function($scope, $http){
+.controller('exploreController', function($scope, $http, Trips){
 	$scope.city = "";
 	$scope.results = [];
 	$scope.weather;

@@ -47,3 +47,34 @@ return {
 }
 
 }])
+
+.factory('Trips', ['$http', '$location', function($http, $location){
+
+  var saveDestination = function(city) {
+    return $http({
+      method: 'POST',
+      url: '/destinations',
+      data: {city: city}
+    })
+    .then(function(){
+      $location.path('/explore')
+    })
+  }
+
+  var city;
+  var setCity = function(city) {
+    city = city;
+  }
+
+  var getCity = function() {
+    return city;
+  }
+
+  return {
+    saveDestination: saveDestination,
+
+  }
+
+}])
+
+
