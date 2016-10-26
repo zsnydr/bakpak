@@ -8,6 +8,8 @@ module.exports.router = function (app) {
   });
 
   //API calls
+  app.post('/newtrip', helpers.isLoggedIn, helpers.newTrip);
+
   app.post('/hotels', helpers.isLoggedIn, helpers.postHotels);
 
   app.post('/restaurants', helpers.isLoggedIn, helpers.postRestaurants);
