@@ -1,6 +1,6 @@
 var pg = require('pg')
 var Sequelize = require('sequelize');
-var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattack', {
+var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
   dialect: 'postgres'
 });
 
@@ -37,7 +37,14 @@ var Trip = db.define('trip', {
     autoIncrement: true
   },
   //id of the user who made the trip
-  owner_id: Sequelize.INTEGER,
+  owner_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: User,
+      key: 'id',
+      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    }
+  },
   title: Sequelize.TEXT
 });
 
@@ -66,7 +73,7 @@ var Flight = db.define('flight', {
   trip_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Trip',
+      model: Trip,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -74,7 +81,7 @@ var Flight = db.define('flight', {
   destination_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Destination',
+      model: Destination,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -91,7 +98,7 @@ var Hotel = db.define('hotel', {
   trip_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Trip',
+      model: Trip,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -99,7 +106,7 @@ var Hotel = db.define('hotel', {
   destination_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Destination',
+      model: Destination,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -116,7 +123,7 @@ var Place = db.define('place', {
   trip_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Trip',
+      model: Trip,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -124,7 +131,7 @@ var Place = db.define('place', {
   destination_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Destination',
+      model: Destination,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -141,7 +148,7 @@ var Restaurant = db.define('restaurant', {
   trip_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Trip',
+      model: Trip,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -149,18 +156,18 @@ var Restaurant = db.define('restaurant', {
   destination_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Destination',
+      model: Destination,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
   }
 });
 
-var TripDestination = db.define('trips_destination', {
+var DestinationTrip = db.define('destinations_trip', {
   trip_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Trip',
+      model: Trip,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -168,7 +175,7 @@ var TripDestination = db.define('trips_destination', {
   destination_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Destination',
+      model: Destination,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -179,7 +186,7 @@ var UserTrip = db.define('users_trip', {
   trip_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'Trip',
+      model: Trip,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -187,7 +194,7 @@ var UserTrip = db.define('users_trip', {
   user_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: 'User',
+      model: User,
       key: 'id',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
@@ -195,14 +202,40 @@ var UserTrip = db.define('users_trip', {
 });
 
 //Defines relationships between tables
-User.hasMany(Trip);
-Trip.belongsTo(User);
+// Trip.hasOne(User, { as: owner_id });
+//
+// DestinationTrip.hasMany(Destination);
+// Destination.hasMany(DestinationTrip);
+//
+// DestinationTrip.hasMany(Trip);
+// Trip.hasMany(DestinationTrip);
+//
+// UserTrip.hasMany(User);
+// User.hasMany(UserTrip);
+//
+// UserTrip.hasMany(Trip);
+// Trip.hasMany(UserTrip);
+//
+// Flight.hasOne(Trip);
+// Trip.hasMany(Flight);
+// Flight.hasOne(Destination);
+// Destination.hasMany(Flight);
+//
+// Hotel.hasOne(Trip);
+// Trip.hasMany(Hotel);
+// Hotel.hasOne(Destination);
+// Destination.hasMany(Hotel);
+//
+// Place.hasOne(Trip);
+// Trip.hasMany(Place);
+// Place.hasOne(Destination);
+// Destination.hasMany(Place);
+//
+// Restaurant.hasOne(Trip);
+// Trip.hasMany(Restaurant);
+// Restaurant.hasOne(Destination);
+// Destination.hasMany(Restaurant);
 
-User.hasMany(Claim);
-Claim.belongsTo(User);
-
-Ticket.hasOne(Claim);
-Claim.belongsTo(Ticket);
 
 //Create Tables
 db
@@ -219,6 +252,6 @@ module.exports = {
   Hotel: Hotel,
   Place: Place,
   Restaurant: Restaurant,
-  TripDestination: TripDestination,
+  DestinationTrip: DestinationTrip,
   UserTrip: UserTrip
 };
