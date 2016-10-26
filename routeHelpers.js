@@ -6,7 +6,7 @@ var parseString = require('xml2js').parseString;
 var QPXClient = require('qpx-client');//for qpx
 var util = require('util');//for qpx
 
-//require database connection
+//establish database connection
 //require database models
 
 module.exports = {
