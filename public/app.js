@@ -4,17 +4,19 @@ var app = angular.module('bakpak', [
 app.config(function ($routeProvider) {
   $routeProvider
     .when('/explore', {
-      templateUrl: './public/explore.html'
+      templateUrl: './public/explore/explore.html',
+      controller: 'exploreController'
     })
     .when('/reserve', {
-      templateUrl: './public/reserve.html'
+      templateUrl: './public/explore/reserve.html',
+      controller: 'exploreController'
     })
     .when('/signin', {
-      templateUrl:'./public/signin.html',
+      templateUrl:'./public/auth/signin.html',
       controller: 'signInController'
     })
     .when('/signup', {
-      templateUrl: './public/signup.html',
+      templateUrl: './public/auth/signup.html',
       controller: 'signUpController'
     })
     .otherwise({
