@@ -54,9 +54,31 @@ module.exports = {
       });
     });
   },
-  
+
   savePlace: function(req, res) {
     //save places info in the DB Places table
+    if (req.body.city !== req.session.destination_name) {
+      Destination.findOrCreate({ where: { name: req.body.city } })
+      .then(function(destination) {
+        req.session.destination_id = destination.get('id');
+        req.session.destination_name = destination.get('name');
+      })
+    }
+
+    Place.findOrCreate({
+      where: {
+        name: req.body.name,
+        trip_id: req.session.trip_id,
+        destination_id: req.session.destination_id
+      }
+    })
+    .then(function(place) {
+      res.end({
+        trip_id: req.session.trip_id,
+        dest_id: req.session.destination_id,
+        dest_name: req.session.destination_name
+      });
+    });
   },
 
   saveEvent: function(req, res) {
@@ -65,10 +87,54 @@ module.exports = {
 
   saveRestaurant: function(req, res) {
     //save restaurants info in the DB Restaurants table
+    if (req.body.city !== req.session.destination_name) {
+      Destination.findOrCreate({ where: { name: req.body.city } })
+      .then(function(destination) {
+        req.session.destination_id = destination.get('id');
+        req.session.destination_name = destination.get('name');
+      })
+    }
+
+    Restaurant.findOrCreate({
+      where: {
+        name: req.body.name,
+        trip_id: req.session.trip_id,
+        destination_id: req.session.destination_id
+      }
+    })
+    .then(function(restaurant) {
+      res.end({
+        trip_id: req.session.trip_id,
+        dest_id: req.session.destination_id,
+        dest_name: req.session.destination_name
+      });
+    });
   },
 
   saveHotel: function(req, res) {
     //save hotels info in the DB Hotels table
+    if (req.body.city !== req.session.destination_name) {
+      Destination.findOrCreate({ where: { name: req.body.city } })
+      .then(function(destination) {
+        req.session.destination_id = destination.get('id');
+        req.session.destination_name = destination.get('name');
+      })
+    }
+
+    Hotel.findOrCreate({
+      where: {
+        name: req.body.name,
+        trip_id: req.session.trip_id,
+        destination_id: req.session.destination_id
+      }
+    })
+    .then(function(hotel) {
+      res.end({
+        trip_id: req.session.trip_id,
+        dest_id: req.session.destination_id,
+        dest_name: req.session.destination_name
+      });
+    });
   },
 
   saveFlight: function(req, res) {
