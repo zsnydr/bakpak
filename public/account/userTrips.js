@@ -10,9 +10,11 @@ angular.module('bakpak.trips', [])
       .then(function(tripData){
         $scope.tripData = tripData;
       });
-
-    Trips.setCity($scope.city);
   }
 
+  $scope.setCity = function() {
+    Trips.setCity($scope.city);
+    console.log('IN SAVE TRIP', $scope.city)
+  }
 
 }])

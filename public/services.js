@@ -52,6 +52,7 @@ return {
 
   var city;
   var setCity = function(city) {
+    console.log('IN SET CITY', city)
     city = city;
   }
 
@@ -69,6 +70,7 @@ return {
 
 
   var getCity = function() {
+    console.log('IN GET CITY', city)
     return city;
   }
 
