@@ -50,21 +50,23 @@ return {
 
 .factory('Trips', ['$http', '$location', function($http, $location){
 
+  var city;
+  var setCity = function(city) {
+    city = city;
+  }
+
   var saveTrip = function(city, tripTitle) {
     return $http({
       method: 'POST',
       url: '/newtrip',
       data: {city: city, title: tripTitle}
     })
-    .then(function(){
+    .then(function(tripData){
       $location.path('/explore')
+      return tripData;
     })
   }
 
-  var city;
-  var setCity = function(city) {
-    city = city;
-  }
 
   var getCity = function() {
     return city;
@@ -72,7 +74,8 @@ return {
 
   return {
     saveTrip: saveTrip,
-
+    setCity: setCity,
+    getCity: getCity
 
   }
 

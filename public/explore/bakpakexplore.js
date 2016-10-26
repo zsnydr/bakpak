@@ -363,8 +363,14 @@ angular.module('bakpak.explore', [])
 		.then(function(data){
 		  $scope.translate = data.data.text[0];
 		})
-
-
 	}
+
+
+  //TRIP MODE
+
+  $scope.city = Trips.getCity();
+  console.log('AFTER REDIRECT', $scope.city)
+
+
 })
 

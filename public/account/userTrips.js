@@ -6,7 +6,12 @@ angular.module('bakpak.trips', [])
   $scope.tripTitle = '';
 
   $scope.saveTrip = function() {
-    Trips.saveTrip($scope.city, $scope.tripTitle);
+    Trips.saveTrip($scope.city, $scope.tripTitle)
+      .then(function(tripData){
+        $scope.tripData = tripData;
+      });
+
+    Trips.setCity($scope.city);
   }
 
 
