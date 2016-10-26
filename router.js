@@ -7,6 +7,7 @@ module.exports.router = function (app) {
       res.send(200).end();
   });
 
+  //API calls
   app.post('/hotels', helpers.postHotels);
 
   app.post('/restaurants', helpers.postRestaurants);
@@ -24,5 +25,23 @@ module.exports.router = function (app) {
   app.post('/flights', helpers.postFlights);
 
   app.post('/images', helpers.postImages);
+
+  //Authentication
+  app.post('/signin', helpers.signIn);
+
+  app.post('/signup', helpers.signUp);
+
+  //User's trips
+  app.get('/trips', helpers.getTrips);
+
+  app.post('/myflights', helpers.saveFlight);
+
+  app.post('/myhotels', helpers.saveHotels);
+
+  app.post('/myrestaurants', helpers.saveRestaurants);
+
+  app.post('/myevents', helpers.saveEvents);
+
+  app.post('/myplaces', helpers.savePlaces);
 
 };

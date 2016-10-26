@@ -6,9 +6,49 @@ var parseString = require('xml2js').parseString;
 var QPXClient = require('qpx-client');//for qpx
 var util = require('util');//for qpx
 
+//require database connection
+//require database models
+
 module.exports = {
 
+  savePlaces: function (req, res) {
+    //save places info in the DB Places table
+  },
+
+  saveEvents: function (req, res) {
+    //save events info in the DB Events table
+  },
+
+  saveRestaurants: function (req, res) {
+    //save restaurants info in the DB Restaurants table
+  },
+
+  saveHotels: function (req, res) {
+    //save hotels info in the DB Hotels table
+  },
+
+  saveFlight: function (req, res) {
+    //save flight info in the DB Flights table
+  },
+
+  getTrips: function (req, res) {
+    //using userID from the session
+    //find user in the Users table 
+    //send back user's trips data from DB Trips table
+  },
+
+  signIn: function (req, res) {
+    //check user's credentials
+  },
+
+  signUp: function (req, res) {
+    //create new user 
+    //save it in the database
+  },
+
   postHotels: function(req,res){
+
+    //save destination city in the DB for current user
 
     query.city = req.body.city;
     var queryHotels = query.hotels + query.city + '&key=' + process.env.GOOGLE;
