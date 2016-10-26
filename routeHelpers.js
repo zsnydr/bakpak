@@ -63,8 +63,6 @@ module.exports = {
   signIn: function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    //console.log('signin function: ', username, password);
-    //console.log('session: ', req.session);
     User.find({
       where: {
         username: username
@@ -73,10 +71,8 @@ module.exports = {
       if (user) {
         bcrypt.compare(password, user.get('password'), function(err, match) {
           if (match) {
+            req.session.user_id = user.get('id');
             req.session.user = user.get('username');
-            console.log('session: ', req.session)
-            console.log(req.session.user)
-            console.log('matched')
             res.end('matched')
           } else {
             res.end('failed')
@@ -99,19 +95,15 @@ module.exports = {
       }
     }).then(function(user) {
       if (user) {
-        console.log('signup failed. user:', user)
         res.end('user exists');
       } else {
         bcrypt.hash(newPass, 5, function(err, hash) {
-          console.log('HASH ', hash);
           User.create({
             username: newName,
             password: hash
           }).then(function(user) {
+            req.session.user_id = user.get('id');
             req.session.user = user.get('username');
-            console.log('session: ', req.session)
-            console.log(req.session.user)
-            console.log('redirecting')
             res.end('explore')
           })
         })
@@ -129,6 +121,27 @@ module.exports = {
         console.log('no user')
         res.end('no user')
   }},
+
+  newTrip: function(req, res) {
+    console.log('new trip');
+    Trip.findOrCreate({ where: { title: req.body.title, owner_id: req.session.user_id } })
+      .then(function(trip) {
+        req.session.trip_id = trip.get('id');
+        Destination.findOrCreate({ where: { name: req.body.city } })
+          .then(function(destination) {
+            req.session.destination_id = destination.get('id');
+            req.session.destination_name = destination.get('name');
+            DestinationTrip.create({ trip_id: trip.get('id'), destination_id: destination.get('id') })
+              .then(function(desttrip) {
+                res.end({
+                  trip_id: trip.get('id'),
+                  dest_id: destination.get('id'),
+                  dest_name: destination.get('name')
+                });
+              });
+          });
+      });
+  },
 
   postHotels: function(req, res) {
 
