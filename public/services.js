@@ -47,3 +47,40 @@ return {
 }
 
 }])
+
+.factory('Trips', ['$http', '$location', function($http, $location){
+
+  var city;
+  var setCity = function(city) {
+    console.log('IN SET CITY', city)
+    city = city;
+  }
+
+  var saveTrip = function(city, tripTitle) {
+    return $http({
+      method: 'POST',
+      url: '/newtrip',
+      data: {city: city, title: tripTitle}
+    })
+    .then(function(tripData){
+      $location.path('/explore')
+      return tripData;
+    })
+  }
+
+
+  var getCity = function() {
+    console.log('IN GET CITY', city)
+    return city;
+  }
+
+  return {
+    saveTrip: saveTrip,
+    setCity: setCity,
+    getCity: getCity
+
+  }
+
+}])
+
+
