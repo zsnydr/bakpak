@@ -32,17 +32,17 @@ module.exports.router = function (app) {
   app.post('/signup', helpers.signUp);
 
   //User's trips
-  app.post('/newtrip', helpers.isLoggedIn, helpers.newTrip);
+  app.post('/newtrip', helpers.newTrip);
 
   app.get('/trips', helpers.isLoggedIn, helpers.getTrips);
 
   app.post('/saveFlight', helpers.isLoggedIn, helpers.saveFlight);
 
-  app.post('/saveHotel', helpers.isLoggedIn, helpers.saveHotel);
+  app.post('/saveHotel', helpers.saveHotel);
 
-  app.post('/saveRestaurant', helpers.isLoggedIn, helpers.saveRestaurant);
+  app.post('/saveRestaurant', helpers.saveRestaurant);
 
-  app.post('/saveEvent', helpers.isLoggedIn, helpers.saveEvent);
+  app.post('/saveEvent', helpers.saveEvent);
 
   app.post('/savePlace', helpers.isLoggedIn, helpers.savePlace);
 
