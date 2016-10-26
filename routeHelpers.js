@@ -38,6 +38,8 @@ module.exports = {
     console.log('new trip');
     Trip.findOrCreate({ where: { title: req.body.title, owner_id: req.session.user_id } })
     .then(function(trip) {
+      console.log('TRIP ', trip);
+      console.log('TRIP.GET ', trip.id);
       req.session.trip_id = trip.get('id');
       Destination.findOrCreate({ where: { name: req.body.city } })
       .then(function(destination) {
