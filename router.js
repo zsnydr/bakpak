@@ -8,8 +8,6 @@ module.exports.router = function (app) {
   });
 
   //API calls
-  app.post('/newtrip', helpers.isLoggedIn, helpers.newTrip);
-
   app.post('/hotels', helpers.isLoggedIn, helpers.postHotels);
 
   app.post('/restaurants', helpers.isLoggedIn, helpers.postRestaurants);
@@ -34,16 +32,18 @@ module.exports.router = function (app) {
   app.post('/signup', helpers.signUp);
 
   //User's trips
+  app.post('/newtrip', helpers.isLoggedIn, helpers.newTrip);
+
   app.get('/trips', helpers.isLoggedIn, helpers.getTrips);
 
-  app.post('/myflights', helpers.isLoggedIn, helpers.saveFlight);
+  app.post('/saveFlight', helpers.isLoggedIn, helpers.saveFlight);
 
-  app.post('/myhotels', helpers.isLoggedIn, helpers.saveHotels);
+  app.post('/saveHotel', helpers.isLoggedIn, helpers.saveHotel);
 
-  app.post('/myrestaurants', helpers.isLoggedIn, helpers.saveRestaurants);
+  app.post('/saveRestaurant', helpers.isLoggedIn, helpers.saveRestaurant);
 
-  app.post('/myevents', helpers.isLoggedIn, helpers.saveEvents);
+  app.post('/saveEvent', helpers.isLoggedIn, helpers.saveEvent);
 
-  app.post('/myplaces', helpers.isLoggedIn, helpers.savePlaces);
+  app.post('/savePlace', helpers.isLoggedIn, helpers.savePlace);
 
 };
