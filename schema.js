@@ -239,7 +239,7 @@ var UserTrip = db.define('users_trip', {
 
 //Create Tables
 db
-  .sync({force: true})
+  .sync({force: false})
   .then(function() {
     console.log('Tables created');
  });
