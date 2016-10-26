@@ -13,13 +13,13 @@ app.config(function ($routeProvider) {
     })
     .when('/signin', {
       templateUrl:'./public/auth/signin.html',
-      controller: 'signInController'
+      controller: 'AuthController'
     })
     .when('/signup', {
       templateUrl: './public/auth/signup.html',
-      controller: 'signUpController'
+      controller: 'AuthController'
     })
     .otherwise({
-      redirectTo: '/',
+      redirectTo: '/explore',
     })
 })

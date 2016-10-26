@@ -24,9 +24,9 @@ angular.module('app-services', [])
     })
   }
 
-return ( {
+return {
   signin: signin,
   signup: signup
-})
+}
 
 }])
