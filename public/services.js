@@ -1,8 +1,9 @@
 angular.module('app-services', [])
-.factory('Auth', ['$http', function($http, username, password){
+.factory('Auth', ['$http', '$window', function($http, $window, username, password){
 
   var signin = function(username, password){
     console.log('correct');
+    console.log('user: ', username, 'pass: ', password)
     return $http({
       method: 'POST',
       url: '/signin',
@@ -10,6 +11,12 @@ angular.module('app-services', [])
         username: username,
         password: password
         }
+    }).then(function(res){
+      if(res.data === 'matched'){
+        $window.location = '/#/explore'
+      } else {
+        $window.location = '/#/signin'
+      }
     })
   }
 
@@ -21,6 +28,12 @@ angular.module('app-services', [])
         username: username,
         password: password
         }
+    }).then(function(res){
+      if(res.data === 'user exists'){
+        $window.location = '/#/signup'
+      } else {
+        $window.location = '/#explore'
+      }
     })
   }
 
