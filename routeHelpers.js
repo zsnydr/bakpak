@@ -73,7 +73,9 @@ module.exports = {
       if (user) {
         bcrypt.compare(password, user.get('password'), function(err, match) {
           if (match) {
-            //init session
+            req.session.user = user.get('username');
+            console.log('session: ', req.session)
+            console.log(req.session.user)
             console.log('matched')
             res.end('matched')
           } else {
@@ -106,7 +108,9 @@ module.exports = {
             username: newName,
             password: hash
           }).then(function(user) {
-            //init session
+            req.session.user = user.get('username');
+            console.log('session: ', req.session)
+            console.log(req.session.user)
             console.log('redirecting')
             res.end('explore')
           })
@@ -114,6 +118,17 @@ module.exports = {
       }
     })
   },
+
+  isLoggedIn: function(req, res){
+    console.log('req.session: ', req.session)
+    var session = req.session;
+    if (session.user){
+      console.log('session user')
+      next();
+    } else {
+        console.log('no user')
+        res.end('no user')
+  }},
 
   postHotels: function(req, res) {
 

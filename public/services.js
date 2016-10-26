@@ -29,11 +29,15 @@ angular.module('app-services', [])
         password: password
         }
     }).then(function(res){
-      if(res.data === 'user exists'){
+      console.log('resdata', res.data)
+      if(res.data === 'user exists' || res.data === 'no user'){
         $window.location = '/#/signup'
       } else {
-        $window.location = '/#explore'
+          $window.location = '/#/explore'
       }
+    })
+    .catch(function(err){
+      console.error(err)
     })
   }
 
