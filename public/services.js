@@ -50,11 +50,11 @@ return {
 
 .factory('Trips', ['$http', '$location', function($http, $location){
 
-  var saveDestination = function(city) {
+  var saveTrip = function(city, tripTitle) {
     return $http({
       method: 'POST',
-      url: '/destinations',
-      data: {city: city}
+      url: '/newtrip',
+      data: {city: city, title: tripTitle}
     })
     .then(function(){
       $location.path('/explore')
@@ -71,7 +71,8 @@ return {
   }
 
   return {
-    saveDestination: saveDestination,
+    saveTrip: saveTrip,
+
 
   }
 
