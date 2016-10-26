@@ -8,23 +8,23 @@ module.exports.router = function (app) {
   });
 
   //API calls
-  app.post('/hotels', helpers.postHotels);
+  app.post('/hotels', helpers.isLoggedIn, helpers.postHotels);
 
-  app.post('/restaurants', helpers.postRestaurants);
+  app.post('/restaurants', helpers.isLoggedIn, helpers.postRestaurants);
 
-  app.post('/arts', helpers.postArts);
+  app.post('/arts', helpers.isLoggedIn, helpers.postArts);
 
-  app.post('/weather', helpers.postWeather);
+  app.post('/weather', helpers.isLoggedIn, helpers.postWeather);
 
-  app.post('/promos', helpers.postPromos);
+  app.post('/promos', helpers.isLoggedIn, helpers.postPromos);
 
-  app.post('/events', helpers.postEvents);
+  app.post('/events', helpers.isLoggedIn, helpers.postEvents);
 
-  app.post('/translate', helpers.postTranslate);
+  app.post('/translate', helpers.isLoggedIn, helpers.postTranslate);
 
-  app.post('/flights', helpers.postFlights);
+  app.post('/flights', helpers.isLoggedIn, helpers.postFlights);
 
-  app.post('/images', helpers.postImages);
+  app.post('/images', helpers.isLoggedIn, helpers.postImages);
 
   //Authentication
   app.post('/signin', helpers.signIn);
@@ -32,16 +32,16 @@ module.exports.router = function (app) {
   app.post('/signup', helpers.signUp);
 
   //User's trips
-  app.get('/trips', helpers.getTrips);
+  app.get('/trips', helpers.isLoggedIn, helpers.getTrips);
 
-  app.post('/myflights', helpers.saveFlight);
+  app.post('/myflights', helpers.isLoggedIn, helpers.saveFlight);
 
-  app.post('/myhotels', helpers.saveHotels);
+  app.post('/myhotels', helpers.isLoggedIn, helpers.saveHotels);
 
-  app.post('/myrestaurants', helpers.saveRestaurants);
+  app.post('/myrestaurants', helpers.isLoggedIn, helpers.saveRestaurants);
 
-  app.post('/myevents', helpers.saveEvents);
+  app.post('/myevents', helpers.isLoggedIn, helpers.saveEvents);
 
-  app.post('/myplaces', helpers.savePlaces);
+  app.post('/myplaces', helpers.isLoggedIn, helpers.savePlaces);
 
 };
