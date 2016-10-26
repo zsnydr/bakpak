@@ -6,8 +6,34 @@ var parseString = require('xml2js').parseString;
 var QPXClient = require('qpx-client');//for qpx
 var util = require('util');//for qpx
 
-//establish database connection
-//require database models
+// require postgres models
+var User = require('./schema').User;
+var Trip = require('./schema').Trip;
+var Destination = require('./schema').Destination;
+var Flight = require('./schema').Flight;
+var Hotel = require('./schema').Hotel;
+var Place = require('./schema').Place;
+var Restaurant = require('./schema').Restaurant;
+var DestinationTrip = require('./schema').DestinationTrip;
+var UserTrip = require('./schema').UserTrip;
+
+// set up new postgres instance
+var pg = require('pg')
+var Sequelize = require('sequelize');
+var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
+  dialect: 'postgres'
+});
+
+// Establishes the connection to the database
+db
+  .authenticate()
+  .then(function (err) {
+    console.log('Connection established');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect: ', err);
+  });
+
 
 module.exports = {
 
@@ -33,7 +59,7 @@ module.exports = {
 
   getTrips: function (req, res) {
     //using userID from the session
-    //find user in the Users table 
+    //find user in the Users table
     //send back user's trips data from DB Trips table
   },
 
@@ -42,7 +68,7 @@ module.exports = {
   },
 
   signUp: function (req, res) {
-    //create new user 
+    //create new user
     //save it in the database
   },
 
@@ -138,7 +164,7 @@ module.exports = {
   },
 
   postFlights: function(req,res){
-    
+
     options = { //for qpx
       key: process.env.GOOGLE,
       timeout: 15000
