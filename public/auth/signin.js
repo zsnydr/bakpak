@@ -1,12 +1,12 @@
 angular.module('bakpak.auth', [])
   .controller('signInController', ['Auth', '$scope', '$http', function( Auth, $scope, $http){
-    $scope.authUser = function(username, password){
-      Auth.signin(username, password);
+    $scope.authUser = function(){
+      Auth.signin($scope.username, $scope.password);
     }
   }])
 
   .controller('signUpController', ['Auth', '$scope', '$http', function( Auth, $scope, $http){
-    $scope.addUser = function(username, password){
-      Auth.signup(username, password);
+    $scope.addUser = function(){
+      Auth.signup($scope.username, $scope.password);
     }
   }])
