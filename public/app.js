@@ -20,6 +20,6 @@ app.config(function ($routeProvider) {
       controller: 'AuthController'
     })
     .otherwise({
-      redirectTo: '/',
+      redirectTo: '/explore',
     })
 })
