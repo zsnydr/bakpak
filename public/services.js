@@ -63,6 +63,7 @@ return {
       data: {city: city, title: tripTitle}
     })
     .then(function(tripData){
+      console.log('TRIP DATA', tripData)
       $location.path('/explore')
       return tripData;
     })
