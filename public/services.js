@@ -50,11 +50,9 @@ return {
 
 .factory('Trips', ['$http', '$location', function($http, $location){
 
-  var city;
-  var setCity = function(city) {
-    console.log('IN SET CITY', city)
-    city = city;
-  }
+
+
+  var tripId;
 
   var saveTrip = function(city, tripTitle) {
     return $http({
@@ -63,24 +61,39 @@ return {
       data: {city: city, title: tripTitle}
     })
     .then(function(tripData){
+      console.log('TRIP DATA', tripData)
+      tripId = tripData.data.trip_id;
       $location.path('/explore')
       return tripData;
     })
   }
 
-
-  var getCity = function() {
-    console.log('IN GET CITY', city)
-    return city;
+  var getTripId = function() {
+    return tripId;
   }
 
   return {
     saveTrip: saveTrip,
-    setCity: setCity,
-    getCity: getCity
-
+    getTripId: getTripId
   }
 
 }])
 
+.service('CityService', function(){
 
+  var city = '';
+
+  var setCity = function(data) {
+    city = data;
+  }
+
+  var getCity = function() {
+    return city;
+  }
+
+  return {
+    setCity: setCity,
+    getCity: getCity
+  }
+
+})

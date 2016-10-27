@@ -8,23 +8,23 @@ module.exports.router = function (app) {
   });
 
   //API calls
-  app.post('/hotels', helpers.isLoggedIn, helpers.postHotels);
+  app.post('/hotels', helpers.postHotels);
 
-  app.post('/restaurants', helpers.isLoggedIn, helpers.postRestaurants);
+  app.post('/restaurants', helpers.postRestaurants);
 
-  app.post('/arts', helpers.isLoggedIn, helpers.postArts);
+  app.post('/arts', helpers.postArts);
 
-  app.post('/weather', helpers.isLoggedIn, helpers.postWeather);
+  app.post('/weather', helpers.postWeather);
 
-  app.post('/promos', helpers.isLoggedIn, helpers.postPromos);
+  app.post('/promos', helpers.postPromos);
 
-  app.post('/events', helpers.isLoggedIn, helpers.postEvents);
+  app.post('/events', helpers.postEvents);
 
-  app.post('/translate', helpers.isLoggedIn, helpers.postTranslate);
+  app.post('/translate', helpers.postTranslate);
 
-  app.post('/flights', helpers.isLoggedIn, helpers.postFlights);
+  app.post('/flights', helpers.postFlights);
 
-  app.post('/images', helpers.isLoggedIn, helpers.postImages);
+  app.post('/images', helpers.postImages);
 
   //Authentication
   app.post('/signin', helpers.signIn);

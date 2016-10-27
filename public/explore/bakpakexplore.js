@@ -1,6 +1,6 @@
 angular.module('bakpak.explore', [])
 
-.controller('exploreController', function($scope, $http, Trips){
+.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', function($scope, $http, Trips, CityService){
 	$scope.city = "";
 	$scope.results = [];
 	$scope.weather;
@@ -367,10 +367,14 @@ angular.module('bakpak.explore', [])
 
 
   //TRIP MODE
+  if(Trips.getTripId()) {
+    console.log('TRIP ID', Trips.getTripId())
+    $scope.city = CityService.getCity();
+    angular.element(document.querySelector('#explorebtn')).triggerHandler('click');
+  }
 
-  $scope.city = Trips.getCity();
   console.log('AFTER REDIRECT', $scope.city)
 
 
-})
+}])
 
