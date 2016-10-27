@@ -50,9 +50,13 @@ return {
 
 .factory('Trips', ['$http', '$location', function($http, $location){
 
+<<<<<<< cd45ef26c37f41a8fd9197ac28f3a6c1709024bc
 
 
   var tripId;
+=======
+  
+>>>>>>> [fix] pass destination city between controllers
 
   var saveTrip = function(city, tripTitle) {
     return $http({
@@ -87,6 +91,22 @@ return {
     city = data;
   }
 
+  
+
+  return {
+    saveTrip: saveTrip
+  }
+
+}])
+
+.service('CityService', function () {
+  var city = '';
+
+  var setCity = function(data) {
+    console.log('IN SET CITY', data)
+    city = data;
+  }
+
   var getCity = function() {
     return city;
   }
@@ -97,3 +117,8 @@ return {
   }
 
 })
+<<<<<<< cd45ef26c37f41a8fd9197ac28f3a6c1709024bc
+=======
+
+
+>>>>>>> [fix] pass destination city between controllers

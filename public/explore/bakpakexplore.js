@@ -1,6 +1,10 @@
 angular.module('bakpak.explore', [])
 
+<<<<<<< cd45ef26c37f41a8fd9197ac28f3a6c1709024bc
 .controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', function($scope, $http, Trips, CityService){
+=======
+.controller('exploreController', function($scope, $http, CityService){
+>>>>>>> [fix] pass destination city between controllers
 	$scope.city = "";
 	$scope.results = [];
 	$scope.weather;
@@ -373,6 +377,11 @@ angular.module('bakpak.explore', [])
     angular.element(document.querySelector('#explorebtn')).triggerHandler('click');
   }
 
+<<<<<<< cd45ef26c37f41a8fd9197ac28f3a6c1709024bc
+=======
+  $scope.city = CityService.getCity();
+  angular.element('#explorebtn').triggerHandler('click');
+>>>>>>> [fix] pass destination city between controllers
   console.log('AFTER REDIRECT', $scope.city)
 
 
