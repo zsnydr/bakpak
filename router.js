@@ -36,9 +36,9 @@ module.exports.router = function (app) {
   //User's trips
   app.post('/newTrip', helpers.newTrip);
 
-  app.get('/trips', helpers.isLoggedIn, helpers.getTrips);
+  app.get('/trips', helpers.getTrips);
 
-  app.post('/saveFlight', helpers.isLoggedIn, helpers.saveFlight);
+  app.post('/saveFlight', helpers.saveFlight);
 
   app.post('/saveHotel', helpers.saveHotel);
 
@@ -46,6 +46,6 @@ module.exports.router = function (app) {
 
   app.post('/saveEvent', helpers.saveEvent);
 
-  app.post('/savePlace', helpers.isLoggedIn, helpers.savePlace);
+  app.post('/savePlace', helpers.savePlace);
 
 };
