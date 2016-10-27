@@ -63,23 +63,28 @@ module.exports = {
     });
   },
 
-  savePlace: function(req, res) {
-    //save places info in the DB Places table
-    new Promise(function(resolve, reject) {
+  findOrCreateDest: function(req, res) {
+    return new Promise(function(resolve, reject) {
       if (req.body.city !== req.session.destination_name) {
         Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
         .spread(function(destination, created) {
           req.session.destination_id = destination.get('id');
           req.session.destination_name = destination.get('name');
           resolve();
-        })
+        });
       } else {
         resolve();
       }
-    }).then(function() {
+    });
+  },
+
+  savePlace: function(req, res) {
+    //save places info in the DB Places table
+    findOrCreateDest(req, res)
+    .then(function() {
       Place.findOrCreate({
         where: {
-          name: req.body.name,
+          name: req.body.place.name,
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -88,7 +93,8 @@ module.exports = {
         res.end({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
-          dest_name: req.session.destination_name
+          dest_name: req.session.destination_name,
+          created: created
         });
       });
     });
@@ -96,18 +102,8 @@ module.exports = {
 
   saveEvent: function(req, res) {
     //save events info in the DB Events table
-    new Promise(function(resolve, reject) {
-      if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
-        .spread(function(destination, created) {
-          req.session.destination_id = destination.get('id');
-          req.session.destination_name = destination.get('name');
-          resolve();
-        })
-      } else {
-        resolve();
-      }
-    }).then(function() {
+    findOrCreateDest(req, res)
+    .then(function() {
       Event.findOrCreate({
         where: {
           name: req.body.name,
@@ -119,7 +115,8 @@ module.exports = {
         res.end({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
-          dest_name: req.session.destination_name
+          dest_name: req.session.destination_name,
+          created: created
         });
       });
     });
@@ -127,18 +124,8 @@ module.exports = {
 
   saveRestaurant: function(req, res) {
     //save restaurants info in the DB Restaurants table
-    new Promise(function(resolve, reject) {
-      if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
-        .spread(function(destination, created) {
-          req.session.destination_id = destination.get('id');
-          req.session.destination_name = destination.get('name');
-          resolve();
-        })
-      } else {
-        resolve();
-      }
-    }).then(function() {
+    findOrCreateDest(req, res)
+    .then(function() {
       Restaurant.findOrCreate({
         where: {
           name: req.body.name,
@@ -150,7 +137,8 @@ module.exports = {
         res.end({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
-          dest_name: req.session.destination_name
+          dest_name: req.session.destination_name,
+          created: created
         });
       });
     });
@@ -158,18 +146,8 @@ module.exports = {
 
   saveHotel: function(req, res) {
     //save hotels info in the DB Hotels table
-    new Promise(function(resolve, reject) {
-      if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
-        .spread(function(destination, created) {
-          req.session.destination_id = destination.get('id');
-          req.session.destination_name = destination.get('name');
-          resolve();
-        })
-      } else {
-        resolve();
-      }
-    }).then(function() {
+    findOrCreateDest(req, res)
+    .then(function() {
       Hotel.findOrCreate({
         where: {
           name: req.body.name,
@@ -181,7 +159,8 @@ module.exports = {
         res.end({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
-          dest_name: req.session.destination_name
+          dest_name: req.session.destination_name,
+          created: created
         });
       });
     });
@@ -189,18 +168,8 @@ module.exports = {
 
   saveFlight: function(req, res) {
     //save flight info in the DB Flights table
-    new Promise(function(resolve, reject) {
-      if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
-        .spread(function(destination, created) {
-          req.session.destination_id = destination.get('id');
-          req.session.destination_name = destination.get('name');
-          resolve();
-        })
-      } else {
-        resolve();
-      }
-    }).then(function() {
+    findOrCreateDest(req, res)
+    .then(function() {
       Flight.findOrCreate({
         where: {
           origin: req.body.origin,
@@ -215,7 +184,8 @@ module.exports = {
         res.end({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
-          dest_name: req.session.destination_name
+          dest_name: req.session.destination_name,
+          created: created
         });
       });
     });
@@ -240,12 +210,12 @@ module.exports = {
           if (match) {
             req.session.user_id = user.get('id');
             req.session.user = user.get('username');
-            res.end('matched')
+            res.end('matched');
           } else {
             console.error(err);
-            res.end('failed')
+            res.end('failed');
           }
-        })
+        });
       } else {
         res.end('failed');
       }
@@ -263,7 +233,7 @@ module.exports = {
           .then(function(user) {
             req.session.user_id = user.get('id');
             req.session.user = user.get('username');
-            res.end('explore')
+            res.end('explore');
           });
         });
       }
@@ -286,7 +256,7 @@ module.exports = {
       next();
     } else {
       console.log('no user')
-      res.end('no user')
+      res.end('no user');
     }
   },
 
