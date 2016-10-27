@@ -1,7 +1,7 @@
 angular.module('bakpak.explore', [])
 
 
-.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', function($scope, $http, Trips, CityService, $timeout, Auth){
+.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', 'IdService', function($scope, $http, Trips, CityService, $timeout, Auth, IdService){
 
 	$scope.city = "";
 	$scope.results = [];
@@ -381,12 +381,15 @@ angular.module('bakpak.explore', [])
   //TRIP MODE
 
       $scope.$watch(function () {
-        return Trips.tripId;
+         return Trips.getTripId();
       }, function () {
-      
-        console.log('TRIP ID', Trips.getTripId())
+        console.log(" tripId", Trips.getTripId())
+        $scope.tripId = Trips.getTripId();
+
+        console.log("$scope tripId", $scope.tripId)
         $scope.city = CityService.getCity();
         triggerClick();
+        
       });
 
 }])
