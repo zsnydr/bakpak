@@ -31,6 +31,8 @@ module.exports.router = function (app) {
 
   app.post('/signup', helpers.signUp);
 
+  app.post('/signout', helpers.signOut);
+
   //User's trips
   app.post('/newTrip', helpers.newTrip);
 

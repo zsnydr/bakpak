@@ -265,7 +265,7 @@ module.exports = {
     });
   },
 
-  logOut: function(req, res) {
+  signOut: function(req, res) {
     delete req.session.user;
     delete req.session.user_id;
     delete req.session.trip_id;
