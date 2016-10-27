@@ -372,12 +372,14 @@ angular.module('bakpak.explore', [])
       Auth.signout();
     }
 
-    $scope.savePlace = function () {
-      Save.savePlace({place: $scope.selectedPlace, city: $scope.city})
+    $scope.savePlace = function (place) {
+      console.log("PLACE", place)
+      Save.savePlace({place: place, city: $scope.city})
     }
 
-    $scope.saveRestaurant = function () {
-      Save.saveRestaurant({restaurant: $scope.selectedRestaurant, city: $scope.city})
+    $scope.saveRestaurant = function (restaurant) {
+       console.log("RESTAUR", restaurant)
+      Save.saveRestaurant({restaurant: restaurant, city: $scope.city})
     }
 
     $scope.saveEvent = function (event) {
