@@ -55,7 +55,7 @@ module.exports = {
           });
         });
       } else {
-        res.end('trip already exists');
+        res.json({trip_id: trip.get('id')});
       }
     });
   },
