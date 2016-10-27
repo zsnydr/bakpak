@@ -370,13 +370,7 @@ angular.module('bakpak.explore', [])
   if(Trips.getTripId()) {
     console.log('TRIP ID', Trips.getTripId())
     $scope.city = CityService.getCity();
-    // angular.element('#explorebtn').triggerHandler('click')
-    $scope.weatherApi();
-    $scope.restaurantsApi();
-    $scope.artsApi();
-    $scope.promosApi();
-    $scope.eventsApi();
-    $scope.imagesApi()
+    angular.element(document.querySelector('#explorebtn')).triggerHandler('click');
   }
 
   console.log('AFTER REDIRECT', $scope.city)
