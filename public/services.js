@@ -55,7 +55,7 @@ return {
   var saveTrip = function(city, tripTitle) {
     return $http({
       method: 'POST',
-      url: '/newtrip',
+      url: '/newTrip',
       data: {city: city, title: tripTitle}
     })
     .then(function(tripData){
