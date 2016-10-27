@@ -33,6 +33,23 @@ db.authenticate().then(function(err) {
   console.log('Unable to connect: ', err);
 });
 
+  var findOrCreateDest = function(req, res) {
+    return new Promise(function(resolve, reject) {
+      if (req.body.city !== req.session.destination_name) {
+        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
+        .spread(function(destination, created) {
+          req.session.destination_id = destination.get('id');
+          req.session.destination_name = destination.get('name');
+          resolve();
+        });
+      } else {
+        resolve();
+      }
+    });
+  };
+
+
+
 module.exports = {
 
   newTrip: function(req, res) {
@@ -63,20 +80,6 @@ module.exports = {
     });
   },
 
-  findOrCreateDest: function(req, res) {
-    return new Promise(function(resolve, reject) {
-      if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
-        .spread(function(destination, created) {
-          req.session.destination_id = destination.get('id');
-          req.session.destination_name = destination.get('name');
-          resolve();
-        });
-      } else {
-        resolve();
-      }
-    });
-  },
 
   savePlace: function(req, res) {
     //save places info in the DB Places table
@@ -106,13 +109,13 @@ module.exports = {
     .then(function() {
       Event.findOrCreate({
         where: {
-          name: req.body.name,
+          name: req.body.event.title[0],
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
       })
       .spread(function(event, created) {
-        res.end({
+        res.json({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
           dest_name: req.session.destination_name,

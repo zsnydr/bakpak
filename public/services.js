@@ -137,10 +137,11 @@ return {
   var savePlace = function (object) {
     $http({
       method: 'POST',
-      url: '/savePlace'
+      url: '/savePlace',
       data: object
     })
     .then(function(data) {
+      console.log('savePlace SUCCESS', data)
       return data;
     })
   }
@@ -148,10 +149,11 @@ return {
   var saveRestaurant = function (object) {
     $http({
       method: 'POST',
-      url: '/saveRestaurant'
+      url: '/saveRestaurant',
       data: object
     })
     .then(function(data) {
+       console.log('saveRestaurant SUCCESS', data)
       return data;
     })
   }
@@ -159,12 +161,19 @@ return {
   var saveEvent = function (object) {
     $http({
       method: 'POST',
-      url: '/saveEvent'
+      url: '/saveEvent',
       data: object
     })
     .then(function(data) {
+      console.log('saveEvent SUCCESS', data)
       return data;
     })
+  }
+
+  return {
+    savePlace: savePlace,
+    saveRestaurant: saveRestaurant,
+    saveEvent: saveEvent
   }
 
 

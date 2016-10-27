@@ -380,8 +380,9 @@ angular.module('bakpak.explore', [])
       Save.saveRestaurant({restaurant: $scope.selectedRestaurant, city: $scope.city})
     }
 
-    $scope.saveEvent = function () {
-      Save.saveEvent({event: $scope.selectedEvent, city: $scope.city})
+    $scope.saveEvent = function (event) {
+      console.log("EVENT", event)
+      Save.saveEvent({event: event, city: $scope.city})
     }
 
     var triggerClick = function () {
