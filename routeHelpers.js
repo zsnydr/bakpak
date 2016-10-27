@@ -38,20 +38,24 @@ module.exports = {
     console.log('new trip');
     Trip.findOrCreate({ where: { title: req.body.title, owner_id: req.session.user_id } })
     .spread(function(trip, created) {
-      req.session.trip_id = trip.get('id');
-      Destination.findOrCreate({ where: { name: req.body.city } })
-      .spread(function(destination, created) {
-        req.session.destination_id = destination.get('id');
-        req.session.destination_name = destination.get('name');
-        DestinationTrip.create({ trip_id: trip.get('id'), destination_id: destination.get('id') })
-        .then(function(desttrip) {
-          res.json({
-            trip_id: trip.get('id'),
-            dest_id: destination.get('id'),
-            dest_name: destination.get('name')
+      if (created) {
+        req.session.trip_id = trip.get('id');
+        Destination.findOrCreate({ where: { name: req.body.city } })
+        .spread(function(destination, created) {
+          req.session.destination_id = destination.get('id');
+          req.session.destination_name = destination.get('name');
+          DestinationTrip.create({ trip_id: trip.get('id'), destination_id: destination.get('id') })
+          .then(function(desttrip) {
+            res.json({
+              trip_id: trip.get('id'),
+              dest_id: destination.get('id'),
+              dest_name: destination.get('name')
+            });
           });
         });
-      });
+      } else {
+        res.end('trip already exists');
+      }
     });
   },
 
