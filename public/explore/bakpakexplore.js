@@ -1,7 +1,7 @@
 angular.module('bakpak.explore', [])
 
 
-.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', function($scope, $http, Trips, CityService, $timeout){
+.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', function($scope, $http, Trips, CityService, $timeout, Auth){
 
 	$scope.city = "";
 	$scope.results = [];
@@ -366,6 +366,11 @@ angular.module('bakpak.explore', [])
 		  $scope.translate = data.data.text[0];
 		})
 	}
+
+
+    $scope.signout = function () {
+      Auth.signout();
+    }
 
   var triggerClick = function () {
     $timeout(function () {

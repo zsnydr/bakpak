@@ -41,9 +41,21 @@ angular.module('app-services', [])
     })
   }
 
+  var signout = function () {
+    return $http({
+      method: 'POST',
+      url: '/signout',
+      data: {}
+    }).then(function(data){
+      console.log('SIGNOUT SUCCESS', data);
+      $window.location = '/#/signin'
+    })
+  }
+
 return {
   signin: signin,
-  signup: signup
+  signup: signup,
+  signout: signout
 }
 
 }])

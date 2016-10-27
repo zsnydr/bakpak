@@ -1,6 +1,6 @@
 angular.module('bakpak.trips', [])
 
-.controller('tripsController', ['$scope', 'Trips', 'CityService', function($scope, Trips, CityService){
+.controller('tripsController', ['$scope', 'Trips', 'CityService', 'Auth', function($scope, Trips, CityService, Auth){
 
   $scope.city = '';
   $scope.tripTitle = '';
@@ -16,5 +16,7 @@ angular.module('bakpak.trips', [])
     CityService.setCity($scope.city);
     console.log('IN SAVE TRIP', $scope.city)
   }
+
+
 
 }])

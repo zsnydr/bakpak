@@ -8,4 +8,6 @@ angular.module('bakpak.auth', [])
     $scope.addUser = function(){
       Auth.signup($scope.username, $scope.password);
     }
+
+
   }])
