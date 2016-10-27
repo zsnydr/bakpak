@@ -48,9 +48,7 @@ return {
 
 }])
 
-.factory('Trips', ['$http', '$location', function($http, $location){
-
-
+.factory('Trips', ['$http', '$location', '$timeout', function($http, $location, $timeout){
 
   var tripId;
 
@@ -68,8 +66,14 @@ return {
     })
   }
 
-  var getTripId = function() {
-    return tripId;
+  // var getTripId = function() {
+  //   return tripId;
+  // }
+
+  var getTripId = function(callback) {
+    $timeout(function () {
+      callback(tripId);
+    });
   }
 
   return {
@@ -79,11 +83,11 @@ return {
 
 }])
 
-.service('CityService', function(){
-
+.service('CityService', function () {
   var city = '';
 
   var setCity = function(data) {
+    console.log('IN SET CITY', data)
     city = data;
   }
 
