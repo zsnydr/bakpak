@@ -13,6 +13,7 @@ var Destination = require('./schema').Destination;
 var Flight = require('./schema').Flight;
 var Hotel = require('./schema').Hotel;
 var Place = require('./schema').Place;
+var Event = require('./schema').Event;
 var Restaurant = require('./schema').Restaurant;
 var DestinationTrip = require('./schema').DestinationTrip;
 var UserTrip = require('./schema').UserTrip;
@@ -40,7 +41,7 @@ module.exports = {
     .spread(function(trip, created) {
       if (created) {
         req.session.trip_id = trip.get('id');
-        Destination.findOrCreate({ where: { name: req.body.city } })
+        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
         .spread(function(destination, created) {
           req.session.destination_id = destination.get('id');
           req.session.destination_name = destination.get('name');
@@ -63,7 +64,7 @@ module.exports = {
     //save places info in the DB Places table
     new Promise(function(resolve, reject) {
       if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city } })
+        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
         .spread(function(destination, created) {
           req.session.destination_id = destination.get('id');
           req.session.destination_name = destination.get('name');
@@ -94,7 +95,7 @@ module.exports = {
     //save events info in the DB Events table
     new Promise(function(resolve, reject) {
       if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city } })
+        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
         .spread(function(destination, created) {
           req.session.destination_id = destination.get('id');
           req.session.destination_name = destination.get('name');
@@ -125,7 +126,7 @@ module.exports = {
     //save restaurants info in the DB Restaurants table
     new Promise(function(resolve, reject) {
       if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city } })
+        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
         .spread(function(destination, created) {
           req.session.destination_id = destination.get('id');
           req.session.destination_name = destination.get('name');
@@ -156,7 +157,7 @@ module.exports = {
     //save hotels info in the DB Hotels table
     new Promise(function(resolve, reject) {
       if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city } })
+        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
         .spread(function(destination, created) {
           req.session.destination_id = destination.get('id');
           req.session.destination_name = destination.get('name');
@@ -187,7 +188,7 @@ module.exports = {
     //save flight info in the DB Flights table
     new Promise(function(resolve, reject) {
       if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city } })
+        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
         .spread(function(destination, created) {
           req.session.destination_id = destination.get('id');
           req.session.destination_name = destination.get('name');
@@ -218,12 +219,9 @@ module.exports = {
   },
 
   getTrips: function(req, res) {
-    //using userID from the session
-    //find user in the Users table
-    //send back user's trips data from DB Trips table
     Trip.findAll({
-      where: { id: req.session.trip_id },
-      include: [DestinationTrip, Destination, Flight, Hotel, Event, Place, Restaurant]
+      where: { owner_id: req.session.user_id },
+      include: [/*DestinationTrip,*/ Destination, Flight, Hotel, Event, Place, Restaurant]
     })
     .then(function(trips) {
       console.log('TRIPS ', trips);
@@ -241,11 +239,11 @@ module.exports = {
             req.session.user = user.get('username');
             res.end('matched')
           } else {
+            console.error(err);
             res.end('failed')
           }
         })
       } else {
-        console.error(err);
         res.end('failed');
       }
     });
