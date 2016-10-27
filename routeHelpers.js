@@ -83,6 +83,28 @@ module.exports = {
 
   saveEvent: function(req, res) {
     //save events info in the DB Events table
+    if (req.body.city !== req.session.destination_name) {
+      Destination.findOrCreate({ where: { name: req.body.city } })
+      .spread(function(destination, created) {
+        req.session.destination_id = destination.get('id');
+        req.session.destination_name = destination.get('name');
+      })
+    }
+
+    Event.findOrCreate({
+      where: {
+        name: req.body.name,
+        trip_id: req.session.trip_id,
+        destination_id: req.session.destination_id
+      }
+    })
+    .spread(function(event, created) {
+      res.end({
+        trip_id: req.session.trip_id,
+        dest_id: req.session.destination_id,
+        dest_name: req.session.destination_name
+      });
+    });
   },
 
   saveRestaurant: function(req, res) {
@@ -139,12 +161,45 @@ module.exports = {
 
   saveFlight: function(req, res) {
     //save flight info in the DB Flights table
+    if (req.body.city !== req.session.destination_name) {
+      Destination.findOrCreate({ where: { name: req.body.city } })
+      .spread(function(destination, created) {
+        req.session.destination_id = destination.get('id');
+        req.session.destination_name = destination.get('name');
+      })
+    }
+
+    Flight.findOrCreate({
+      where: {
+        origin: req.body.origin,
+        flightNo: req.body.flightNo,
+        departure: req.body.departure,
+        arrival: req.body.arrival,
+        trip_id: req.session.trip_id,
+        destination_id: req.session.destination_id
+      }
+    })
+    .spread(function(flight, created) {
+      res.end({
+        trip_id: req.session.trip_id,
+        dest_id: req.session.destination_id,
+        dest_name: req.session.destination_name
+      });
+    });
   },
 
   getTrips: function(req, res) {
     //using userID from the session
     //find user in the Users table
     //send back user's trips data from DB Trips table
+    Trip.findAll({
+      where: { id: req.session.trip_id },
+      include: [DestinationTrip, Destination, Flight, Hotel, Event, Place, Restaurant]
+    })
+    .then(function(trips) {
+      console.log('TRIPS ', trips);
+      res.json(trips);
+    });
   },
 
   signIn: function(req, res) {
@@ -202,9 +257,7 @@ module.exports = {
 
 
   postHotels: function(req, res) {
-
     //save destination city in the DB for current user
-
     query.city = req.body.city;
     var queryHotels = query.hotels + query.city + '&key=' + process.env.GOOGLE;
     request(queryHotels, function(error, resp, body) {
@@ -214,6 +267,7 @@ module.exports = {
       res.end(resp.body);
     })
   },
+
   postRestaurants: function(req, res) {
     query.city = req.body.city;
     var queryRestaurants = query.restaurants + query.city + '&key=' + process.env.GOOGLE;
@@ -225,6 +279,7 @@ module.exports = {
       res.end(resp.body);
     })
   },
+
   postArts: function(req, res) {
     query.city = req.body.city;
     var queryArts = query.museum + query.city + '&key=' + process.env.GOOGLE;
@@ -236,6 +291,7 @@ module.exports = {
       res.end(resp.body);
     })
   },
+
   postWeather: function(req, res) {
     query.city = req.body.city;
     var queryWeather = query.weather + query.city + '&appid=' + process.env.WEATHER;
@@ -247,6 +303,7 @@ module.exports = {
       res.end(body);
     })
   },
+
   postPromos: function(req, res) {
     query.city = req.body.city;
     var queryPromos = query.promos + process.env.SQOOT + '&location=' + query.city;
@@ -257,6 +314,7 @@ module.exports = {
       res.end(resp.body);
     })
   },
+
   postEvents: function(req, res) {
     query.city = req.body.city;
     var queryEvents = query.events + process.env.EVENTFUL + '&location=' + query.city + '&date=Future';
@@ -272,6 +330,7 @@ module.exports = {
 
     })
   },
+
   postTranslate: function(req, res) {
     query.text = req.body.inputText
     query.country = 'en-' + req.body.country;
@@ -284,6 +343,7 @@ module.exports = {
       res.end(resp.body);
     })
   },
+
   postFlights: function(req, res) {
 
     options = { //for qpx
@@ -316,6 +376,7 @@ module.exports = {
       }
     })
   },
+
   postImages: function(req, res) {
     query.city = req.body.city;
     var options = {
