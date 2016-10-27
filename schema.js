@@ -163,6 +163,31 @@ var Restaurant = db.define('restaurant', {
   }
 });
 
+var Event = db.define('event', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: Sequelize.TEXT,
+  trip_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Trip,
+      key: 'id',
+      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    }
+  },
+  destination_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Destination,
+      key: 'id',
+      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    }
+  }
+});
+
 var DestinationTrip = db.define('destinations_trip', {
   trip_id: {
     type: Sequelize.INTEGER,
