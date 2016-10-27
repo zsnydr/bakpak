@@ -89,10 +89,23 @@ return {
     delete tripId;
   }
 
+
+  var getTrips = function() {
+    return $http({
+      method: 'GET',
+      url: '/trips',
+    })
+    .then(function(trips){
+      console.log('user trips', trips)
+      return trips;
+    })
+  }
+
   return {
     saveTrip: saveTrip,
     getTripId: getTripId,
-    tripId: tripId
+    tripId: tripId,
+    getTrips: getTrips
   }
 
 }])

@@ -17,6 +17,14 @@ angular.module('bakpak.trips', [])
     console.log('IN SAVE TRIP', $scope.city)
   }
 
+  $scope.getTrips = function() {
+    console.log('triggered')
+    Trips.getTrips()
+      .then(function(data){
+        console.log(data);
+      })
+  }
+
 
 
 }])
