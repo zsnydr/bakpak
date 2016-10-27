@@ -388,11 +388,6 @@ angular.module('bakpak.explore', [])
         $scope.city = CityService.getCity();
         triggerClick();
       });
-     
-     
-
-  
-
 
 }])
 
