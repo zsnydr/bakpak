@@ -1,10 +1,8 @@
 angular.module('bakpak.explore', [])
 
-<<<<<<< cd45ef26c37f41a8fd9197ac28f3a6c1709024bc
-.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', function($scope, $http, Trips, CityService){
-=======
-.controller('exploreController', function($scope, $http, CityService){
->>>>>>> [fix] pass destination city between controllers
+
+.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', function($scope, $http, Trips, CityService, $timeout){
+
 	$scope.city = "";
 	$scope.results = [];
 	$scope.weather;
@@ -369,13 +367,28 @@ angular.module('bakpak.explore', [])
 		})
 	}
 
+  var triggerClick = function () {
+    $timeout(function () {
+      angular.element(document.querySelector('#explorebtn')).triggerHandler('click');
+    })
+  }
 
   //TRIP MODE
-  if(Trips.getTripId()) {
-    console.log('TRIP ID', Trips.getTripId())
-    $scope.city = CityService.getCity();
-    angular.element(document.querySelector('#explorebtn')).triggerHandler('click');
-  }
+  // if(Trips.getTripId()) {
+  //   console.log('TRIP ID', Trips.getTripId())
+  //   $scope.city = CityService.getCity();
+  //   triggerClick();
+  // }
+
+    Trips.getTripId(function (data) {
+      if (data) {
+        console.log('TRIP ID', Trips.getTripId())
+        $scope.city = CityService.getCity();
+        triggerClick();
+     }
+    }) 
+  
+
 
 }])
 

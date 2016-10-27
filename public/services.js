@@ -48,15 +48,9 @@ return {
 
 }])
 
-.factory('Trips', ['$http', '$location', function($http, $location){
-
-<<<<<<< cd45ef26c37f41a8fd9197ac28f3a6c1709024bc
-
+.factory('Trips', ['$http', '$location', '$timeout', function($http, $location, $timeout){
 
   var tripId;
-=======
-  
->>>>>>> [fix] pass destination city between controllers
 
   var saveTrip = function(city, tripTitle) {
     return $http({
@@ -72,29 +66,19 @@ return {
     })
   }
 
-  var getTripId = function() {
-    return tripId;
+  // var getTripId = function() {
+  //   return tripId;
+  // }
+
+  var getTripId = function(callback) {
+    $timeout(function () {
+      callback(tripId);
+    });
   }
 
   return {
     saveTrip: saveTrip,
     getTripId: getTripId
-  }
-
-}])
-
-.service('CityService', function(){
-
-  var city = '';
-
-  var setCity = function(data) {
-    city = data;
-  }
-
-  
-
-  return {
-    saveTrip: saveTrip
   }
 
 }])
@@ -117,8 +101,3 @@ return {
   }
 
 })
-<<<<<<< cd45ef26c37f41a8fd9197ac28f3a6c1709024bc
-=======
-
-
->>>>>>> [fix] pass destination city between controllers
