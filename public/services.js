@@ -73,6 +73,7 @@ return {
     .then(function(tripData){
       console.log('TRIP DATA', tripData)
       tripId = tripData.data.trip_id;
+        console.log('TRIP id in factory', tripId)
       $location.path('/explore')
       return tripData;
     })
@@ -82,11 +83,8 @@ return {
   //   return tripId;
   // }
 
-  var getTripId = function(callback) {
-    $timeout(function () {
-      callback(tripId);
-    });
-    delete tripId;
+  var getTripId = function() {
+    return tripId;
   }
 
 
@@ -112,19 +110,39 @@ return {
 
 .service('CityService', function () {
   var city = '';
+  var title = '';
 
-  var setCity = function(data) {
+  var setCity = function(city, name) {
     console.log('IN SET CITY', data)
     city = data;
+    title = name;
   }
 
   var getCity = function() {
-    return city;
+    return {city:city, title:title};
   }
 
   return {
     setCity: setCity,
     getCity: getCity
+  }
+})
+
+  .service('IdService', function () {
+  var id = '';
+
+  var setId = function(data) {
+    console.log('IN SET ID', data)
+    id = data;
+  }
+
+  var getId = function() {
+    return id;
+  }
+
+  return {
+    getId: setId,
+    getId: getId
   }
 
 })
