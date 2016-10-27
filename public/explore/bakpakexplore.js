@@ -1,7 +1,7 @@
 angular.module('bakpak.explore', [])
 
 
-.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', 'IdService', function($scope, $http, Trips, CityService, $timeout, Auth, IdService){
+.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', 'IdService', 'Save', function($scope, $http, Trips, CityService, $timeout, Auth, IdService, Save){
 
 	$scope.city = "";
 	$scope.results = [];
@@ -372,11 +372,23 @@ angular.module('bakpak.explore', [])
       Auth.signout();
     }
 
-  var triggerClick = function () {
-    $timeout(function () {
-      angular.element(document.querySelector('#explorebtn')).triggerHandler('click');
-    })
-  }
+    $scope.savePlace = function () {
+      Save.savePlace({place: $scope.selectedPlace, city: $scope.city})
+    }
+
+    $scope.saveRestaurant = function () {
+      Save.saveRestaurant({restaurant: $scope.selectedRestaurant, city: $scope.city})
+    }
+
+    $scope.saveEvent = function () {
+      Save.saveEvent({event: $scope.selectedEvent, city: $scope.city})
+    }
+
+    var triggerClick = function () {
+      $timeout(function () {
+        angular.element(document.querySelector('#explorebtn')).triggerHandler('click');
+      })
+    }
 
   //TRIP MODE
 
@@ -389,7 +401,7 @@ angular.module('bakpak.explore', [])
         console.log("$scope tripId", $scope.tripId)
         $scope.city = CityService.getCity();
         triggerClick();
-        
+
       });
 
 }])
