@@ -131,3 +131,80 @@ return {
   }
 
 })
+
+.factory('Save', ['$http', function ($http) {
+
+  var savePlace = function (object) {
+    $http({
+      method: 'POST',
+      url: '/savePlace',
+      data: object
+    })
+    .then(function(data) {
+      console.log('savePlace SUCCESS', data)
+      return data;
+    })
+  }
+
+  var saveRestaurant = function (object) {
+    $http({
+      method: 'POST',
+      url: '/saveRestaurant',
+      data: object
+    })
+    .then(function(data) {
+       console.log('saveRestaurant SUCCESS', data)
+      return data;
+    })
+  }
+
+  var saveEvent = function (object) {
+    $http({
+      method: 'POST',
+      url: '/saveEvent',
+      data: object
+    })
+    .then(function(data) {
+      console.log('saveEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+  return {
+    savePlace: savePlace,
+    saveRestaurant: saveRestaurant,
+    saveEvent: saveEvent
+  }
+
+
+
+}])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
