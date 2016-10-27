@@ -379,22 +379,18 @@ angular.module('bakpak.explore', [])
   }
 
   //TRIP MODE
-  // if(Trips.getTripId()) {
-  //   console.log('TRIP ID', Trips.getTripId())
-  //   $scope.city = CityService.getCity();
-  //   triggerClick();
-  // }
 
-    Trips.getTripId(function (data) {
+      $scope.$watch(function () {
+        return Trips.tripId;
+      }, function () {
       
-      if (data) {
-
         console.log('TRIP ID', Trips.getTripId())
         $scope.city = CityService.getCity();
         triggerClick();
+      });
+     
+     
 
-     }
-    }) 
   
 
 

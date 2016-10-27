@@ -86,11 +86,13 @@ return {
     $timeout(function () {
       callback(tripId);
     });
+    delete tripId;
   }
 
   return {
     saveTrip: saveTrip,
-    getTripId: getTripId
+    getTripId: getTripId,
+    tripId: tripId
   }
 
 }])
