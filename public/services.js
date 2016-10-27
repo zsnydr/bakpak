@@ -87,39 +87,24 @@ return {
     return tripId;
   }
 
-
-  var getTrips = function() {
-    return $http({
-      method: 'GET',
-      url: '/trips',
-    })
-    .then(function(trips){
-      console.log('user trips', trips)
-      return trips;
-    })
-  }
-
   return {
     saveTrip: saveTrip,
     getTripId: getTripId,
-    tripId: tripId,
-    getTrips: getTrips
+    tripId: tripId
   }
 
 }])
 
 .service('CityService', function () {
   var city = '';
-  var title = '';
 
-  var setCity = function(city, name) {
+  var setCity = function(data) {
     console.log('IN SET CITY', data)
     city = data;
-    title = name;
   }
 
   var getCity = function() {
-    return {city:city, title:title};
+    return city;
   }
 
   return {

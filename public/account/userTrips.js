@@ -10,7 +10,7 @@ angular.module('bakpak.trips', [])
       .then(function(tripData){
         $scope.tripData = tripData;
 
-        IdService.setId(tripData.data.trip_id);
+       
       });
   }
 

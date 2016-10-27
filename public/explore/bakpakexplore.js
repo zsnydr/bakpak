@@ -380,39 +380,17 @@ angular.module('bakpak.explore', [])
 
   //TRIP MODE
 
-      // $scope.$watch(function () {
-        
-      //   return Trips.tripId;
-      // }, function () {
-      //   console.log('trip id', $scope.$apply(function () {Trips.tripId}))
-      //   $scope.tripId = Trips.tripId;
-
-      //   console.log("$scope tripId", $scope.tripId)
-      //   $scope.city = CityService.getCity();
-      //   triggerClick();
-      // });
-
- $scope.$watch(function () {
-      return Trips.tripId;
+      $scope.$watch(function () {
+         return Trips.getTripId();
       }, function () {
+        console.log(" tripId", Trips.getTripId())
+        $scope.tripId = Trips.getTripId();
 
-      $scope.dataChunk = CityService.getCity();
-      $scope.city = $scope.dataChunk.city;
-      $scope.title = $scope.dataChunk.title;
-      
-      Trips.saveTrip($scope.city, $scope.title)
-      .then(function (tripData) {
-
-        console.log('city', $scope.city)
-        if (tripData.data.trip_id) {
-          $scope.tripId = tripData.data.trip_id;
-          console.log("$scope tripId", $scope.tripId)
-          
-          triggerClick();
-        }
-      })
+        console.log("$scope tripId", $scope.tripId)
+        $scope.city = CityService.getCity();
+        triggerClick();
+        
       });
-
 
 }])
 
