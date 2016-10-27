@@ -18,6 +18,7 @@ angular.module('bakpak.trips', [])
   }
 
   $scope.getTrips = function() {
+    console.log('triggered')
     Trips.getTrips()
       .then(function(data){
         console.log(data);
