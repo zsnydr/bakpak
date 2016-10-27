@@ -381,10 +381,13 @@ angular.module('bakpak.explore', [])
   // }
 
     Trips.getTripId(function (data) {
+      
       if (data) {
+
         console.log('TRIP ID', Trips.getTripId())
         $scope.city = CityService.getCity();
         triggerClick();
+
      }
     }) 
   

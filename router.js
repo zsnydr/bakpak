@@ -32,7 +32,7 @@ module.exports.router = function (app) {
   app.post('/signup', helpers.signUp);
 
   //User's trips
-  app.post('/newtrip', helpers.newTrip);
+  app.post('/newTrip', helpers.newTrip);
 
   app.get('/trips', helpers.isLoggedIn, helpers.getTrips);
 
