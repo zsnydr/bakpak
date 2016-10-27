@@ -43,7 +43,7 @@ module.exports = {
         console.log('created')
         console.log('trip:', trip)
         req.session.trip_id = trip.get('id');
-        Destination.create({ where: { name: req.body.city, trip_id: req.session.trip_id } })
+        Destination.create({ name: req.body.city, trip_id: req.session.trip_id})
         .then(function(destination) {
           console.log("YAY we are in destination")
           req.session.destination_id = destination.get('id');
