@@ -37,17 +37,15 @@ module.exports = {
   newTrip: function(req, res) {
     console.log('new trip');
     Trip.findOrCreate({ where: { title: req.body.title, owner_id: req.session.user_id } })
-    .then(function(trip) {
-      console.log('TRIP ', trip);
-      console.log('TRIP.GET ', trip.id);
+    .spread(function(trip, created) {
       req.session.trip_id = trip.get('id');
       Destination.findOrCreate({ where: { name: req.body.city } })
-      .then(function(destination) {
+      .spread(function(destination, created) {
         req.session.destination_id = destination.get('id');
         req.session.destination_name = destination.get('name');
         DestinationTrip.create({ trip_id: trip.get('id'), destination_id: destination.get('id') })
         .then(function(desttrip) {
-          res.end({
+          res.json({
             trip_id: trip.get('id'),
             dest_id: destination.get('id'),
             dest_name: destination.get('name')
@@ -61,7 +59,7 @@ module.exports = {
     //save places info in the DB Places table
     if (req.body.city !== req.session.destination_name) {
       Destination.findOrCreate({ where: { name: req.body.city } })
-      .then(function(destination) {
+      .spread(function(destination, created) {
         req.session.destination_id = destination.get('id');
         req.session.destination_name = destination.get('name');
       })
@@ -74,7 +72,7 @@ module.exports = {
         destination_id: req.session.destination_id
       }
     })
-    .then(function(place) {
+    .spread(function(place, created) {
       res.end({
         trip_id: req.session.trip_id,
         dest_id: req.session.destination_id,
@@ -91,7 +89,7 @@ module.exports = {
     //save restaurants info in the DB Restaurants table
     if (req.body.city !== req.session.destination_name) {
       Destination.findOrCreate({ where: { name: req.body.city } })
-      .then(function(destination) {
+      .spread(function(destination, created) {
         req.session.destination_id = destination.get('id');
         req.session.destination_name = destination.get('name');
       })
@@ -104,7 +102,7 @@ module.exports = {
         destination_id: req.session.destination_id
       }
     })
-    .then(function(restaurant) {
+    .spread(function(restaurant, created) {
       res.end({
         trip_id: req.session.trip_id,
         dest_id: req.session.destination_id,
@@ -117,7 +115,7 @@ module.exports = {
     //save hotels info in the DB Hotels table
     if (req.body.city !== req.session.destination_name) {
       Destination.findOrCreate({ where: { name: req.body.city } })
-      .then(function(destination) {
+      .spread(function(destination, created) {
         req.session.destination_id = destination.get('id');
         req.session.destination_name = destination.get('name');
       })
@@ -130,7 +128,7 @@ module.exports = {
         destination_id: req.session.destination_id
       }
     })
-    .then(function(hotel) {
+    .spread(function(hotel, created) {
       res.end({
         trip_id: req.session.trip_id,
         dest_id: req.session.destination_id,
@@ -152,11 +150,8 @@ module.exports = {
   signIn: function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    User.find({
-      where: {
-        username: username
-      }
-    }).then(function(user) {
+    User.find({ where: { username: username } })
+    .then(function(user) {
       if (user) {
         bcrypt.compare(password, user.get('password'), function(err, match) {
           if (match) {
@@ -165,7 +160,6 @@ module.exports = {
             res.end('matched')
           } else {
             res.end('failed')
-
           }
         })
       } else {
@@ -178,19 +172,14 @@ module.exports = {
   signUp: function(req, res) {
     var newName = req.body.username;
     var newPass = req.body.password;
-    User.find({
-      where: {
-        username: newName
-      }
-    }).then(function(user) {
+    User.find({ where: { username: newName } })
+    .then(function(user) {
       if (user) {
         res.end('user exists');
       } else {
         bcrypt.hash(newPass, 5, function(err, hash) {
-          User.create({
-            username: newName,
-            password: hash
-          }).then(function(user) {
+          User.create({ username: newName, password: hash })
+          .then(function(user) {
             req.session.user_id = user.get('id');
             req.session.user = user.get('username');
             res.end('explore')
