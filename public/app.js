@@ -1,5 +1,5 @@
 var app = angular.module('bakpak', [
-  'ngRoute', 'bakpak.explore', 'app-services', 'bakpak.auth', 'bakpak.trips'])
+  'ngRoute', 'bakpak.explore', 'app-services', 'bakpak.auth', 'bakpak.trips', 'bakpak.nav'])
 
 app.config(function ($routeProvider) {
   $routeProvider
