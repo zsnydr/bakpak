@@ -86,7 +86,7 @@ module.exports = {
         }
       })
       .spread(function(place, created) {
-        res.end({
+        res.json({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
           dest_name: req.session.destination_name,
@@ -130,7 +130,7 @@ module.exports = {
         }
       })
       .spread(function(restaurant, created) {
-        res.end({
+        res.json({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
           dest_name: req.session.destination_name,
@@ -152,7 +152,7 @@ module.exports = {
         }
       })
       .spread(function(hotel, created) {
-        res.end({
+        res.json({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
           dest_name: req.session.destination_name,
@@ -177,7 +177,7 @@ module.exports = {
         }
       })
       .spread(function(flight, created) {
-        res.end({
+        res.json({
           trip_id: req.session.trip_id,
           dest_id: req.session.destination_id,
           dest_name: req.session.destination_name,
