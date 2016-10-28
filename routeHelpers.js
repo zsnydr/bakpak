@@ -17,6 +17,7 @@ var Event = require('./schema').Event;
 var Restaurant = require('./schema').Restaurant;
 var DestinationTrip = require('./schema').DestinationTrip;
 var UserTrip = require('./schema').UserTrip;
+var bcrypt = require('bcrypt');
 
 // set up new postgres instance
 var pg = require('pg')
@@ -24,7 +25,6 @@ var Sequelize = require('sequelize');
 var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
   dialect: 'postgres'
 });
-var bcrypt = require('bcrypt');
 
 // Establishes the connection to the database
 db.authenticate().then(function(err) {
@@ -33,21 +33,21 @@ db.authenticate().then(function(err) {
   console.log('Unable to connect: ', err);
 });
 
-  var findOrCreateDest = function(req, res) {
-    return new Promise(function(resolve, reject) {
-      if (req.body.city !== req.session.destination_name) {
-        Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
-        .spread(function(destination, created) {
-          req.session.destination_id = destination.get('id');
-          req.session.destination_name = destination.get('name');
-          resolve();
-        });
-      } else {
-        resolve();
-      }
-    });
-  };
 
+var findOrCreateDest = function(req, res) {
+  return new Promise(function(resolve, reject) {
+    if (req.body.city !== req.session.destination_name) {
+      Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
+      .spread(function(destination, created) {
+        req.session.destination_id = destination.get('id');
+        req.session.destination_name = destination.get('name');
+        resolve();
+      });
+    } else {
+      resolve();
+    }
+  });
+};
 
 
 module.exports = {
@@ -332,7 +332,7 @@ module.exports = {
   },
 
   postTranslate: function(req, res) {
-    query.text = req.body.inputText
+    query.text = req.body.inputText;
     query.country = 'en-' + req.body.country;
     var queryTranslate = query.translate + process.env.YANDEX + '&text=' + query.text + '&lang=' + query.country;
 
@@ -381,9 +381,7 @@ module.exports = {
     query.city = req.body.city;
     var options = {
       url: 'https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=' + query.city + '&mkt=en-us&size=wallpaper',
-      headers: {
-        'Ocp-Apim-Subscription-Key': '46f42b01258b4a46836eb4bcd886c7b1'
-      }
+      headers: { 'Ocp-Apim-Subscription-Key': '46f42b01258b4a46836eb4bcd886c7b1' }
     }
     request(options, function(error, resp, body) {
       if (error) {
