@@ -27,25 +27,29 @@
 
     <div id="left" class="col s5 offset-s1 explore">
       <h4 class="label"> Restaurants </h4>
-      <div class="col s10">
+     <!--  <div class="col s10"> -->
         <div ng-repeat="result in results | limitTo: 10" ng-model = 'selectedRestaurant'>
         <img class="icon" src={{result.icon}}  ng-show='!tripId'></img>
-        <a class='waves-effect waves-light btn' ng-click='saveRestaurant(result)'  ng-show='tripId'> Save </a>
+        <a class=' addbtn waves-effect waves-light btn' ng-click='saveRestaurant(result)'  ng-show='tripId'> Save </a>
         <a class="google" href="https://www.google.com/#q={{result.name}}" target="_blank"> <b> {{result.name}} </b> </a> <br> {{result.formatted_address}} <br> Rating :
         {{result.rating}} </br>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
 
     <div class="col s5 explore">
       <h4 class="label"> Places to Visit </h4>
-      <div class="col s10">
+      <!-- <div class="col s10"> -->
       <div ng-repeat="art in arts | limitTo: 10" ng-model='selectedPlace'>
         <img class="icon" src={{art.icon}}  ng-show='!tripId'></img>
-        <a class='waves-effect waves-light btn' ng-click='savePlace(art)'  ng-show='tripId'> Save </a>
-        <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a> <br>{{art.formatted_address}} </br>
+         
+        <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a> 
+        <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='savePlace(art)'  ng-show='tripId'> Save </a></div>
+        <br>{{art.formatted_address}} </br>
+
         Place Type: {{art.types[0]}} </br> Open Now? {{art.opening_hours.open_now}} </div>
-      </div>
+<!-- 
+      </div> -->
     </div>
 
   </div>
@@ -62,7 +66,7 @@
       <h4 class="label"> Events </h4>
       <div ng-repeat="event in events" ng-model='selectedEvent'>
       <b> <a class="google" href = {{event.url[0]}} target="_blank">{{event.title[0]}} </a></b>
-      <a class='waves-effect waves-light btn' ng-click='saveEvent(event)' ng-show='tripId'> Save </a>
+       <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='saveEvent(event)' ng-show='tripId'> Save </a></div>
       </br>
 
       Venue: <a class="google" href = {{event.venue_url[0]}} target="_blank"> {{event.venue_name[0]}}</a></div>

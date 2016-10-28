@@ -38,7 +38,7 @@
             <div id="left" class="col s5 offset-s1 explore">
               <h4 class="label"> Flights </h4>
               <div class="col s10">
-                <div ng-repeat="flight in trip.flights | limitTo: 10">
+                <div ng-repeat="flight in trip.flights | limitTo: 10" >
                   <a class="google">Destination: {{flight.destination}}</a>
                   </br>
                   Origin: {{flight.origin}}

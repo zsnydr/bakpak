@@ -111,4 +111,8 @@ select {
 #destinationbtn{
   margin-bottom: 100px;
 }
+.addbtn {
+  display: block;
+  float:right;
+}
 
