@@ -80,6 +80,10 @@ select {
   background-color: rgba(238, 251, 244, 0.8);
 }
 
+#showTripBtn {
+  padding-bottom: 15px
+}
+
 .google:hover{
   color: blue;
 }

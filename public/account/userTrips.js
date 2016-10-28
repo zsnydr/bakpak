@@ -4,6 +4,7 @@ angular.module('bakpak.trips', [])
 
   $scope.city = '';
   $scope.tripTitle = '';
+  $scope.showInfo = false;
 
   $scope.saveTrip = function() {
     Trips.saveTrip($scope.city, $scope.tripTitle)
@@ -20,13 +21,17 @@ angular.module('bakpak.trips', [])
   }
 
   $scope.getTrips = function() {
-    console.log('triggered')
+   
     Trips.getTrips()
-      .then(function(data){
-        console.log(data);
+      .then(function(info){
+         console.log('data', info.data)
+        $scope.trips = info.data;
       })
   }
 
+  $scope.showInfoFunc = function () {
+    $scope.showInfo = !$scope.showInfo;
+  }
 
 
 }])
