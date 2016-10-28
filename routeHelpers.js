@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var query = require("./query.js");
 var parseString = require('xml2js').parseString;
+var bcrypt = require('bcrypt');
 
 var QPXClient = require('qpx-client'); //for qpx
 var util = require('util'); //for qpx
@@ -9,15 +10,12 @@ var util = require('util'); //for qpx
 // require postgres models
 var User = require('./schema').User;
 var Trip = require('./schema').Trip;
-var Destination = require('./schema').Destination;
-var Flight = require('./schema').Flight;
 var Hotel = require('./schema').Hotel;
 var Place = require('./schema').Place;
 var Event = require('./schema').Event;
+var Flight = require('./schema').Flight;
 var Restaurant = require('./schema').Restaurant;
-var DestinationTrip = require('./schema').DestinationTrip;
-var UserTrip = require('./schema').UserTrip;
-var bcrypt = require('bcrypt');
+var Destination = require('./schema').Destination;
 
 // set up new postgres instance
 var pg = require('pg')
