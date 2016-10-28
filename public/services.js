@@ -170,10 +170,37 @@ return {
     })
   }
 
+   var saveHotel = function (object) {
+    $http({
+      method: 'POST',
+      url: '/saveHotel',
+      data: object
+    })
+    .then(function(data) {
+      console.log('saveEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+   var saveFlight = function (object) {
+    $http({
+      method: 'POST',
+      url: '/saveFlight',
+      data: object
+    })
+    .then(function(data) {
+      console.log('saveEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+
   return {
     savePlace: savePlace,
     saveRestaurant: saveRestaurant,
-    saveEvent: saveEvent
+    saveEvent: saveEvent,
+    saveHotel: saveHotel,
+    saveFlight: saveFlight
   }
 
 
