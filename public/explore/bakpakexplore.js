@@ -402,19 +402,30 @@ angular.module('bakpak.explore', [])
       })
     }
 
+
+
   //TRIP MODE
 
-    $scope.$watch(function () {
-       return Trips.getTripId();
-    }, function () {
-      console.log(" tripId", Trips.getTripId())
-      $scope.tripId = Trips.getTripId();
 
-      console.log("$scope tripId", $scope.tripId)
-      $scope.city = CityService.getCity();
-      if ($scope.city !== '') {
-        triggerClick();
-      }
+  $scope.setCity = function() {
+    CityService.setCity($scope.city);
+  }
+
+  var newTripTriggered = false;
+
+      $scope.$watch(function () {
+         return Trips.getTripId();
+      }, function () {
+        console.log(" tripId", Trips.getTripId())
+        $scope.tripId = Trips.getTripId();
+
+        if(!newTripTriggered && $scope.tripId !== undefined) {
+          $scope.city = CityService.getCity();
+          if($scope.city !== '') {
+            triggerClick();
+          }
+          newTripTriggered = true;
+        }
 
     });
 
