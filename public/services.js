@@ -87,10 +87,21 @@ return {
     return tripId;
   }
 
+  var getTrips = function() {
+    return $http({
+      method: 'GET',
+      url: '/trips'
+    })
+    .then(function(trips){
+      return trips;
+    })
+  }
+
   return {
     saveTrip: saveTrip,
     getTripId: getTripId,
-    tripId: tripId
+    tripId: tripId,
+    getTrips: getTrips
   }
 
 }])
