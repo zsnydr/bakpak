@@ -57,29 +57,22 @@ module.exports = {
     Trip.findOrCreate({ where: { title: req.body.title, owner_id: req.session.user_id } })
     .spread(function(trip, created) {
       if (created) {
-        console.log('created')
-        console.log('trip:', trip)
         req.session.trip_id = trip.get('id');
         Destination.create({ name: req.body.city, trip_id: req.session.trip_id})
         .then(function(destination) {
-          console.log("YAY we are in destination")
           req.session.destination_id = destination.get('id');
           req.session.destination_name = destination.get('name');
-          // DestinationTrip.create({ trip_id: trip.get('id'), destination_id: destination.get('id') })
-          // .then(function(desttrip) {
-            res.json({
-              trip_id: trip.get('id'),
-              dest_id: destination.get('id'),
-              dest_name: destination.get('name')
-            });
+          res.json({
+            trip_id: trip.get('id'),
+            dest_id: destination.get('id'),
+            dest_name: destination.get('name')
           });
-        // });
+        });
       } else {
         res.json({trip_id: trip.get('id')});
       }
     });
   },
-
 
   savePlace: function(req, res) {
     //save places info in the DB Places table
@@ -131,7 +124,7 @@ module.exports = {
     .then(function() {
       Restaurant.findOrCreate({
         where: {
-          name: req.body.name,
+          name: req.body.restaurant.name,
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -153,7 +146,7 @@ module.exports = {
     .then(function() {
       Hotel.findOrCreate({
         where: {
-          name: req.body.name,
+          name: req.body.hotel.name[0],
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
