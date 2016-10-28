@@ -370,6 +370,7 @@ angular.module('bakpak.explore', [])
 
     $scope.signout = function () {
       Auth.signout();
+      CityService.setCity('');
     }
 
     $scope.savePlace = function (place) {
@@ -403,18 +404,18 @@ angular.module('bakpak.explore', [])
 
   //TRIP MODE
 
-      $scope.$watch(function () {
-         return Trips.getTripId();
-      }, function () {
-        console.log(" tripId", Trips.getTripId())
-        $scope.tripId = Trips.getTripId();
+    $scope.$watch(function () {
+       return Trips.getTripId();
+    }, function () {
+      console.log(" tripId", Trips.getTripId())
+      $scope.tripId = Trips.getTripId();
 
-        console.log("$scope tripId", $scope.tripId)
-        $scope.city = CityService.getCity();
-        if ($scope.city !== '') {
-          triggerClick();
-        }
+      console.log("$scope tripId", $scope.tripId)
+      $scope.city = CityService.getCity();
+      if ($scope.city !== '') {
+        triggerClick();
+      }
 
-      });
+    });
 
 }])
