@@ -64,9 +64,14 @@ var Flight = db.define('flight', {
     autoIncrement: true
   },
   origin: Sequelize.TEXT,
-  flightNo: Sequelize.INTEGER,
+  destination: Sequelize.TEXT,
+  duration: Sequelize.TEXT,
+  // flightNo: Sequelize.INTEGER,
   departure: Sequelize.DATE,
   arrival: Sequelize.DATE,
+  carrier: Sequelize.TEXT,
+  seat: Sequelize.TEXT,
+  prices: Sequelize.TEXT,
   // trip_id: {
   //   type: Sequelize.INTEGER,
   //   references: {
@@ -92,6 +97,8 @@ var Hotel = db.define('hotel', {
     autoIncrement: true
   },
   name: Sequelize.TEXT,
+  address: Sequelize.TEXT,
+  rating: Sequelize.DECIMAL(10,1),
   // trip_id: {
   //   type: Sequelize.INTEGER,
   //   references: {
@@ -117,6 +124,9 @@ var Place = db.define('place', {
     autoIncrement: true
   },
   name: Sequelize.TEXT,
+  address: Sequelize.TEXT,
+  type: Sequelize.TEXT,
+  // open: Sequelize.TEXT,
   // trip_id: {
   //   type: Sequelize.INTEGER,
   //   references: {
@@ -142,6 +152,8 @@ var Restaurant = db.define('restaurant', {
     autoIncrement: true
   },
   name: Sequelize.TEXT,
+  address: Sequelize.TEXT,
+  rating: Sequelize.DECIMAL(10,1),
   // trip_id: {
   //   type: Sequelize.INTEGER,
   //   references: {
@@ -167,6 +179,7 @@ var Event = db.define('event', {
     autoIncrement: true
   },
   name: Sequelize.TEXT,
+  venue: Sequelize.TEXT,
   // trip_id: {
   //   type: Sequelize.INTEGER,
   //   references: {

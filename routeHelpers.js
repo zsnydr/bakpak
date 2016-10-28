@@ -81,6 +81,8 @@ module.exports = {
       Place.findOrCreate({
         where: {
           name: req.body.place.name,
+          address: req.body.place.address,
+          type: req.body.place.type,
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -103,6 +105,7 @@ module.exports = {
       Event.findOrCreate({
         where: {
           name: req.body.event.title[0],
+          venue: req.body.event.venue[0],
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -125,6 +128,8 @@ module.exports = {
       Restaurant.findOrCreate({
         where: {
           name: req.body.restaurant.name,
+          address: req.body.restaurant.address,
+          rating: req.body.restaurant.rating,
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -147,6 +152,8 @@ module.exports = {
       Hotel.findOrCreate({
         where: {
           name: req.body.hotel.name[0],
+          address: req.body.hotel.address[0],
+          rating: req.body.hotel.rating[0],
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -169,9 +176,13 @@ module.exports = {
       Flight.findOrCreate({
         where: {
           origin: req.body.origin,
-          flightNo: req.body.flightNo,
+          destination: req.body.destination,
+          duration: req.body.duration,
+          // flightNo: req.body.flightNo,
           departure: req.body.departure,
           arrival: req.body.arrival,
+          carrier: req.body.carrier,
+          seat: req.body.seat,
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
