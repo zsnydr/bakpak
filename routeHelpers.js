@@ -343,18 +343,6 @@ module.exports = {
     })
   },
 
-  postTranslate: function(req, res) {
-    query.text = req.body.inputText;
-    query.country = 'en-' + req.body.country;
-    var queryTranslate = query.translate + process.env.YANDEX + '&text=' + query.text + '&lang=' + query.country;
-
-    request(queryTranslate, function(error, resp, body) {
-      if (error) {
-        console.log(error);
-      }
-      res.end(resp.body);
-    })
-  },
 
   postFlights: function(req, res) {
 

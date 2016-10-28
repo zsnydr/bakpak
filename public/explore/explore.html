@@ -42,13 +42,14 @@
       <!-- <div class="col s10"> -->
       <div ng-repeat="art in arts | limitTo: 10" ng-model='selectedPlace'>
         <img class="icon" src={{art.icon}}  ng-show='!tripId'></img>
-         
-        <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a> 
+
+
+        <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a>
         <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='savePlace(art); art.clicked=true'  ng-show='tripId' ng-disabled='art.clicked'> Save </a></div>
         <br>{{art.formatted_address}} </br>
 
         Place Type: {{art.types[0]}} </br> Open Now? {{art.opening_hours.open_now}} </div>
-<!-- 
+<!--
       </div> -->
     </div>
 
@@ -72,18 +73,4 @@
       Venue: <a class="google" href = {{event.venue_url[0]}} target="_blank"> {{event.venue_name[0]}}</a></div>
     </div>
   </div>
-
-
-  <div class="row">
-    <div class="col s10 offset-s1 explore2">
-      <h4 class="label"> Translate </h4>
-      <select class="browser-default col s6" ng-model='selectedCountry'>
-            <option value="" disabled selected selected="select">Select your country</option>
-            <option ng-repeat='country in countries' value="{{country.code}}">{{country.name}}</option>
-      </select>
-      <input class="col s11" id= "input" type="text" ng-model='translate' placeholder="What can we translate for you?" /> </br>
-       <a id="spacer" class="waves-effect waves-light btn" type='submit' ng-click='translateApi()' >TRANSLATE </a>
-    </div>
-  </div>
-
 </div>
