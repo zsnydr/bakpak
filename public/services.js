@@ -146,7 +146,7 @@ return {
   }
 
   return {
-    getId: setId,
+    setId: setId,
     getId: getId
   }
 
