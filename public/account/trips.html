@@ -10,8 +10,69 @@
 
 
   <a href='/#/explore' class='waves-effect waves-light btn' ng-click='saveTrip(); setCity()'> Make a new trip! </a>
+    <a ng-click='getTrips()' class='waves-effect waves-light btn'> Show My Trips </a>
 
 
 </div>
 
-  <a ng-click='getTrips()' class='waves-effect waves-light btn'> Your Trips </a>
+
+
+  <div class = 'trips'>
+      <div class="center-align" ng-repeat='trip in trips'>
+        
+          <div class='row'> <a class='waves-effect waves-light btn' ng-click='trip.showInfo = !trip.showInfo'>{{trip.destinations[0].name}}</a></div>
+        
+
+      <div class='tripinfo' ng-show='trip.showInfo'>
+
+        <div id="left" class="col s5 offset-s1 explore">
+          <h4 class="label"> Flights </h4>
+          <div class="col s10">
+            <div ng-repeat="flight in trip.flights | limitTo: 10">
+              <a class="google" href="https://www.google.com/#q={{flight.name}}" target="_blank"> <b> {{flight.name}} </b> </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="left" class="col s5 offset-s1 explore">
+          <h4 class="label"> Hotels </h4>
+          <div class="col s10">
+            <div ng-repeat="hotel in trip.hotels | limitTo: 10">
+              <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b> </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="left" class="col s5 offset-s1 explore">
+          <h4 class="label"> Restaurants </h4>
+          <div class="col s10">
+            <div ng-repeat="restaurant in trip.restaurants | limitTo: 10">
+              <a class="google" href="https://www.google.com/#q={{restaurant.name}}" target="_blank"> <b> {{restaurant.name}} </b> </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="left" class="col s5 offset-s1 explore">
+          <h4 class="label"> Places </h4>
+          <div class="col s10">
+            <div ng-repeat="place in trip.places | limitTo: 10">
+              <a class="google" href="https://www.google.com/#q={{place.name}}" target="_blank"> <b> {{place.name}} </b> </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="left" class="col s5 offset-s1 explore">
+          <h4 class="label"> Events </h4>
+          <div class="col s10">
+            <div ng-repeat="event in trip.events | limitTo: 10">
+              <a class="google" href="https://www.google.com/#q={{event.name}}" target="_blank"> <b> {{event.name}} </b> </a>
+            </div>
+          </div>
+        </div>
+
+
+      
+      </div>
+    </div> 
+
+  </div>
