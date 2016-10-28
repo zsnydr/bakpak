@@ -19,9 +19,7 @@ module.exports.router = function (app) {
   app.post('/promos', helpers.postPromos);
 
   app.post('/events', helpers.postEvents);
-
-  app.post('/translate', helpers.postTranslate);
-
+  
   app.post('/flights', helpers.postFlights);
 
   app.post('/images', helpers.postImages);
