@@ -81,8 +81,8 @@ module.exports = {
       Place.findOrCreate({
         where: {
           name: req.body.place.name,
-          address: req.body.place.address,
-          type: req.body.place.type,
+          address: req.body.place.formatted_address,
+          type: req.body.place.types[0],
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -105,7 +105,7 @@ module.exports = {
       Event.findOrCreate({
         where: {
           name: req.body.event.title[0],
-          venue: req.body.event.venue[0],
+          venue: req.body.event.venue_name[0],
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -128,7 +128,7 @@ module.exports = {
       Restaurant.findOrCreate({
         where: {
           name: req.body.restaurant.name,
-          address: req.body.restaurant.address,
+          address: req.body.restaurant.formatted_address,
           rating: req.body.restaurant.rating,
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
@@ -151,9 +151,9 @@ module.exports = {
     .then(function() {
       Hotel.findOrCreate({
         where: {
-          name: req.body.hotel.name[0],
-          address: req.body.hotel.address[0],
-          rating: req.body.hotel.rating[0],
+          name: req.body.hotel.name,
+          address: req.body.hotel.formatted_address,
+          rating: req.body.hotel.rating,
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }
@@ -175,14 +175,15 @@ module.exports = {
     .then(function() {
       Flight.findOrCreate({
         where: {
-          origin: req.body.origin,
-          destination: req.body.destination,
-          duration: req.body.duration,
+          origin: req.body.flight.slice[0].segment[0].leg[0].origin,
+          destination: req.body.flight.slice[0].segment[0].leg[0].destination,
+          duration: req.body.flight.slice[0].segment[0].leg[0].duration,
           // flightNo: req.body.flightNo,
-          departure: req.body.departure,
-          arrival: req.body.arrival,
-          carrier: req.body.carrier,
-          seat: req.body.seat,
+          departure: req.body.flight.slice[0].segment[0].leg[0].departureTime,
+          arrival: req.body.flight.slice[0].segment[0].leg[0].arrivalTime,
+          carrier: req.body.flight.slice[0].segment[0].flight.carrier,
+          seat: req.body.flight.slice[0].segment[0].cabin,
+          price: req.body.flight.saleTotal,
           trip_id: req.session.trip_id,
           destination_id: req.session.destination_id
         }

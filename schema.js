@@ -65,13 +65,13 @@ var Flight = db.define('flight', {
   },
   origin: Sequelize.TEXT,
   destination: Sequelize.TEXT,
-  duration: Sequelize.TEXT,
+  duration: Sequelize.INTEGER,
   // flightNo: Sequelize.INTEGER,
   departure: Sequelize.DATE,
   arrival: Sequelize.DATE,
   carrier: Sequelize.TEXT,
   seat: Sequelize.TEXT,
-  prices: Sequelize.TEXT,
+  price: Sequelize.TEXT,
   // trip_id: {
   //   type: Sequelize.INTEGER,
   //   references: {
@@ -280,7 +280,7 @@ Trip.hasMany(Restaurant, { foreignKey: 'trip_id' });
 
 //Create Tables
 db
-  .sync({force: false})
+  .sync({force: true})
   .then(function() {
     console.log('Tables created');
  });
