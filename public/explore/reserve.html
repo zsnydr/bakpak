@@ -49,7 +49,7 @@
       	</br>
       	Price: {{flight.saleTotal}}
       	</br>
-         <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='saveFlight(flight)'  ng-show='tripId'> Save </a></div>
+         <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='saveFlight(flight); flight.clicked=true'  ng-show='tripId' ng-disabled='flight.clicked'> Save </a></div>
       	</br>
       </div>
     </div>
@@ -58,7 +58,7 @@
       <h4 class="label"> Hotels </h4>
       <div ng-repeat="hotel in hotels | limitTo: 10">
         <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b>
-        <div class='addbtn'> <a class='waves-effect waves-light btn' ng-click='saveHotel(hotel)'  ng-show='tripId'> Save </a></div>
+        <div class='addbtn'> <a class='waves-effect waves-light btn' ng-click='saveHotel(hotel); hotel.clicked=true'  ng-show='tripId' ng-disabled='hotel.clicked'> Save </a></div>
          </a> <br> {{hotel.formatted_address}} <br> Rating :
         {{hotel.rating}}
       </div>
