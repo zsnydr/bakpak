@@ -12,8 +12,8 @@
     <LABEL id="label">Where are we going?</LABEL>
       <div class="center-align">
         <input id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
-          <a href="/#/explore" id='explorebtn' class="waves-effect waves-light btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
-          <a href="/#/reserve" class="waves-effect waves-light btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
+          <a href="/#/explore" id='explorebtn' class="waves-effect waves-light waves-yellow btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
+          <a href="/#/reserve" class="waves-effect waves-yellow waves-light btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
       </div>
   </div>
 
@@ -46,6 +46,7 @@
 
         <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a>
         <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='savePlace(art); art.clicked=true'  ng-show='tripId' ng-disabled='art.clicked'> Save </a></div>
+
         <br>{{art.formatted_address}} </br>
 
         Place Type: {{art.types[0]}} </br> Open Now? {{art.opening_hours.open_now}} </div>

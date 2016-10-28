@@ -1,5 +1,5 @@
 html {
-  background-color: #fff;
+  background-color: rgba(232,237,223,0.4);
   background-size: cover;                      /* <------ */
   background-repeat: no-repeat;
   background-position: center center;
@@ -23,7 +23,7 @@ select {
   background-color: #b4dcc0;
 }
 #navbar {
-  background-color: #0c6950;
+  background-color: #242423;
   text-decoration: none;
   font-size: 130%;
 }
@@ -71,13 +71,13 @@ select {
   font-family: 'sansblack';
 }
 .explore {
-  background-color: rgba(238, 251, 244, 0.8);
+  background-color: rgba(245,203,92,0.4);;
   margin-right: 20px;
   padding-bottom: 5px;
   position: relative;
 }
 .explore2 {
-  background-color: rgba(238, 251, 244, 0.8);
+  background-color: rgba(245,203,92,0.4);
 }
 
 #showTripBtn {
@@ -116,3 +116,10 @@ select {
   float:right;
 }
 
+.btn {
+  background-color: #333533
+}
+
+.btn:hover{
+  background-color: #333533;
+}
