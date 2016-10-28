@@ -1,5 +1,6 @@
 angular.module('app-services', [])
 .factory('Auth', ['$http', '$window', function($http, $window, username, password){
+  var isSignedIn;
 
   var signin = function(username, password){
     console.log('correct');
@@ -13,6 +14,7 @@ angular.module('app-services', [])
         }
     }).then(function(res){
       if(res.data === 'matched'){
+        isSignedIn = true;
         $window.location = '/#/explore'
       } else {
         $window.location = '/#/signin'
@@ -34,6 +36,7 @@ angular.module('app-services', [])
         $window.location = '/#/signup'
       } else {
           $window.location = '/#/explore'
+          isSignedIn = true;
       }
     })
     .catch(function(err){
@@ -48,14 +51,20 @@ angular.module('app-services', [])
       data: {}
     }).then(function(data){
       console.log('SIGNOUT SUCCESS', data);
+      isSignedIn = false;
       $window.location = '/#/signin'
     })
   }
 
+  var signedIn = function(){
+    console.log('running signin check')
+    return isSignedIn;
+  }
 return {
   signin: signin,
   signup: signup,
-  signout: signout
+  signout: signout,
+  isSignedIn: signedIn
 }
 
 }])
@@ -217,32 +226,3 @@ return {
 
 
 }])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
