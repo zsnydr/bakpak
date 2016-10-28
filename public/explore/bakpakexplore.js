@@ -388,11 +388,11 @@ angular.module('bakpak.explore', [])
     }
     $scope.saveHotel = function (hotel) {
       console.log("EVENT", hotel)
-      Save.saveEvent({hotel: hotel, city: $scope.city})
+      Save.saveHotel({hotel: hotel, city: $scope.city})
     }
     $scope.saveFlight = function (flight) {
       console.log("EVENT", flight)
-      Save.saveEvent({flight: flight, city: $scope.city})
+      Save.saveFlight({flight: flight, city: $scope.city})
     }
 
     var triggerClick = function () {
@@ -416,4 +416,3 @@ angular.module('bakpak.explore', [])
       });
 
 }])
-
