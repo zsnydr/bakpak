@@ -104,3 +104,11 @@ select {
     font-weight: normal;
     font-style: normal;
 }
+#userprofile {
+  margin-bottom: 80px;
+}
+
+#destinationbtn{
+  margin-bottom: 100px;
+}
+

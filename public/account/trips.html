@@ -1,6 +1,6 @@
 
-<div class='container'>
-  <h2> User Profile </h2>
+<div id='userprofile' class='container'>
+  <h4 class='label'> User Profile </h4> <br>
 
   Destination:
   <input id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
@@ -20,61 +20,94 @@
   </div>
 
   <div class = 'trips'>
-      <div class="center-align" ng-repeat='trip in trips'>
+
+    <div ng-repeat='trip in trips'>
+
+      <div class="center-align">
+        <h5 class="label" > {{trip.title}} </h5>
+      </div>
+
+          <div class='row center-align '> 
+            <a class='waves-effect waves-light btn' ng-click='trip.showInfo = !trip.showInfo'>{{trip.destinations[0].name}}</a>
+          </div>
+          <br>
         
-          <div class='row'> <a class='waves-effect waves-light btn' ng-click='trip.showInfo = !trip.showInfo'>{{trip.destinations[0].name}}</a></div>
-        
+        <div class='tripinfo' ng-show='trip.showInfo'>
+          <div class="row">
 
-      <div class='tripinfo' ng-show='trip.showInfo'>
+            <div id="left" class="col s5 offset-s1 explore">
+              <h4 class="label"> Flights </h4>
+              <div class="col s10">
+                <div ng-repeat="flight in trip.flights | limitTo: 10">
+                  <a class="google">Destination: {{flight.destination}}</a>
+                  </br>
+                  Origin: {{flight.origin}}
+                  </br>
+                  Duration: {{flight.duration}} Mins
+                  </br>
+                  Departure Time: {{flight.departure}}
+                  </br>
+                  ArrivalTime: {{flight.arrival}}
+                  </br>
+                  Carrier: {{flight.carrier}}
+                  </br>
+                  Price: {{flight.price}}
+                  </br>
+                  </br>
+                </div>
+              </div>
+            </div>
+            
 
-        <div id="left" class="col s5 offset-s1 explore">
-          <h4 class="label"> Flights </h4>
-          <div class="col s10">
-            <div ng-repeat="flight in trip.flights | limitTo: 10">
-              <a class="google" href="https://www.google.com/#q={{flight.name}}" target="_blank"> <b> {{flight.name}} </b> </a>
+            <div class="col s5 explore">
+              <h4 class="label"> Hotels </h4>
+              <div class="col s10">
+                <div ng-repeat="hotel in trip.hotels | limitTo: 10">
+                  <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b> </a> <br>
+                </div>
+              </div>
+             </div>
+          </div>
+    
+           <div class="row">
+            <div id="left" class="col s5 offset-s1 explore">
+              <h4 class="label"> Restaurants </h4>
+              <div class="col s10">
+                <div ng-repeat="restaurant in trip.restaurants | limitTo: 10">
+                  <a class="google" href="https://www.google.com/#q={{restaurant.name}}" target="_blank"> <b> {{restaurant.name}} </b> </a> <br> {{restaurant.address}} <br> Rating :
+                  {{restaurant.rating}} </br>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s5 explore">
+              <h4 class="label"> Places to Visit</h4>
+              <div class="col s10">
+                <div ng-repeat="place in trip.places | limitTo: 10">
+                  <a class="google" href="https://www.google.com/#q={{place.name}}" target="_blank"> <b> {{place.name}} </b> </a> <br>{{place.address}} </br>
+                  Place Type: {{place.type}} </br>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="left" class="col s5 offset-s1 explore">
-          <h4 class="label"> Hotels </h4>
-          <div class="col s10">
-            <div ng-repeat="hotel in trip.hotels | limitTo: 10">
-              <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b> </a>
+          <div class="row">
+            <div class="col s4 offset-s4 center explore2">
+              <h4 class="label"> Events </h4>
+              <div class="col s10">
+                <div ng-repeat="event in trip.events | limitTo: 10">
+                  <a class="google" href="https://www.google.com/#q={{event.name}}" target="_blank"> <b> {{event.name}} </b> </a>
+                  </br>
+                  Venue: {{event.venue}}
+                </div>
+              </div>
             </div>
           </div>
+
+          
+
+
         </div>
-
-        <div id="left" class="col s5 offset-s1 explore">
-          <h4 class="label"> Restaurants </h4>
-          <div class="col s10">
-            <div ng-repeat="restaurant in trip.restaurants | limitTo: 10">
-              <a class="google" href="https://www.google.com/#q={{restaurant.name}}" target="_blank"> <b> {{restaurant.name}} </b> </a>
-            </div>
-          </div>
-        </div>
-
-        <div id="left" class="col s5 offset-s1 explore">
-          <h4 class="label"> Places </h4>
-          <div class="col s10">
-            <div ng-repeat="place in trip.places | limitTo: 10">
-              <a class="google" href="https://www.google.com/#q={{place.name}}" target="_blank"> <b> {{place.name}} </b> </a>
-            </div>
-          </div>
-        </div>
-
-        <div id="left" class="col s5 offset-s1 explore">
-          <h4 class="label"> Events </h4>
-          <div class="col s10">
-            <div ng-repeat="event in trip.events | limitTo: 10">
-              <a class="google" href="https://www.google.com/#q={{event.name}}" target="_blank"> <b> {{event.name}} </b> </a>
-            </div>
-          </div>
-        </div>
-
-
-      
       </div>
     </div> 
-
   </div>
