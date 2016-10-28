@@ -392,7 +392,7 @@ angular.module('bakpak.explore', [])
     }
     $scope.saveFlight = function (flight) {
       console.log("EVENT", flight)
-      Save.saveEvent(flight: flight, city: $scope.city})
+      Save.saveEvent({flight: flight, city: $scope.city})
     }
 
     var triggerClick = function () {
