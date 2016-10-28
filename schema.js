@@ -54,10 +54,7 @@ var Destination = db.define('destination', {
     primaryKey: true,
     autoIncrement: true
   },
-  name: {
-    type: Sequelize.TEXT,
-    unique: true
-  }
+  name: Sequelize.TEXT
 });
 
 var Flight = db.define('flight', {
