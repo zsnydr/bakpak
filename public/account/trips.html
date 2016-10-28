@@ -1,6 +1,6 @@
 
-<div class='container'>
-  <h2> User Profile </h2>
+<div id='userprofile' class='container'>
+  <h4 class='label'> User Profile </h4> <br>
 
   Destination:
   <input id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
@@ -23,9 +23,14 @@
 
     <div ng-repeat='trip in trips'>
 
+      <div class="center-align">
+        <h5 class="label" > {{trip.title}} </h5>
+      </div>
+
           <div class='row center-align '> 
             <a class='waves-effect waves-light btn' ng-click='trip.showInfo = !trip.showInfo'>{{trip.destinations[0].name}}</a>
           </div>
+          <br>
         
         <div class='tripinfo' ng-show='trip.showInfo'>
           <div class="row">

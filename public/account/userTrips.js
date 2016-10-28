@@ -32,6 +32,7 @@ angular.module('bakpak.trips', [])
   $scope.showInfoFunc = function () {
     $scope.showInfo = !$scope.showInfo;
   }
+  
 
 
 }])
