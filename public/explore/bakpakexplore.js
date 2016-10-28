@@ -378,7 +378,7 @@ angular.module('bakpak.explore', [])
     }
 
     $scope.saveRestaurant = function (restaurant) {
-       console.log("RESTAUR", restaurant)
+       console.log("RESTAURANT", restaurant)
       Save.saveRestaurant({restaurant: restaurant, city: $scope.city})
     }
 
@@ -387,11 +387,11 @@ angular.module('bakpak.explore', [])
       Save.saveEvent({event: event, city: $scope.city})
     }
     $scope.saveHotel = function (hotel) {
-      console.log("EVENT", hotel)
+      console.log("HOTEL", hotel)
       Save.saveHotel({hotel: hotel, city: $scope.city})
     }
     $scope.saveFlight = function (flight) {
-      console.log("EVENT", flight)
+      console.log("FLIGHT", flight)
       Save.saveFlight({flight: flight, city: $scope.city})
     }
 
@@ -411,7 +411,9 @@ angular.module('bakpak.explore', [])
 
         console.log("$scope tripId", $scope.tripId)
         $scope.city = CityService.getCity();
-        triggerClick();
+        if ($scope.city !== '') {
+          triggerClick();
+        }
 
       });
 
