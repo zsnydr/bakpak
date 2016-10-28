@@ -17,7 +17,6 @@ angular.module('bakpak.trips', [])
 
   $scope.setCity = function() {
     CityService.setCity($scope.city);
-    console.log('IN SAVE TRIP', $scope.city)
   }
 
   $scope.getTrips = function() {

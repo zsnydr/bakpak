@@ -1,4 +1,4 @@
-angular.module('app-services', [])
+angular.module('app-services', ['app-services'])
 .factory('Auth', ['$http', '$window', function($http, $window, username, password){
   var isSignedIn;
 
@@ -57,7 +57,6 @@ angular.module('app-services', [])
   }
 
   var signedIn = function(){
-    console.log('running signin check')
     return isSignedIn;
   }
 return {
@@ -82,7 +81,9 @@ return {
     .then(function(tripData){
       console.log('TRIP DATA', tripData)
       tripId = tripData.data.trip_id;
-        console.log('TRIP id in factory', tripId)
+      console.log('TRIP id in factory', tripId)
+
+
       $location.path('/explore')
       return tripData;
     })
@@ -115,7 +116,7 @@ return {
 
 }])
 
-.service('CityService', function () {
+.factory('CityService', function () {
   var city = '';
 
   var setCity = function(data) {

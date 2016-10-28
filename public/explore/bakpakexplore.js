@@ -402,19 +402,47 @@ angular.module('bakpak.explore', [])
       })
     }
 
+
+
   //TRIP MODE
 
-    $scope.$watch(function () {
-       return Trips.getTripId();
-    }, function () {
-      console.log(" tripId", Trips.getTripId())
-      $scope.tripId = Trips.getTripId();
+    // $scope.$watch(function () {
+    //    return Trips.getTripId();
+    // }, function () {
+    //   console.log(" tripId", Trips.getTripId())
+    //   $scope.tripId = Trips.getTripId();
 
-      console.log("$scope tripId", $scope.tripId)
-      $scope.city = CityService.getCity();
-      if ($scope.city !== '') {
-        triggerClick();
-      }
+    //   console.log("$scope tripId", $scope.tripId)
+    //   $scope.city = CityService.getCity();
+    //   if ($scope.city !== '') {
+    //     triggerClick();
+    //   }
+    // });
+
+  $scope.setCity = function() {
+    CityService.setCity($scope.city, $scope.tripTitle);
+    console.log('in explore ctrl', $scope.city)
+  }
+
+  var newTripTriggered = false;
+
+      $scope.$watch(function () {
+        console.log('watching get trip id')
+         return Trips.getTripId();
+      }, function () {
+        console.log(" tripId", Trips.getTripId())
+        $scope.tripId = Trips.getTripId();
+
+        console.log("$scope tripId", $scope.tripId)
+
+        if(!newTripTriggered && $scope.tripId !== undefined) {
+          console.log('click triggered!!')
+          $scope.city = CityService.getCity();
+          if($scope.city !== '') {
+            triggerClick();
+          }
+          newTripTriggered = true;
+        }
 
     });
 
