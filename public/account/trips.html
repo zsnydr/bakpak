@@ -10,12 +10,14 @@
 
 
   <a href='/#/explore' class='waves-effect waves-light btn' ng-click='saveTrip(); setCity()'> Make a new trip! </a>
-    <a ng-click='getTrips()' class='waves-effect waves-light btn'> Show My Trips </a>
+
 
 
 </div>
 
-
+  <div id='showTripBtn' class="center-align">
+    <a ng-click='getTrips(); hidden = true' class='waves-effect waves-light btn' ng-hide='hidden'> Show My Trips </a>
+  </div>
 
   <div class = 'trips'>
       <div class="center-align" ng-repeat='trip in trips'>
