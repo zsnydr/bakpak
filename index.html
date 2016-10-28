@@ -16,10 +16,10 @@
         <div id='navbar' ng-controller="navController" class="nav-wrapper">
           <a href='/#/'> <img src="http://i.imgur.com/QfK30Pv.png" id='logo' href="#" className="brand-logo" /> </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li ><a href="/#/trips">MY TRIPS</a></li>
+              <li ><a href="/#/trips" ng-show="isSignedIn">MY TRIPS</a></li>
               <li ><a href="/#/explore">EXPLORE</a></li>
               <li ><a href="/#/reserve">RESERVE</a></li>
-              <li ><a href="/#/reserve" ng-show="isSignedIn"  ng-click='signout()'>SIGN OUT</a></li>
+              <li ><a href="/#/reserve" ng-show="isSignedIn" ng-click='signout()'>SIGN OUT</a></li>
               <li ><a href="/#/signin" ng-hide="isSignedIn">SIGN IN</a></li>
             </ul>
         </div>
