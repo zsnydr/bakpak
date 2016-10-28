@@ -1,4 +1,5 @@
-var helpers = require('./routeHelpers.js');
+var helpers = require('./routeHelpers');
+var removers = require('./routeHelpersRemovers');
 
 
 module.exports.router = function (app) {
@@ -45,5 +46,20 @@ module.exports.router = function (app) {
   app.post('/saveEvent', helpers.saveEvent);
 
   app.post('/savePlace', helpers.savePlace);
+
+  //Remove items from trip
+  app.put('/removeTrip', removers.removeTrip);
+
+  app.put('/removeFlight', removers.removeFlight);
+
+  app.put('/removeHotel', removers.removeHotel);
+
+  app.put('/removeRestaurant', removers.removeRestaurant);
+
+  app.put('/removeEvent', removers.removeEvent);
+
+  app.put('/removePlace', removers.removePlace);
+
+  app.put('/removeDestination', removers.removeDestination);
 
 };
