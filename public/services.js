@@ -73,6 +73,19 @@ return {
 
   var tripId;
 
+  var isLoggedIn = function() {
+    return $http({
+      method: 'GET',
+      url: '/validateLogIn'
+    })
+    .then(function(data) {
+      if (data.data === 'no user') {
+        $location.path('/signin');
+      }
+      return data;
+    });
+  }
+
   var saveTrip = function(city, tripTitle) {
     return $http({
       method: 'POST',
@@ -104,11 +117,15 @@ return {
       url: '/trips'
     })
     .then(function(trips){
+      if (trips.data === 'no user') {
+        $window.location = '/#/signin';
+      }
       return trips;
     })
   }
 
   return {
+    isLoggedIn: isLoggedIn,
     saveTrip: saveTrip,
     getTripId: getTripId,
     tripId: tripId,

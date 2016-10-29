@@ -20,12 +20,14 @@ module.exports.router = function (app) {
   app.post('/promos', helpers.postPromos);
 
   app.post('/events', helpers.postEvents);
-  
+
   app.post('/flights', helpers.postFlights);
 
   app.post('/images', helpers.postImages);
 
   //Authentication
+  app.get('/validateLogIn', helpers.isLoggedIn, function(req, res) { res.end(); });
+
   app.post('/signin', helpers.signIn);
 
   app.post('/signup', helpers.signUp);
