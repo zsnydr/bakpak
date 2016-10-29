@@ -89,9 +89,9 @@ return {
     })
   }
 
-  // var getTripId = function() {
-  //   return tripId;
-  // }
+  var setTripId = function(data) {
+    tripId = data;
+  }
 
   var getTripId = function() {
     return tripId;
@@ -111,7 +111,8 @@ return {
     saveTrip: saveTrip,
     getTripId: getTripId,
     tripId: tripId,
-    getTrips: getTrips
+    getTrips: getTrips,
+    setTripId: setTripId
   }
 
 }])
@@ -304,6 +305,7 @@ return {
   }
 
   var removeDestination = function (object) {
+    console.log("REMOVE DEST OBJ", object)
     return $http({
       method: 'PUT',
       url: '/removeDestination',

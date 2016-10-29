@@ -31,6 +31,9 @@ angular.module('bakpak.trips', [])
   $scope.showInfoFunc = function () {
     $scope.showInfo = !$scope.showInfo;
   }
+  $scope.setTripId = function (data) {
+    Trips.setTripId(data)
+  }
 
 
 
@@ -88,7 +91,8 @@ angular.module('bakpak.trips', [])
   }
   
   $scope.removeDestination = function (Destination) {
-    Remove.removeDestination(Destination)
+    console.log('dest', Destination)
+    Remove.removeDestination({id: Destination})
     .then(function () {
       console.log('REMOVE DEST SUCCESS')
       $scope.getTrips();

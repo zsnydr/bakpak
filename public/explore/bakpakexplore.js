@@ -113,25 +113,25 @@ angular.module('bakpak.explore', [])
 
     $scope.savePlace = function (place) {
       console.log("PLACE", place)
-      Save.savePlace({place: place, city: $scope.city})
+      Save.savePlace({place: place, city: $scope.city, trip_id: $scope.tripId})
     }
 
     $scope.saveRestaurant = function (restaurant) {
-       console.log("RESTAURANT", restaurant)
-      Save.saveRestaurant({restaurant: restaurant, city: $scope.city})
+       console.log("RESTAURANT", restaurant, 'CITY', $scope.city, 'ID', $scope.tripId)
+      Save.saveRestaurant({restaurant: restaurant, city: $scope.city, trip_id: $scope.tripId})
     }
 
     $scope.saveEvent = function (event) {
       console.log("EVENT", event)
-      Save.saveEvent({event: event, city: $scope.city})
+      Save.saveEvent({event: event, city: $scope.city, trip_id: $scope.tripId})
     }
     $scope.saveHotel = function (hotel) {
       console.log("HOTEL", hotel)
-      Save.saveHotel({hotel: hotel, city: $scope.city})
+      Save.saveHotel({hotel: hotel, city: $scope.city, trip_id: $scope.tripId})
     }
     $scope.saveFlight = function (flight) {
       console.log("FLIGHT", flight)
-      Save.saveFlight({flight: flight, city: $scope.city})
+      Save.saveFlight({flight: flight, city: $scope.city, trip_id: $scope.tripId})
     }
 
     var triggerClick = function () {
