@@ -7,6 +7,7 @@ html {
   min-height: 100%;
 }
 body {
+  border: 1px solid transparent;
   background-size: cover;                      /* <------ */
   background-position: center center;
   background-attachment: fixed;
@@ -73,13 +74,13 @@ select {
   font-family: 'sansblack';
 }
 .explore {
-  background-color: rgba(84,156,204,0.1);
+  background-color: rgba(219,238,251,0.4);
   margin-right: 20px;
   padding-bottom: 5px;
   position: relative;
 }
 .explore2 {
-  background-color: rgba(84,156,204,0.1);
+  background-color: rgba(219,238,251,0.4);
 }
 
 #showTripBtn {
@@ -128,7 +129,7 @@ select {
 
 #input:focus {
   border-color: #549CCC;
-  box-shadow: 0 0 5px rgba(84, 156, 204, 0.4);
+  box-shadow: 0 0 0px rgba(84, 156, 204, 0.4);
 }
 
 .authbtns a, p{
