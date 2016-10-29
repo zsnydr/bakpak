@@ -22,7 +22,7 @@
 
 
   <div class = 'trips'>
-    <div id='showTripBtn' class="center-align"> 
+    <div id='showTripBtn' class="center-align">
       <a ng-show='trips.length===0'>You currently have no trips planned!</a>
     </div>
 
@@ -34,20 +34,20 @@
         <h5 class="label" > {{trip.title}} </h5>
       </div>
 
-    
 
-          <div class='  center-align '> 
+
+          <div class='  center-align '>
             <a  ng-repeat='destination in trip.destinations' ng-click='trip.showInfo = !trip.showInfo; trip.destID = destination.id' ng-class='{"waves-effect waves-light btn": trip.destinations.length === 1, "dest waves-effect waves-light btn": trip.destinations.length > 1,}'>{{destination.name}}</a>
 
-          <!--   <div id='showTripBtn' class="addcity center-align">   --> 
-                
+          <!--   <div id='showTripBtn' class="addcity center-align">   -->
+
     <!--         </div>  -->
 
           </div>
-    
+
 
         <br>
-        
+
         <div class='tripinfo' ng-show='trip.showInfo'>
           <div class="row">
 
@@ -74,13 +74,13 @@
                 <!-- </div> -->
               </div>
             </div>
-            
+
 
             <div class="col s5 explore">
               <h4 class="label"> Hotels </h4>
               <!-- <div class="col s10"> -->
                 <div ng-repeat="hotel in trip.hotels | limitTo: 10"  ng-show= 'hotel.destination_id===trip.destID'>
-                  <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b> </a> 
+                  <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b> </a>
                   <div class='addbtn'><a class='waves-effect btn' ng-click='removeHotel(hotel)'> Remove </a></div>
                   <br>{{hotel.address}} <br> Rating :
                   {{hotel.rating}}
@@ -89,7 +89,7 @@
               </div>
              <!-- </div> -->
           </div>
-    
+
            <div class="row">
             <div id="left" class="col s5 offset-s1 explore">
               <h4 class="label"> Restaurants </h4>
@@ -107,7 +107,7 @@
               <h4 class="label"> Places to Visit</h4>
               <!-- <div class="col s10"> -->
                 <div ng-repeat="place in trip.places | limitTo: 10" ng-show= 'place.destination_id===trip.destID'>
-                  <a class="google" href="https://www.google.com/#q={{place.name}}" target="_blank"> <b> {{place.name}} </b> </a> 
+                  <a class="google" href="https://www.google.com/#q={{place.name}}" target="_blank"> <b> {{place.name}} </b> </a>
                   <div class='addbtn'><a class='waves-effect btn' ng-click='removePlace(place)'> Remove </a></div>
                   <br>
                   {{place.address}} </br>
@@ -134,22 +134,22 @@
 
           </div>
 
-          <div id='showTripBtn' class="center-align">   
+          <div id='showTripBtn' class="center-align">
             <a  ng-click='removeDestination(trip.destID)'> Remove City</a><br>
           </div>
 
-        
+
         </div>
 
-              <div class=' center-align '> 
-                 <a class='addcitya  ' href='/#/explore' ng-click='setTripId(trip.id)'> Add a city</a>  
+              <div class=' center-align '>
+                 <a class='addcitya  ' href='/#/explore' ng-click='setTripId(trip.id); clearCity()'> Add a city</a>
               </div>
 
 
-         <div id='showTripBtn' class="center-align"> 
+         <div id='showTripBtn' class="center-align">
             <a  ng-click='removeTrip(trip)'> Remove Trip</a><br>
         </div>
 
       </div>
-    </div> 
+    </div>
   </div>
