@@ -52,6 +52,14 @@ angular.module('bakpak.trips', [])
     Remove.removeFlight(Flight);
   }
   
+  $scope.removeTrip = function (trip) {
+    Remove.removeTrip(trip);
+  }
+  
+  $scope.removeDestination = function (Destination) {
+    Remove.removeDestination(Destination);
+  }
+  
 
 
 }])

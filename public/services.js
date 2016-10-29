@@ -233,7 +233,7 @@ return {
 
   var removePlace = function (object) {
     $http({
-      method: 'POST',
+      method: 'PUT',
       url: '/removePlace',
       data: object
     })
@@ -245,7 +245,7 @@ return {
 
   var removeRestaurant = function (object) {
     $http({
-      method: 'POST',
+      method: 'PUT',
       url: '/removeRestaurant',
       data: object
     })
@@ -257,7 +257,7 @@ return {
 
   var removeEvent = function (object) {
     $http({
-      method: 'POST',
+      method: 'PUT',
       url: '/removeEvent',
       data: object
     })
@@ -269,7 +269,7 @@ return {
 
    var removeHotel = function (object) {
     $http({
-      method: 'POST',
+      method: 'PUT',
       url: '/removeHotel',
       data: object
     })
@@ -281,8 +281,32 @@ return {
 
    var removeFlight = function (object) {
     $http({
-      method: 'POST',
+      method: 'PUT',
       url: '/removeFlight',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+  var removeTrip = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removeTrip',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+  var removeDestination = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removeDestination',
       data: object
     })
     .then(function(data) {
@@ -297,7 +321,9 @@ return {
     removeRestaurant: removeRestaurant,
     removeEvent: removeEvent,
     removeHotel: removeHotel,
-    removeFlight: removeFlight
+    removeFlight: removeFlight,
+    removeTrip: removeTrip,
+    removeDestination: removeDestination
   }
 
 
