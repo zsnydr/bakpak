@@ -13,6 +13,8 @@ angular.module('bakpak.explore', [])
 	$scope.flights;
 	$scope.selectedCountry;
 
+  $scope.cityForm
+
   $scope.clearCity = function() {
     $scope.city = '';
   }
