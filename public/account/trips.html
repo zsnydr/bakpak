@@ -19,25 +19,33 @@
     <a ng-click='getTrips(); hidden = true' class='waves-effect btn' ng-hide='hidden'> Show My Trips </a>
   </div>
 
+
+
   <div class = 'trips'>
+    <div id='showTripBtn' class="center-align"> 
+      <a ng-show='trips.length===0'>You currently have no trips planned!</a>
+    </div>
 
     <div ng-repeat='trip in trips'>
 
-      <div class="center-align">
+
+
+      <div class="row center-align">
         <h5 class="label" > {{trip.title}} </h5>
       </div>
 
     
 
-          <div class='row center-align '> 
-            <a class = 'dest waves-effect waves-light btn'  ng-repeat='destination in trip.destinations' ng-click='trip.showInfo = !trip.showInfo; trip.destID = destination.id'>{{destination.name}}</a>
+          <div class='  center-align '> 
+            <a  ng-repeat='destination in trip.destinations' ng-click='trip.showInfo = !trip.showInfo; trip.destID = destination.id' ng-class='{"waves-effect waves-light btn": trip.destinations.length === 1, "dest waves-effect waves-light btn": trip.destinations.length > 1,}'>{{destination.name}}</a>
+
+          <!--   <div id='showTripBtn' class="addcity center-align">   --> 
+                
+    <!--         </div>  -->
 
           </div>
     
-          <div id='showTripBtn' class="center-align">   
-            <a class='waves-effect btn ' href='/#/explore' ng-click='setTripId(trip.id)'> Add a city</a>
-      
-        </div> 
+
         <br>
         
         <div class='tripinfo' ng-show='trip.showInfo'>
@@ -126,15 +134,20 @@
 
           </div>
 
-
           <div id='showTripBtn' class="center-align">   
-            <a class='waves-effect btn ' ng-click='removeDestination(trip.destID)'> Remove City</a><br>
+            <a  ng-click='removeDestination(trip.destID)'> Remove City</a><br>
           </div>
 
-         <div id='showTripBtn' class="center-align">   
-            <a class='waves-effect btn ' ng-click='removeTrip(trip)'> Remove Trip</a><br>
-        </div>
         
+        </div>
+
+              <div class=' center-align '> 
+                 <a class='addcitya  ' href='/#/explore' ng-click='setTripId(trip.id)'> Add a city</a>  
+              </div>
+
+
+         <div id='showTripBtn' class="center-align"> 
+            <a  ng-click='removeTrip(trip)'> Remove Trip</a><br>
         </div>
 
       </div>
