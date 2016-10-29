@@ -6,6 +6,11 @@ angular.module('bakpak.trips', [])
   $scope.tripTitle = '';
   $scope.showInfo = false;
 
+  $scope.isLoggedIn = function() {
+    Trips.isLoggedIn()
+    .then(function() {});
+  }
+
   $scope.saveTrip = function() {
     Trips.saveTrip($scope.city, $scope.tripTitle)
       .then(function(tripData){
@@ -57,7 +62,7 @@ angular.module('bakpak.trips', [])
         console.log('ERR', err)
       })
   }
-  
+
   $scope.removePlace = function (Place) {
     Remove.removePlace(Place)
     .then(function () {
@@ -81,7 +86,7 @@ angular.module('bakpak.trips', [])
       $scope.getTrips();
     })
   }
-  
+
   $scope.removeTrip = function (trip) {
     Remove.removeTrip(trip)
     .then(function () {
@@ -89,7 +94,7 @@ angular.module('bakpak.trips', [])
       $scope.getTrips();
     })
   }
-  
+
   $scope.removeDestination = function (Destination) {
     console.log('dest', Destination)
     Remove.removeDestination({id: Destination})
@@ -98,7 +103,7 @@ angular.module('bakpak.trips', [])
       $scope.getTrips();
     })
   }
-  
 
+$scope.isLoggedIn();
 
 }])

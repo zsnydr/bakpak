@@ -258,7 +258,7 @@ module.exports = {
     res.end('terminated');
   },
 
-  isLoggedIn: function(req, res){
+  isLoggedIn: function(req, res, next){
     console.log('req.session: ', req.session)
     if (req.session.user){
       console.log('session user')
