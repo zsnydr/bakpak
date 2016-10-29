@@ -47,6 +47,7 @@ module.exports = {
     Destination.destroy({ where: { id: req.body.id }})
     .then(function(destroyed) {
       console.log('Destroyed Destination: ', destroyed);
+      req.session.destination_name = '';
       res.end('removed destination');
     });
   },
