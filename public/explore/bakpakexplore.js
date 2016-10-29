@@ -3,7 +3,11 @@ angular.module('bakpak.explore', [])
 
 .controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', 'IdService', 'Save', function($scope, $http, Trips, CityService, $timeout, Auth, IdService, Save){
 
-	$scope.city = "";
+
+  $scope.city = CityService.getCity();
+
+
+
 	$scope.results = [];
 	$scope.weather;
 	$scope.arts;
@@ -13,14 +17,17 @@ angular.module('bakpak.explore', [])
 	$scope.selectedCountry;
 
 	$scope.hotelsApi = function(){
-		$http({
-		  method: 'POST',
-		  url: '/hotels',
-		  data: {city: $scope.city}
-		})
-		.then(function(data){
-		  $scope.hotels = data.data.results;
-		})
+    console.log('CITY IN HOTELS API CALL', $scope.city)
+    if($scope.city !== '') {
+  		$http({
+  		  method: 'POST',
+  		  url: '/hotels',
+  		  data: {city: $scope.city}
+  		})
+  		.then(function(data){
+  		  $scope.hotels = data.data.results;
+  		})
+    }
 	}
 
 	$scope.restaurantsApi = function(){
@@ -166,5 +173,7 @@ angular.module('bakpak.explore', [])
         }
 
     });
+
+      console.log('SCOPE CITY IN EXPLORE CTLR', $scope.city)
 
 }])

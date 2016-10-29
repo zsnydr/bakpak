@@ -271,14 +271,16 @@ module.exports = {
 
   postHotels: function(req, res) {
     //save destination city in the DB for current user
-    query.city = req.body.city;
-    var queryHotels = query.hotels + query.city + '&key=' + process.env.GOOGLE;
-    request(queryHotels, function(error, resp, body) {
-      if (error) {
-        console.log(error);
-      }
-      res.end(resp.body);
-    })
+   if(req.body.city !== ''){
+      query.city = req.body.city;
+      var queryHotels = query.hotels + query.city + '&key=' + process.env.GOOGLE;
+      request(queryHotels, function(error, resp, body) {
+        if (error) {
+          console.log(error);
+        }
+        res.end(resp.body);
+      })
+    }
   },
 
   postRestaurants: function(req, res) {

@@ -121,6 +121,9 @@ return {
   var city = '';
 
   var setCity = function(data) {
+    if(data === '') {
+      console.log(true);
+    }
     console.log('IN SET CITY', data)
     city = data;
   }
