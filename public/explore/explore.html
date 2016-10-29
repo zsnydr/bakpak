@@ -35,7 +35,7 @@
         <a class="google" href="https://www.google.com/#q={{result.name}}" target="_blank"> <b> {{result.name}} </b> </a> <br> {{result.formatted_address}} <br> Rating :
         {{result.rating}} </br>
         <!-- </div> -->
-      </div>
+      </div><br>
     </div>
 
     <div class="col s5 explore">
@@ -50,7 +50,7 @@
 
         <br>{{art.formatted_address}} </br>
 
-        Place Type: {{art.types[0]}} </br> Open Now? {{art.opening_hours.open_now}} </div>
+        Place Type: {{art.types[0]}} </br> Open Now? {{art.opening_hours.open_now}} </div><br>
 <!--
       </div> -->
     </div>
@@ -62,7 +62,7 @@
         <h4 class="label"> Deals </h4>
       <div ng-repeat="deal in promos | limitTo: 10"> <b><a class="google" href ={{deal.deal.url}} target="_blank"> {{deal.deal.title}} </a>  </b>
 
-      </br> {{deal.deal.short_title}} </div>
+      </br> {{deal.deal.short_title}} </div><br>
     </div>
 
     <div class="col s5 explore">
@@ -72,7 +72,7 @@
        <div class='addbtn'><a class='waves-effect btn' ng-click='saveEvent(event); event.clicked=true' ng-show='tripId' ng-disabled='event.clicked'> Save </a></div>
       </br>
 
-      Venue: <a class="google" href = {{event.venue_url[0]}} target="_blank"> {{event.venue_name[0]}}</a></div>
+      Venue: <a class="google" href = {{event.venue_url[0]}} target="_blank"> {{event.venue_name[0]}}</a></div><br>
     </div>
   </div>
 </div>
