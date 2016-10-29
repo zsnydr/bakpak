@@ -232,7 +232,7 @@ return {
 .factory('Remove', ['$http', function ($http) {
 
   var removePlace = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removePlace',
       data: object
@@ -244,19 +244,19 @@ return {
   }
 
   var removeRestaurant = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeRestaurant',
       data: object
     })
-    .then(function(data) {
+    .then(function (data) {
        console.log('removeRestaurant SUCCESS', data)
       return data;
     })
   }
 
   var removeEvent = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeEvent',
       data: object
@@ -268,7 +268,7 @@ return {
   }
 
    var removeHotel = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeHotel',
       data: object
@@ -280,7 +280,7 @@ return {
   }
 
    var removeFlight = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeFlight',
       data: object
@@ -292,7 +292,7 @@ return {
   }
 
   var removeTrip = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeTrip',
       data: object
@@ -304,7 +304,7 @@ return {
   }
 
   var removeDestination = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeDestination',
       data: object

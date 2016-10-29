@@ -44,10 +44,14 @@ angular.module('bakpak.trips', [])
   }
 
   $scope.removeRestaurant = function (restaurant) {
+    console.log('rest', restaurant)
     Remove.removeRestaurant(restaurant)
-      .then(function () {
-        console.log('REMOVE RESTAURANT SUCCESS')
+      .then(function (res) {
+        console.log('REMOVE RESTAURANT SUCCESS', res)
         $scope.getTrips();
+      })
+      .catch(function (err) {
+        console.log('ERR', err)
       })
   }
   
