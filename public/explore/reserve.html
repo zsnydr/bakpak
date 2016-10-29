@@ -32,7 +32,14 @@
 
     <div id="left" class="col s4 offset-s1 explore">
     	<h4 class="label"> Flights </h4>
+
+      <div id='showTripBtn'>
+         <a ng-show='flights == undefined'>Nothing to show!</a>
+      </div>
+
       <div ng-repeat="flight in flights">
+
+
       	Origin: {{flight.slice[0].segment[0].leg[0].origin}}
       	</br>
       	Destination: {{flight.slice[0].segment[0].leg[0].destination}}
@@ -56,6 +63,11 @@
 
     <div class="col s6 explore" ng-init='hotelsApi()'>
       <h4 class="label"> Hotels </h4>
+
+      <div id='showTripBtn'>
+         <a ng-show='hotels == undefined'>Nothing to show!</a>
+      </div>
+
       <div ng-repeat="hotel in hotels | limitTo: 10">
         <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b>
         <div class='addbtn'> <a class='waves-effect waves-light btn' ng-click='saveHotel(hotel); hotel.clicked=true'  ng-show='tripId' ng-disabled='hotel.clicked'> Save </a></div>

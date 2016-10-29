@@ -2,7 +2,7 @@ angular.module('bakpak.auth', [])
   .controller('AuthController', ['Auth', '$scope', '$window', '$timeout', function(Auth, $scope, $window, $timeout){
 
     $scope.authUser = function(){
-      if (!$scope.username || !$scope.username) {
+      if (!$scope.username || !$scope.password) {
         $scope.noData = true;
         $timeout(function() {
           $scope.noData = false;
@@ -29,7 +29,7 @@ angular.module('bakpak.auth', [])
     }
 
     $scope.addUser = function(){
-      if (!$scope.username || !$scope.username) {
+      if (!$scope.username || !$scope.password) {
         $scope.noData = true;
         $timeout(function() {
           $scope.noData = false;

@@ -60,14 +60,14 @@
   <div class ="row" ng-hide='!called' >
     <div id="left" class="col s5 offset-s1 explore">
         <h4 class="label"> Deals </h4>
-      <div ng-repeat="deal in promos"> <b><a class="google" href ={{deal.deal.url}} target="_blank"> {{deal.deal.title}} </a>  </b>
+      <div ng-repeat="deal in promos | limitTo: 10"> <b><a class="google" href ={{deal.deal.url}} target="_blank"> {{deal.deal.title}} </a>  </b>
 
       </br> {{deal.deal.short_title}} </div>
     </div>
 
     <div class="col s5 explore">
       <h4 class="label"> Events </h4>
-      <div ng-repeat="event in events" ng-model='selectedEvent'>
+      <div ng-repeat="event in events | limitTo: 10" ng-model='selectedEvent'>
       <b> <a class="google" href = {{event.url[0]}} target="_blank">{{event.title[0]}} </a></b>
        <div class='addbtn'><a class='waves-effect btn' ng-click='saveEvent(event); event.clicked=true' ng-show='tripId' ng-disabled='event.clicked'> Save </a></div>
       </br>
