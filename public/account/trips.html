@@ -27,15 +27,18 @@
         <h5 class="label" > {{trip.title}} </h5>
       </div>
 
-          <div id='showTripBtn' class="center-align" ng-show='trip.destinations.length === 0'>   
-            <a class='waves-effect btn ' href='/#/explore' ng-click='setTripId(trip.id)'> Add a city</a><br>
-        </div>     
+    
 
           <div class='row center-align '> 
             <a class = 'dest waves-effect waves-light btn'  ng-repeat='destination in trip.destinations' ng-click='trip.showInfo = !trip.showInfo; trip.destID = destination.id'>{{destination.name}}</a>
 
           </div>
-          <br>
+    
+          <div id='showTripBtn' class="center-align">   
+            <a class='waves-effect btn ' href='/#/explore' ng-click='setTripId(trip.id)'> Add a city</a>
+      
+        </div> 
+        <br>
         
         <div class='tripinfo' ng-show='trip.showInfo'>
           <div class="row">
