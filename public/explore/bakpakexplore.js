@@ -106,7 +106,9 @@ angular.module('bakpak.explore', [])
 			data:{origin: $scope.origin, destination: $scope.destination, date: $scope.date}
 		})
 		.then(function(data){
+
 			$scope.flights = data.data.trips.tripOption;
+      console.log($scope.flights)
 			// console.log("line 79", data.data.trips.tripOption[0].slice[0].segment[0]);
 		})
 	};
