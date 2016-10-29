@@ -5,10 +5,6 @@ angular.module('bakpak.explore', [])
 
 
   $scope.city = CityService.getCity();
-
-
-
-
 	$scope.results = [];
 	$scope.weather;
 	$scope.arts;
@@ -16,6 +12,10 @@ angular.module('bakpak.explore', [])
 	$scope.promos;
 	$scope.flights;
 	$scope.selectedCountry;
+
+  $scope.clearCity = function() {
+    $scope.city = '';
+  }
 
 	$scope.hotelsApi = function(){
 
