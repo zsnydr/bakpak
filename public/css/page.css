@@ -9,6 +9,8 @@ html {
 body {
   background-size: cover;                      /* <------ */
   background-position: center center;
+  background-attachment: fixed;
+  background-image: url("http://kaba35.com/wp-content/uploads/2015/11/Savin-NY-Website-Background-Web.jpg");
 }
 a {
   color: black;
@@ -71,13 +73,13 @@ select {
   font-family: 'sansblack';
 }
 .explore {
-  background-color: rgba(84,156,204,0.2);
+  background-color: rgba(84,156,204,0.1);
   margin-right: 20px;
   padding-bottom: 5px;
   position: relative;
 }
 .explore2 {
-  background-color: rgba(84,156,204,0.2);
+  background-color: rgba(84,156,204,0.1);
 }
 
 #showTripBtn {
