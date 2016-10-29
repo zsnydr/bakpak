@@ -12,18 +12,19 @@
     <LABEL id="label">Where are we going?</LABEL>
       <div class="center-align">
         <input id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
-          <a href="/#/explore" id='explorebtn' class="waves-effect btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
-          <a href="/#/reserve" class="waves-effect btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
+
+          <a href="/#/explore" id='explorebtn' class="waves-effect btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi(); called=true'> EXPLORE </a>
+          <a href="/#/reserve" class="waves-effect btn" ng-click="setCity(); hotelsApi(); imagesApi();">RESERVE </a>
       </div>
   </div>
 
   <br>
 
-  <div class="row">
+  <div class="row"  ng-hide='!called' >
     <div class="col s4 offset-s4 center explore2"><h4 class="label"> {{weather.weather[0].description}}</h4><h5> {{weather.main.temp}} </h5></div>
   </div>
 
-  <div class="row">
+  <div class="row" ng-hide='!called' >
 
     <div id="left" class="col s5 offset-s1 explore">
       <h4 class="label"> Restaurants </h4>
@@ -56,7 +57,7 @@
 
   </div>
 
-  <div class ="row">
+  <div class ="row" ng-hide='!called' >
     <div id="left" class="col s5 offset-s1 explore">
         <h4 class="label"> Deals </h4>
       <div ng-repeat="deal in promos"> <b><a class="google" href ={{deal.deal.url}} target="_blank"> {{deal.deal.title}} </a>  </b>

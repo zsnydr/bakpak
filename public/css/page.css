@@ -1,5 +1,5 @@
 html {
-  background-color: #F7F9F2;
+  background-color: #F9F9F4;
   background-size: cover;                      /* <------ */
   background-repeat: no-repeat;
   background-position: center center;
@@ -123,3 +123,27 @@ select {
 .btn:hover{
   background-color: #333533;
 }
+
+#input:focus {
+  border-color: #549CCC;
+  box-shadow: 0 0 5px rgba(84, 156, 204, 0.4);
+}
+
+.authbtns a, p{
+  display: inline-block
+}
+
+.noacc{
+  float: right;
+  margin: -9px !important;
+}
+
+.noacc p {
+  margin-right: 30px;
+}
+
+.who {
+  font-size: 16px;
+
+}
+

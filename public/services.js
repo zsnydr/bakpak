@@ -227,3 +227,79 @@ return {
 
 
 }])
+
+
+.factory('remove', ['$http', function ($http) {
+
+  var removePlace = function (object) {
+    $http({
+      method: 'POST',
+      url: '/removePlace',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removePlace SUCCESS', data)
+      return data;
+    })
+  }
+
+  var removeRestaurant = function (object) {
+    $http({
+      method: 'POST',
+      url: '/removeRestaurant',
+      data: object
+    })
+    .then(function(data) {
+       console.log('removeRestaurant SUCCESS', data)
+      return data;
+    })
+  }
+
+  var removeEvent = function (object) {
+    $http({
+      method: 'POST',
+      url: '/removeEvent',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+   var removeHotel = function (object) {
+    $http({
+      method: 'POST',
+      url: '/removeHotel',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+   var removeFlight = function (object) {
+    $http({
+      method: 'POST',
+      url: '/removeFlight',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+
+  return {
+    removePlace: removePlace,
+    removeRestaurant: removeRestaurant,
+    removeEvent: removeEvent,
+    removeHotel: removeHotel,
+    removeFlight: removeFlight
+  }
+
+
+
+}])
