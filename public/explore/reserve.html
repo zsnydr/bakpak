@@ -32,6 +32,9 @@
 
     <div id="left" class="col s4 offset-s1 explore">
     	<h4 class="label"> Flights </h4>
+
+      <div id='showTripBtn' class="center-align"><h1 ng-show='flights.length===0'>You currently have no trips planned!</h1></div>
+
       <div ng-repeat="flight in flights">
       	Origin: {{flight.slice[0].segment[0].leg[0].origin}}
       	</br>
