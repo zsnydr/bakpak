@@ -8,6 +8,7 @@ angular.module('bakpak.explore', [])
 
 
 
+
 	$scope.results = [];
 	$scope.weather;
 	$scope.arts;
@@ -28,8 +29,6 @@ angular.module('bakpak.explore', [])
   		  $scope.hotels = data.data.results;
   		})
     }
-	}
-
 	$scope.restaurantsApi = function(){
 		$http({
 		  method: 'POST',
