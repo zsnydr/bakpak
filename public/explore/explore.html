@@ -11,8 +11,10 @@
   <div class="container" id="inputarea">
     <LABEL id="label">Where are we going?</LABEL>
       <div class="center-align">
-        <input name='cityForm' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
-          <p ng-show=".name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
+        <form name='cityForm'>
+          <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required/>
+        </form>
+          <p ng-show="cityForm.city.$invalid" class="help-block">A city is required </p>
 
           <a href="/#/explore" id='explorebtn' class="waves-effect btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi(); called=true'> EXPLORE </a>
           <a href="/#/reserve" class="waves-effect btn" ng-click="setCity(); hotelsApi(); imagesApi();">RESERVE </a>

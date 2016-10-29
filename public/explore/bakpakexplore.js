@@ -4,20 +4,20 @@ angular.module('bakpak.explore', [])
 .controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', 'IdService', 'Save', function($scope, $http, Trips, CityService, $timeout, Auth, IdService, Save){
 
 
-  $scope.city = CityService.getCity();
-	$scope.results = [];
-	$scope.weather;
-	$scope.arts;
-	$scope.images;
-	$scope.promos;
-	$scope.flights;
-	$scope.selectedCountry;
+  $scope.results = [];
+  $scope.weather;
+  $scope.arts;
+  $scope.images;
+  $scope.promos;
+  $scope.flights;
+  $scope.selectedCountry;
 
-  $scope.cityForm
+  $scope.city = CityService.getCity();
 
   $scope.clearCity = function() {
-    $scope.city = '';
+      CityService.setCity('');
   }
+
 
 	$scope.hotelsApi = function(){
 
