@@ -254,31 +254,26 @@ Trip.hasMany(Destination, { foreignKey: 'trip_id'});
 //
 //Flight.hasOne(Trip);
 Trip.hasMany(Flight, { foreignKey: 'trip_id' });
-Destination.hasMany(Flight, { foreignKey: 'destination_id' });
 // Flight.hasOne(Destination);
 // Destination.hasMany(Flight);
 //
 //Hotel.hasOne(Trip);
 Trip.hasMany(Hotel, { foreignKey: 'trip_id' });
-Destination.hasMany(Hotel, { foreignKey: 'destination_id' });
 // Hotel.hasOne(Destination);
 // Destination.hasMany(Hotel);
 //
 //Place.hasOne(Trip);
 Trip.hasMany(Place, { foreignKey: 'trip_id' });
-Destination.hasMany(Place, { foreignKey: 'destination_id' });
 // Place.hasOne(Destination);
 // Destination.hasMany(Place);
 //
 //Event.hasOne(Trip);
 Trip.hasMany(Event, { foreignKey: 'trip_id' });
-Destination.hasMany(Event, { foreignKey: 'destination_id' });
 // Place.hasOne(Destination);
 // Destination.hasMany(Place);
 //
 //Restaurant.hasOne(Trip);
 Trip.hasMany(Restaurant, { foreignKey: 'trip_id' });
-Destination.hasMany(Restaurant, { foreignKey: 'destination_id' });
 // Restaurant.hasOne(Destination);
 // Destination.hasMany(Restaurant);
 

@@ -222,11 +222,11 @@ module.exports = {
             res.end('matched');
           } else {
             console.error(err);
-            res.end('failed');
+            res.end('wrong password');
           }
         });
       } else {
-        res.end('failed');
+        res.end('user does not exist');
       }
     });
   },
@@ -235,7 +235,7 @@ module.exports = {
     User.find({ where: { username: req.body.username } })
     .then(function(user) {
       if (user) {
-        res.end('user exists');
+        res.end('user already exists');
       } else {
         bcrypt.hash(req.body.password, 5, function(err, hash) {
           User.create({ username: req.body.username, password: hash })
