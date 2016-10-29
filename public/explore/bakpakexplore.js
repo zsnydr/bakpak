@@ -29,6 +29,7 @@ angular.module('bakpak.explore', [])
   		  $scope.hotels = data.data.results;
   		})
     }
+  }
 	$scope.restaurantsApi = function(){
 		$http({
 		  method: 'POST',
