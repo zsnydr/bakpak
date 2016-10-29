@@ -12,19 +12,25 @@
   <div class="container" id="inputarea">
     <LABEL id="label">Where are we going?</LABEL>
       <div class="center-align">
-        <input id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
-          <a href="/#/explore" class="waves-effect waves-light btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
-          <a href="/#/reserve" class="waves-effect waves-light btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
+
+        <form name='cityForm' novalidate>
+          <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required />
+        </form>
+
+          <a href="/#/explore" ng-disabled='cityForm.$invalid' class="waves-effect waves-light btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
+          <a href="/#/reserve" ng-disabled='cityForm.$invalid' class="waves-effect waves-light btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
       </div>
   </div>
 
   <br>
 
-  <input id="input" type="text" ng-model='origin' placeholder="Example: SFO" />
-  <input id="input" type="text" ng-model='destination' placeholder="Example: LAX" />
-  <input id="input" type="text" ng-model='date' placeholder="Example: 2016-10-22" />
+<form name='flightForm' novalidate>
+  <input id="input" type="text" ng-model='origin' placeholder="Example: SFO" required/>
+  <input id="input" type="text" ng-model='destination' placeholder="Example: LAX" required/>
+  <input id="input" type="text" ng-model='date' placeholder="Example: 2016-10-22" required/>
+</form>
   <!-- date format has to be YYYY-MM-DD -->
-  <a href="/#/reserve" class="waves-effect waves-light btn" ng-click='flightsApi(); '>Find Flights </a>
+  <a href="/#/reserve" ng-disabled='flightForm.$invalid' class="waves-effect waves-light btn" ng-click='flightsApi(); '>Find Flights </a>
 
   <div class="row">
 
