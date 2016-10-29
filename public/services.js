@@ -227,3 +227,105 @@ return {
 
 
 }])
+
+
+.factory('Remove', ['$http', function ($http) {
+
+  var removePlace = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removePlace',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removePlace SUCCESS', data)
+      return data;
+    })
+  }
+
+  var removeRestaurant = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removeRestaurant',
+      data: object
+    })
+    .then(function(data) {
+       console.log('removeRestaurant SUCCESS', data)
+      return data;
+    })
+  }
+
+  var removeEvent = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removeEvent',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+   var removeHotel = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removeHotel',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+   var removeFlight = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removeFlight',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+  var removeTrip = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removeTrip',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+  var removeDestination = function (object) {
+    $http({
+      method: 'PUT',
+      url: '/removeDestination',
+      data: object
+    })
+    .then(function(data) {
+      console.log('removeEvent SUCCESS', data)
+      return data;
+    })
+  }
+
+
+  return {
+    removePlace: removePlace,
+    removeRestaurant: removeRestaurant,
+    removeEvent: removeEvent,
+    removeHotel: removeHotel,
+    removeFlight: removeFlight,
+    removeTrip: removeTrip,
+    removeDestination: removeDestination
+  }
+
+
+
+}])

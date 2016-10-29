@@ -1,6 +1,6 @@
 angular.module('bakpak.trips', [])
 
-.controller('tripsController', ['$scope', 'Trips', 'CityService', 'Auth', 'IdService', function($scope, Trips, CityService, Auth, IdService){
+.controller('tripsController', ['$scope', 'Trips', 'CityService', 'Auth', 'IdService', 'Remove', function($scope, Trips, CityService, Auth, IdService, Remove){
 
   $scope.city = '';
   $scope.tripTitle = '';
@@ -30,6 +30,34 @@ angular.module('bakpak.trips', [])
 
   $scope.showInfoFunc = function () {
     $scope.showInfo = !$scope.showInfo;
+  }
+
+  $scope.removeHotel = function (hotel) {
+    Remove.removeHotel(hotel);
+  }
+
+  $scope.removeRestaurant = function (restaurant) {
+    Remove.removeRestaurant(restaurant);
+  }
+  
+  $scope.removePlace = function (Place) {
+    Remove.removePlace(Place);
+  }
+
+  $scope.removeEvent = function (Event) {
+    Remove.removeEvent(Event);
+  }
+
+  $scope.removeFlight = function (Flight) {
+    Remove.removeFlight(Flight);
+  }
+  
+  $scope.removeTrip = function (trip) {
+    Remove.removeTrip(trip);
+  }
+  
+  $scope.removeDestination = function (Destination) {
+    Remove.removeDestination(Destination);
   }
   
 
