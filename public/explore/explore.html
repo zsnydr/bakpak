@@ -16,9 +16,6 @@
           <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required />
         </form>
 
-        <div class='city-required'>
-          <p ng-show="cityForm.city.$invalid">A city is required </p>
-        </div>
 
           <a href="/#/explore" ng-disabled='cityForm.$invalid' id='explorebtn' class="waves-effect btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi(); called=true'> EXPLORE </a>
           <a href="/#/reserve" ng-disabled='cityForm.$invalid' class="waves-effect btn" ng-click="setCity(); hotelsApi(); imagesApi();">RESERVE </a>

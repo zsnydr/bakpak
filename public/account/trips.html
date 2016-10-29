@@ -7,19 +7,10 @@
     <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required />
   </form>
 
-     <div class='newcity-required'>
-        <p ng-show="newCityForm.city.$invalid">A city is required </p>
-    </div>
-
   <form name='newTripNameForm' novalidate>
     Trip Name:
     <input name='tripName' id="input" type="text" ng-model='tripTitle' placeholder="Example: Birthday" required />
   </form>
-
-     <div class='newcity-required'>
-        <p ng-show="newTripNameForm.tripName.$invalid">A trip name is required </p>
-    </div>
-
 
   <a href='/#/explore' ng-disabled='newCityForm.$invalid && newTripNameForm.$invalid' class='waves-effect waves-light btn' ng-click='saveTrip(); setCity()'> Make a new trip! </a>
 
