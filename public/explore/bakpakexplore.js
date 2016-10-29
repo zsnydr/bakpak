@@ -17,7 +17,7 @@ angular.module('bakpak.explore', [])
 	$scope.selectedCountry;
 
 	$scope.hotelsApi = function(){
-    console.log('CITY IN HOTELS API CALL', $scope.city)
+
     if($scope.city !== '') {
   		$http({
   		  method: 'POST',
@@ -119,25 +119,25 @@ angular.module('bakpak.explore', [])
     }
 
     $scope.savePlace = function (place) {
-      console.log("PLACE", place)
+
       Save.savePlace({place: place, city: $scope.city, trip_id: $scope.tripId})
     }
 
     $scope.saveRestaurant = function (restaurant) {
-       console.log("RESTAURANT", restaurant, 'CITY', $scope.city, 'ID', $scope.tripId)
+
       Save.saveRestaurant({restaurant: restaurant, city: $scope.city, trip_id: $scope.tripId})
     }
 
     $scope.saveEvent = function (event) {
-      console.log("EVENT", event)
+
       Save.saveEvent({event: event, city: $scope.city, trip_id: $scope.tripId})
     }
     $scope.saveHotel = function (hotel) {
-      console.log("HOTEL", hotel)
+
       Save.saveHotel({hotel: hotel, city: $scope.city, trip_id: $scope.tripId})
     }
     $scope.saveFlight = function (flight) {
-      console.log("FLIGHT", flight)
+
       Save.saveFlight({flight: flight, city: $scope.city, trip_id: $scope.tripId})
     }
 
@@ -161,7 +161,7 @@ angular.module('bakpak.explore', [])
       $scope.$watch(function () {
          return Trips.getTripId();
       }, function () {
-        console.log(" tripId", Trips.getTripId())
+
         $scope.tripId = Trips.getTripId();
 
         if(!newTripTriggered && $scope.tripId !== undefined) {
@@ -174,6 +174,5 @@ angular.module('bakpak.explore', [])
 
     });
 
-      console.log('SCOPE CITY IN EXPLORE CTLR', $scope.city)
 
 }])
