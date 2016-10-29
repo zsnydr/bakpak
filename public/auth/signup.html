@@ -8,5 +8,7 @@
       <input id="input" class='password' type='password' ng-model='password' placeholder="Password"/>
       <a href="/#/signin" class="signup waves-effect waves-light btn" ng-click="addUser(username, password)">SIGN UP </a>
     </div>
-  </div>
+    <div ng-show="userAlreadyExists">USER ALREADY EXISTS</div>
+    <div ng-show="noData">PLEASE ENTER A VALID USERNAME AND PASSWORD</div>
 
+  </div>

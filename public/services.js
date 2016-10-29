@@ -15,11 +15,12 @@ angular.module('app-services', ['app-services'])
     }).then(function(res){
       if(res.data === 'matched'){
         isSignedIn = true;
-        $window.location = '/#/explore'
+        $window.location = '/#/explore';
+        return res.data;
       } else {
-        $window.location = '/#/signin'
+        return res.data;
       }
-    })
+    });
   }
 
   var signup = function(username, password){
@@ -31,12 +32,12 @@ angular.module('app-services', ['app-services'])
         password: password
         }
     }).then(function(res){
-      console.log('resdata', res.data)
-      if(res.data === 'user exists' || res.data === 'no user'){
-        $window.location = '/#/signup'
+      if(res.data === 'user already exists' || res.data === 'no user'){
+        return res.data;
       } else {
-          $window.location = '/#/explore'
-          isSignedIn = true;
+        $window.location = '/#/explore';
+        isSignedIn = true;
+        return res.data;
       }
     })
     .catch(function(err){
