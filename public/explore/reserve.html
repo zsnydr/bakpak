@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="col s6 explore">
+    <div class="col s6 explore" ng-init='hotelsApi()'>
       <h4 class="label"> Hotels </h4>
       <div ng-repeat="hotel in hotels | limitTo: 10">
         <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b>
