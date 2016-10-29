@@ -1,5 +1,5 @@
 html {
-  background-color: rgba(232,237,223,0.4);
+  background-color: #F7F9F2;
   background-size: cover;                      /* <------ */
   background-repeat: no-repeat;
   background-position: center center;
@@ -71,13 +71,13 @@ select {
   font-family: 'sansblack';
 }
 .explore {
-  background-color: rgba(245,203,92,0.4);;
+  background-color: rgba(84,156,204,0.2);
   margin-right: 20px;
   padding-bottom: 5px;
   position: relative;
 }
 .explore2 {
-  background-color: rgba(245,203,92,0.4);
+  background-color: rgba(84,156,204,0.2);
 }
 
 #showTripBtn {

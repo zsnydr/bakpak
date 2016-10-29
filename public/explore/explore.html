@@ -12,8 +12,8 @@
     <LABEL id="label">Where are we going?</LABEL>
       <div class="center-align">
         <input id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" />
-          <a href="/#/explore" id='explorebtn' class="waves-effect waves-light waves-yellow btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
-          <a href="/#/reserve" class="waves-effect waves-yellow waves-light btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
+          <a href="/#/explore" id='explorebtn' class="waves-effect btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
+          <a href="/#/reserve" class="waves-effect btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
       </div>
   </div>
 
@@ -30,7 +30,7 @@
      <!--  <div class="col s10"> -->
         <div ng-repeat="result in results | limitTo: 10" ng-model = 'selectedRestaurant'>
         <img class="icon" src={{result.icon}}  ng-show='!tripId'></img>
-        <a class=' addbtn waves-effect waves-light btn' ng-click='saveRestaurant(result); result.clicked=true'  ng-show='tripId'  ng-disabled='result.clicked'> Save </a>
+        <a class=' addbtn waves-effect btn' ng-click='saveRestaurant(result); result.clicked=true'  ng-show='tripId'  ng-disabled='result.clicked'> Save </a>
         <a class="google" href="https://www.google.com/#q={{result.name}}" target="_blank"> <b> {{result.name}} </b> </a> <br> {{result.formatted_address}} <br> Rating :
         {{result.rating}} </br>
         <!-- </div> -->
@@ -45,7 +45,7 @@
 
 
         <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a>
-        <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='savePlace(art); art.clicked=true'  ng-show='tripId' ng-disabled='art.clicked'> Save </a></div>
+        <div class='addbtn'><a class='waves-effect btn' ng-click='savePlace(art); art.clicked=true'  ng-show='tripId' ng-disabled='art.clicked'> Save </a></div>
 
         <br>{{art.formatted_address}} </br>
 
@@ -68,7 +68,7 @@
       <h4 class="label"> Events </h4>
       <div ng-repeat="event in events" ng-model='selectedEvent'>
       <b> <a class="google" href = {{event.url[0]}} target="_blank">{{event.title[0]}} </a></b>
-       <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='saveEvent(event); event.clicked=true' ng-show='tripId' ng-disabled='event.clicked'> Save </a></div>
+       <div class='addbtn'><a class='waves-effect btn' ng-click='saveEvent(event); event.clicked=true' ng-show='tripId' ng-disabled='event.clicked'> Save </a></div>
       </br>
 
       Venue: <a class="google" href = {{event.venue_url[0]}} target="_blank"> {{event.venue_name[0]}}</a></div>
