@@ -229,7 +229,7 @@ return {
 }])
 
 
-.factory('remove', ['$http', function ($http) {
+.factory('Remove', ['$http', function ($http) {
 
   var removePlace = function (object) {
     $http({
