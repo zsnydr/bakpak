@@ -34,6 +34,8 @@ db.authenticate().then(function(err) {
 
 var findOrCreateDest = function(req, res) {
   return new Promise(function(resolve, reject) {
+    console.log('in find or create', req.session)
+    req.session.trip_id = req.body.trip_id;
     if (req.body.city !== req.session.destination_name) {
       Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
       .spread(function(destination, created) {
@@ -120,6 +122,7 @@ module.exports = {
   },
 
   saveRestaurant: function(req, res) {
+    console.log('save rest', req.body)
     //save restaurants info in the DB Restaurants table
     findOrCreateDest(req, res)
     .then(function() {

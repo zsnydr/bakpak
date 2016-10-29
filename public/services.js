@@ -89,9 +89,9 @@ return {
     })
   }
 
-  // var getTripId = function() {
-  //   return tripId;
-  // }
+  var setTripId = function(data) {
+    tripId = data;
+  }
 
   var getTripId = function() {
     return tripId;
@@ -111,7 +111,8 @@ return {
     saveTrip: saveTrip,
     getTripId: getTripId,
     tripId: tripId,
-    getTrips: getTrips
+    getTrips: getTrips,
+    setTripId: setTripId
   }
 
 }])
@@ -232,7 +233,7 @@ return {
 .factory('Remove', ['$http', function ($http) {
 
   var removePlace = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removePlace',
       data: object
@@ -244,19 +245,19 @@ return {
   }
 
   var removeRestaurant = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeRestaurant',
       data: object
     })
-    .then(function(data) {
+    .then(function (data) {
        console.log('removeRestaurant SUCCESS', data)
       return data;
     })
   }
 
   var removeEvent = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeEvent',
       data: object
@@ -268,49 +269,50 @@ return {
   }
 
    var removeHotel = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeHotel',
       data: object
     })
     .then(function(data) {
-      console.log('removeEvent SUCCESS', data)
+      console.log('removehotel SUCCESS', data)
       return data;
     })
   }
 
    var removeFlight = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeFlight',
       data: object
     })
     .then(function(data) {
-      console.log('removeEvent SUCCESS', data)
+      console.log('removeflight SUCCESS', data)
       return data;
     })
   }
 
   var removeTrip = function (object) {
-    $http({
+    return $http({
       method: 'PUT',
       url: '/removeTrip',
       data: object
     })
     .then(function(data) {
-      console.log('removeEvent SUCCESS', data)
+      console.log('removetrip SUCCESS', data)
       return data;
     })
   }
 
   var removeDestination = function (object) {
-    $http({
+    console.log("REMOVE DEST OBJ", object)
+    return $http({
       method: 'PUT',
       url: '/removeDestination',
       data: object
     })
     .then(function(data) {
-      console.log('removeEvent SUCCESS', data)
+      console.log('removedestination SUCCESS', data)
       return data;
     })
   }
