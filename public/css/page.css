@@ -173,9 +173,22 @@ select {
 }
 
 
+
 a {
     cursor: pointer;
 }
 
+.city-required {
+  float: left;
+  margin-top: -35px;
+  color: #F05D5D;
+  size: 1em;
+}
 
+.newcity-required {
+  margin-top: -40px;
 
+  color: #F05D5D;
+  size: 1em;
+
+}
