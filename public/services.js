@@ -274,7 +274,7 @@ return {
       data: object
     })
     .then(function(data) {
-      console.log('removeEvent SUCCESS', data)
+      console.log('removehotel SUCCESS', data)
       return data;
     })
   }
@@ -286,7 +286,7 @@ return {
       data: object
     })
     .then(function(data) {
-      console.log('removeEvent SUCCESS', data)
+      console.log('removeflight SUCCESS', data)
       return data;
     })
   }
@@ -298,7 +298,7 @@ return {
       data: object
     })
     .then(function(data) {
-      console.log('removeEvent SUCCESS', data)
+      console.log('removetrip SUCCESS', data)
       return data;
     })
   }
@@ -310,7 +310,7 @@ return {
       data: object
     })
     .then(function(data) {
-      console.log('removeEvent SUCCESS', data)
+      console.log('removedestination SUCCESS', data)
       return data;
     })
   }
