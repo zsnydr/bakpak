@@ -175,3 +175,9 @@ select {
 a {
     cursor: pointer;
 }
+
+.error {
+  font-size: 14px;
+  color: #333533;
+}
+
