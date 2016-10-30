@@ -2,17 +2,16 @@
 <div id='userprofile' class='container'>
   <h4 class='label'> User Profile </h4>
 
-  <form name='newCityForm' novalidate>
+<form name='newTripForm'>
     Destination:
     <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required />
-  </form>
 
-  <form name='newTripNameForm' novalidate>
     Trip Name:
     <input name='tripName' id="input" type="text" ng-model='tripTitle' placeholder="Example: Birthday" required />
-  </form>
 
-  <a href='/#/explore' ng-disabled='newCityForm.$invalid && newTripNameForm.$invalid' class='waves-effect waves-light btn' ng-click='saveTrip(); setCity()'> Make a new trip! </a>
+</form>
+
+  <a href='/#/explore' ng-disabled='newTripForm.$invalid' class='waves-effect waves-light btn' ng-click='saveTrip(); setCity()'> Make a new trip! </a>
 
 
 </div>
