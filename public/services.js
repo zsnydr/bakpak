@@ -67,7 +67,7 @@ angular.module('app-services', ['app-services'])
     isSignedIn: signedIn
   }
 
-}]);
+}])
 
 .factory('Trips', ['$http', '$location', '$timeout', function($http, $location, $timeout){
 
@@ -129,7 +129,7 @@ angular.module('app-services', ['app-services'])
     setTripId: setTripId
   }
 
-}]);
+}])
 
 .factory('CityService', function() {
   var city = '';
@@ -212,7 +212,7 @@ angular.module('app-services', ['app-services'])
     saveHotel: saveHotel,
     saveFlight: saveFlight
   }
-}]);
+}])
 
 .factory('Remove', ['$http', function ($http) {
 
