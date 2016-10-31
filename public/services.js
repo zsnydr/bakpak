@@ -146,7 +146,7 @@ angular.module('app-services', ['app-services'])
     setCity: setCity,
     getCity: getCity
   }
-});
+})
 
 .factory('Save', ['$http', function ($http) {
 
