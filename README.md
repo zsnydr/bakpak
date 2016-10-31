@@ -25,7 +25,6 @@ node server.js
 # Requirements
 
     - "angular-route": "^1.5.8",
-    - "angular-sanitize": "^1.4.2",
     - "babel-preset-es2015": "^6.6.0",
     - "bcrypt": "^0.8.7",
     - "body-parser": "^1.15.2",
