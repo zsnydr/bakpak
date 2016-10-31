@@ -2,6 +2,8 @@
 
 Personal itinerary builder that helps to organize your trip.
 
+http://bakpakattak.herokuapp.com/
+
 ## Team
 
   - __Product Owner__: Natasha Thapliyal
