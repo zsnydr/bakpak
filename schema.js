@@ -165,7 +165,7 @@ Destination.hasMany(Restaurant, { foreignKey: 'destination_id' });
 
 //Create Tables
 db
-  .sync({force: true})
+  .sync({force: false})
   .then(function() {
     console.log('Tables created');
  });
