@@ -1,4 +1,4 @@
-var pg = require('pg')
+var pg = require('pg');
 var Sequelize = require('sequelize');
 var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
   dialect: 'postgres'

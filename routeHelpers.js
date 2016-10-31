@@ -7,7 +7,7 @@ var bcrypt = require('bcrypt');
 var QPXClient = require('qpx-client'); //for qpx
 var util = require('util'); //for qpx
 
-// require postgres models
+//Require postgres models
 var User = require('./schema').User;
 var Trip = require('./schema').Trip;
 var Hotel = require('./schema').Hotel;
@@ -17,14 +17,14 @@ var Flight = require('./schema').Flight;
 var Restaurant = require('./schema').Restaurant;
 var Destination = require('./schema').Destination;
 
-// set up new postgres instance
+//Set up new postgres instance
 var pg = require('pg')
 var Sequelize = require('sequelize');
 var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
   dialect: 'postgres'
 });
 
-// Establishes the connection to the database
+//Establishes the connection to the database
 db.authenticate().then(function(err) {
   console.log('Connection established');
 }).catch(function(err) {
@@ -178,7 +178,6 @@ module.exports = {
           origin: req.body.flight.slice[0].segment[0].leg[0].origin,
           destination: req.body.flight.slice[0].segment[0].leg[0].destination,
           duration: req.body.flight.slice[0].segment[0].leg[0].duration,
-          // flightNo: req.body.flightNo,
           departure: req.body.flight.slice[0].segment[0].leg[0].departureTime,
           arrival: req.body.flight.slice[0].segment[0].leg[0].arrivalTime,
           carrier: req.body.flight.slice[0].segment[0].flight.carrier,
