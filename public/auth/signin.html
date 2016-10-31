@@ -1,0 +1,19 @@
+
+<div class='container' id='inputarea'>
+  <h4 class='label'>Sign In</h4>
+  <LABEL id='who'>Who are you?</LABEL> <br>
+  <div class='center-align'>
+    <input id="input" class='username' type='text' ng-model='username' placeholder="Username"/>
+    <input id="input"  class='password' type='password' ng-model='password' placeholder="Password"/>
+  </div>
+  <div class='authbtns'>
+    <a href="/#/signin" class="waves-effect waves-light btn" ng-click="authUser(username, password)">SIGN IN </a>
+    <LABEL class='errmsg' ng-show="wrongPassword">Wrong password!</LABEL>
+    <LABEL class='errmsg' ng-show="userDoesNotExist">User does not exist</LABEL>
+    <LABEL class='errmsg' ng-show="noData">Please enter valid username and password!</LABEL>
+    <div class='noacc'>
+      <LABEL id='who'>Don't have an account?</LABEL>
+      <a href="/#/signup" class=" waves-effect waves-light btn">Sign Up</a>
+    </div>
+  </div>
+</div>

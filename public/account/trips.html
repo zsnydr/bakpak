@@ -1,0 +1,116 @@
+
+<div id='userprofile' class='container'>
+  <h4 class='label'> User Profile </h4>
+  <form autocomplete="off" name='newTripForm'>
+    Destination:
+    <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required />
+    Trip Name:
+    <input name='tripName' id="input" type="text" ng-model='tripTitle' placeholder="Example: Birthday" required />
+  </form>
+  <a href='/#/explore' ng-disabled='newTripForm.$invalid' class='waves-effect waves-light btn' ng-click='saveTrip(); setCity()'> Make a new trip! </a>
+</div>
+
+<div id='showTripBtn' class="center-align">
+  <a ng-click='getTrips(); hidden = true' class='waves-effect btn' ng-hide='hidden'> Show My Trips </a>
+</div>
+
+<div class = 'trips'>
+  <div id='showTripBtn' class="center-align">
+    <a ng-show='trips.length===0'>You currently have no trips planned!</a>
+  </div>
+
+  <div ng-repeat='trip in trips'>
+    <div class="row center-align">
+      <h5 class="label" > {{trip.title}} </h5>
+    </div>
+
+    <div class='center-align'>
+      <a  ng-repeat='destination in trip.destinations' ng-click='trip.showInfo = true; trip.destID = destination.id' ng-class='{"waves-effect waves-light btn": trip.destinations.length === 1, "dest waves-effect waves-light btn": trip.destinations.length > 1,}'>{{destination.name}}</a>
+    </div>
+    <br>
+
+    <div class='tripinfo' ng-show='trip.showInfo'>
+      <div class="row">
+        <div id="left" class="col s5 offset-s1 explore">
+          <h4 class="label"> Flights </h4>
+          <div ng-repeat="flight in trip.flights | limitTo: 10" ng-show= 'flight.destination_id===trip.destID'>
+            <a class="google">Destination: {{flight.destination}}</a>
+            <div class='addbtn'><a class='waves-effect btn' ng-click='removeFlight(flight)'> Remove </a></div>
+            </br>
+            Origin: {{flight.origin}}
+            </br>
+            Duration: {{flight.duration}} Mins
+            </br>
+            Departure Time: {{flight.departure}}
+            </br>
+            ArrivalTime: {{flight.arrival}}
+            </br>
+            Carrier: {{flight.carrier}}
+            </br>
+            Price: {{flight.price}}
+            </br>
+            </br>
+          </div>
+        </div><br>
+
+        <div class="col s5 explore">
+          <h4 class="label"> Hotels </h4>
+          <div ng-repeat="hotel in trip.hotels | limitTo: 10"  ng-show= 'hotel.destination_id===trip.destID'>
+            <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b> </a>
+            <div class='addbtn'><a class='waves-effect btn' ng-click='removeHotel(hotel)'> Remove </a></div>
+            <br>{{hotel.address}} <br> Rating :
+            {{hotel.rating}}
+          </div><br>
+        </div>
+      </div><br>
+
+      <div class="row">
+        <div id="left" class="col s5 offset-s1 explore">
+          <h4 class="label"> Restaurants </h4>
+          <div ng-repeat="restaurant in trip.restaurants | limitTo: 10"  ng-show= 'restaurant.destination_id===trip.destID'>
+            <a class="google" href="https://www.google.com/#q={{restaurant.name}}" target="_blank"> <b> {{restaurant.name}} </b> </a>
+            <div class='addbtn'><a class='waves-effect btn' ng-click='removeRestaurant(restaurant)'> Remove </a></div>
+            <br> {{restaurant.address}} <br> Rating :
+            {{restaurant.rating}} </br>
+          </div><br>
+        </div><br>
+
+        <div class="col s5 explore">
+          <h4 class="label"> Places to Visit</h4>
+          <div ng-repeat="place in trip.places | limitTo: 10" ng-show= 'place.destination_id===trip.destID'>
+            <a class="google" href="https://www.google.com/#q={{place.name}}" target="_blank"> <b> {{place.name}} </b> </a>
+            <div class='addbtn'><a class='waves-effect btn' ng-click='removePlace(place)'> Remove </a></div>
+            <br>
+            {{place.address}} </br>
+            Place Type: {{place.type}} </br>
+          </div><br>
+        </div>
+      </div><br>
+
+      <div class="row">
+        <div class="col s4 offset-s4 explore2">
+          <h4 class="label "> Events </h4>
+          <div ng-repeat="event in trip.events | limitTo: 10"  ng-show= 'event.destination_id===trip.destID'>
+            <a class="google" href="https://www.google.com/#q={{event.name}}" target="_blank"> <b> {{event.name}} </b> </a>
+            <div class='addbtn'><a class='waves-effect btn' ng-click='removeEvent(event)'> Remove </a></div>
+            </br>
+            Venue: {{event.venue}}
+          </div> <br>
+        </div><br>
+      </div>
+
+      <div id='showTripBtn' class="center-align">
+        <a  ng-click='removeDestination(trip.destID)'> Remove City</a><br>
+      </div>
+    </div>
+
+    <div class=' center-align '>
+      <a class='addcitya  ' href='/#/explore' ng-click='setTripId(trip.id); clearCity()'> Add a city</a>
+    </div>
+
+    <div id='showTripBtn' class="center-align">
+      <a  ng-click='removeTrip(trip)'> Remove Trip</a><br>
+    </div>
+
+  </div>
+</div>
