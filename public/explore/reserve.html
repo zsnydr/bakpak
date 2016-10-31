@@ -6,46 +6,33 @@
 </style>
 
 <div class="container">
-
-
-
   <div class="container" id="inputarea">
     <LABEL id="label">Where are we going?</LABEL>
-      <div class="center-align">
-
-        <form autocomplete="off" name='cityForm' novalidate>
-          <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required />
-        </form>
-
-          <a href="/#/explore" ng-disabled='cityForm.$invalid' class="waves-effect waves-light btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
-          <a href="/#/reserve" ng-disabled='cityForm.$invalid' class="waves-effect waves-light btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
-      </div>
+    <div class="center-align">
+      <form autocomplete="off" name='cityForm' novalidate>
+        <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required />
+      </form>
+      <a href="/#/explore" ng-disabled='cityForm.$invalid' class="waves-effect waves-light btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi()'> EXPLORE </a>
+      <a href="/#/reserve" ng-disabled='cityForm.$invalid' class="waves-effect waves-light btn" ng-click="setCity(); hotelsApi(); imagesApi()">RESERVE </a>
+    </div>
   </div>
-
   <br>
 
-<form autocomplete="off" name='flightForm' novalidate>
-  <input id="input" type="text" ng-model='origin' placeholder="Example: SFO" required/>
-  <input id="input" type="text" ng-model='destination' placeholder="Example: LAX" required/>
-  <input id="input" type="text" ng-model='date' placeholder="Example: 2016-10-31" required/>
-</form>
-  <!-- date format has to be YYYY-MM-DD -->
+  <form autocomplete="off" name='flightForm' novalidate>
+    <input id="input" type="text" ng-model='origin' placeholder="Example: SFO" required/>
+    <input id="input" type="text" ng-model='destination' placeholder="Example: LAX" required/>
+    <input id="input" type="text" ng-model='date' placeholder="Example: 2016-10-31" required/>
+  </form>
   <a href="/#/reserve" ng-disabled='flightForm.$invalid' class="waves-effect waves-light btn" ng-click='flightsApi(); '>Find Flights </a>
-
   <div class="row">
-
     </br>
-
     <div id="left" class="col s4 offset-s1 explore">
     	<h4 class="label"> Flights </h4>
-
       <div id='showTripBtn'>
          <a ng-show='flights == undefined'>Nothing to show!</a>
       </div>
 
       <div ng-repeat="flight in flights">
-
-
       	Origin: {{flight.slice[0].segment[0].leg[0].origin}}
       	</br>
       	Destination: {{flight.slice[0].segment[0].leg[0].destination}}
@@ -62,25 +49,22 @@
       	</br>
       	Price: {{flight.saleTotal}}
       	</br>
-         <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='saveFlight(flight); flight.clicked=true'  ng-show='tripId' ng-disabled='flight.clicked'> Save </a></div>
+        <div class='addbtn'><a class='waves-effect waves-light btn' ng-click='saveFlight(flight); flight.clicked=true'  ng-show='tripId' ng-disabled='flight.clicked'> Save </a></div>
       	</br>
       </div>
     </div>
 
     <div class="col s6 explore" ng-init='hotelsApi()'>
       <h4 class="label"> Hotels </h4>
-
       <div id='showTripBtn'>
          <a ng-show='hotels == undefined'>Nothing to show!</a>
       </div>
-
       <div ng-repeat="hotel in hotels | limitTo: 10">
         <a class="google" href="https://www.google.com/#q={{hotel.name}}" target="_blank"> <b> {{hotel.name}} </b>
-        <div class='addbtn'> <a class='waves-effect waves-light btn' ng-click='saveHotel(hotel); hotel.clicked=true'  ng-show='tripId' ng-disabled='hotel.clicked'> Save </a></div>
-         </a> <br> {{hotel.formatted_address}} <br> Rating :
+          <div class='addbtn'> <a class='waves-effect waves-light btn' ng-click='saveHotel(hotel); hotel.clicked=true'  ng-show='tripId' ng-disabled='hotel.clicked'> Save </a></div>
+        </a> <br> {{hotel.formatted_address}} <br> Rating :
         {{hotel.rating}}
       </div>
     </div>
   </div>
-
 </div>
