@@ -1,12 +1,12 @@
 # Bakpak 
 
-Simple Angular Travel Web-Application
+Personal itinerary builder that helps to organize your trip.
 
 ## Team
 
--__Product Owner__: Jason Maier
--__Scrum Master__: Gery Egan
--__Development Team Members__: Michelle Li, Bruna Enos 
+  - __Product Owner__: Natasha Thapliyal
+  - __Scrum Master__: Zack Snyder
+  - __Development Team Members__: Alina Lobastova, Conor O'Leary
 
 ##Table of Contents
 
@@ -19,18 +19,27 @@ Simple Angular Travel Web-Application
 
 ## Usage
 
-Run development server: $node server.js
+With dependencies installed, run:
+node server.js
 
 # Requirements
 
-    - angular  1.5.x
-    - angular-route 1.5.x
-    - body-parser  1.15.x
-    - bootstrap 3.3.x
-    - express 4.14.x
-    - node-sass 3.10.x
-    - request 2.75.x
-    - sass-loader 4.0.x
+    - "angular-route": "^1.5.8",
+    - "babel-preset-es2015": "^6.6.0",
+    - "bcrypt": "^0.8.7",
+    - "body-parser": "^1.15.2",
+    - "bower": "^1.7.9",
+    - "dotenv": "^2.0.0",
+    - "express": "^4.4.5",
+    - "express-session": "^1.14.1",
+    - "nodemon": "^1.11.0",
+    - "pg": "^6.1.0",
+    - "qpx-client": "0.0.5",
+    - "request": "^2.75.0",
+    - "request-promise": "^4.1.1",
+    - "sequelize": "^3.24.6",
+    - "util": "^0.10.3",
+    - "xml2js": "^0.4.17"
 
 
 ## Development
@@ -40,7 +49,9 @@ Run development server: $node server.js
 From within the root directory:
 
 ```sh
-  $ npm install
+sudo npm install -g bower
+npm install
+bower install
 ```
 ### Roadmap
 
