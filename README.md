@@ -4,9 +4,9 @@ Personal itinerary builder that helps to organize your trip.
 
 ## Team
 
-  - __Product Owner__: Conor O'Leary
-  - __Scrum Master__: Alina Lobastova
-  - __Development Team Members__: Natasha Thapliyal , Zack Snyder
+  - __Product Owner__: Natasha Thapliyal
+  - __Scrum Master__: Zack Snyder
+  - __Development Team Members__: Alina Lobastova, Conor O'Leary
 
 ##Table of Contents
 
