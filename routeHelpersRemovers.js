@@ -24,25 +24,16 @@ db.authenticate().then(function(err) {
 
 
 module.exports = {
-
+  //Removes whole trip from user's profile
   removeTrip: function(req, res) {
     Trip.destroy({ where: { id: req.body.id }})
     .then(function(destroyedTrip) {
-      // Destination.destroy({ where: { trip_id: req.body.id }}
-      // .then(function(destroyedDest) {
-      //   Flight.destroy({ where: { trip_id: req.body.id })
-      //   .then(function(destroyedTrip) {
-      //     hotel
-      //     restaurants
-      //     events
-      //     place
-      //   })
-      // }))
       console.log('Destroyed Trip: ', destroyedTrip);
       res.end('removed trip');
     });
   },
 
+  //Removes destination from user's trip
   removeDestination: function(req, res) {
     Destination.destroy({ where: { id: req.body.id }})
     .then(function(destroyed) {
@@ -52,6 +43,7 @@ module.exports = {
     });
   },
 
+  //Removes flight from user's destination
   removeFlight: function(req, res) {
     Flight.destroy({ where: { id: req.body.id }})
     .then(function(destroyed) {
@@ -60,6 +52,7 @@ module.exports = {
     });
   },
 
+  //Removes hotel from user's destination
   removeHotel: function(req, res) {
     Hotel.destroy({ where: { id: req.body.id }})
     .then(function(destroyed) {
@@ -68,6 +61,7 @@ module.exports = {
     });
   },
 
+  //Removes restaurant from user's destination
   removeRestaurant: function(req, res) {
     Restaurant.destroy({ where: { id: req.body.id }})
     .then(function(destroyed) {
@@ -76,6 +70,7 @@ module.exports = {
     });
   },
 
+  //Removes event from user's destination
   removeEvent: function(req, res) {
     Event.destroy({ where: { id: req.body.id }})
     .then(function(destroyed) {
@@ -84,6 +79,7 @@ module.exports = {
     });
   },
 
+  //Removes place from user's destination
   removePlace: function(req, res) {
     Place.destroy({ where: { id: req.body.id }})
     .then(function(destroyed) {
