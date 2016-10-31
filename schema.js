@@ -178,7 +178,5 @@ module.exports = {
   Hotel: Hotel,
   Place: Place,
   Event: Event,
-  Restaurant: Restaurant,
-  DestinationTrip: DestinationTrip,
-  UserTrip: UserTrip
+  Restaurant: Restaurant
 };
