@@ -1,4 +1,4 @@
-var pg = require('pg')
+var pg = require('pg');
 var Sequelize = require('sequelize');
 var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
   dialect: 'postgres'
@@ -29,7 +29,7 @@ var User = db.define('user', {
   password: Sequelize.TEXT,
 });
 
-//creates table of trips
+//Creates table of trips
 var Trip = db.define('trip', {
   id: {
     type: Sequelize.INTEGER,
@@ -48,6 +48,7 @@ var Trip = db.define('trip', {
   title: Sequelize.TEXT
 });
 
+//Creates table of destinations
 var Destination = db.define('destination', {
   id: {
     type: Sequelize.INTEGER,
@@ -57,6 +58,7 @@ var Destination = db.define('destination', {
   name: Sequelize.TEXT
 });
 
+//Creates table of flights
 var Flight = db.define('flight', {
   id: {
     type: Sequelize.INTEGER,
@@ -72,24 +74,9 @@ var Flight = db.define('flight', {
   carrier: Sequelize.TEXT,
   seat: Sequelize.TEXT,
   price: Sequelize.TEXT,
-  // trip_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Trip,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // },
-  // destination_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Destination,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // }
 });
 
+//Creates table of hotels
 var Hotel = db.define('hotel', {
   id: {
     type: Sequelize.INTEGER,
@@ -99,24 +86,9 @@ var Hotel = db.define('hotel', {
   name: Sequelize.TEXT,
   address: Sequelize.TEXT,
   rating: Sequelize.DECIMAL(10,1),
-  // trip_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Trip,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // },
-  // destination_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Destination,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // }
 });
 
+//Creates table of places
 var Place = db.define('place', {
   id: {
     type: Sequelize.INTEGER,
@@ -126,25 +98,9 @@ var Place = db.define('place', {
   name: Sequelize.TEXT,
   address: Sequelize.TEXT,
   type: Sequelize.TEXT,
-  // open: Sequelize.TEXT,
-  // trip_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Trip,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // },
-  // destination_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Destination,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // }
 });
 
+//Creates table of restaurants
 var Restaurant = db.define('restaurant', {
   id: {
     type: Sequelize.INTEGER,
@@ -154,24 +110,9 @@ var Restaurant = db.define('restaurant', {
   name: Sequelize.TEXT,
   address: Sequelize.TEXT,
   rating: Sequelize.DECIMAL(10,1),
-  // trip_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Trip,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // },
-  // destination_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Destination,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // }
 });
 
+//Creates table of events
 var Event = db.define('event', {
   id: {
     type: Sequelize.INTEGER,
@@ -180,43 +121,9 @@ var Event = db.define('event', {
   },
   name: Sequelize.TEXT,
   venue: Sequelize.TEXT,
-  // trip_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Trip,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // },
-  // destination_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Destination,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // }
 });
 
-var DestinationTrip = db.define('destinations_trip', {
-  // trip_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Trip,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // },
-  // destination_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Destination,
-  //     key: 'id',
-  //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-  //   }
-  // }
-});
-
+//Creates table of users/trips
 var UserTrip = db.define('users_trip', {
   trip_id: {
     type: Sequelize.INTEGER,
@@ -237,50 +144,23 @@ var UserTrip = db.define('users_trip', {
 });
 
 //Defines relationships between tables
-// Trip.hasOne(User, { as: owner_id });
-//
-// DestinationTrip.hasMany(Destination);
-//Destination.hasMany(DestinationTrip, { foreignKey: 'destination_id'});
-//
-// DestinationTrip.hasMany(Trip);
-//Trip.hasMany(DestinationTrip, { foreignKey: 'trip_id' });
+
 Trip.hasMany(Destination, { foreignKey: 'trip_id'});
-//
-// UserTrip.hasMany(User);
-// User.hasMany(UserTrip);
-//
-// UserTrip.hasMany(Trip);
-// Trip.hasMany(UserTrip);
-//
-//Flight.hasOne(Trip);
+
 Trip.hasMany(Flight, { foreignKey: 'trip_id' });
 Destination.hasMany(Flight, { foreignKey: 'destination_id' });
-// Flight.hasOne(Destination);
-// Destination.hasMany(Flight);
-//
-//Hotel.hasOne(Trip);
+
 Trip.hasMany(Hotel, { foreignKey: 'trip_id' });
 Destination.hasMany(Hotel, { foreignKey: 'destination_id' });
-// Hotel.hasOne(Destination);
-// Destination.hasMany(Hotel);
-//
-//Place.hasOne(Trip);
+
 Trip.hasMany(Place, { foreignKey: 'trip_id' });
 Destination.hasMany(Place, { foreignKey: 'destination_id' });
-// Place.hasOne(Destination);
-// Destination.hasMany(Place);
-//
-//Event.hasOne(Trip);
+
 Trip.hasMany(Event, { foreignKey: 'trip_id' });
 Destination.hasMany(Event, { foreignKey: 'destination_id' });
-// Place.hasOne(Destination);
-// Destination.hasMany(Place);
-//
-//Restaurant.hasOne(Trip);
+
 Trip.hasMany(Restaurant, { foreignKey: 'trip_id' });
 Destination.hasMany(Restaurant, { foreignKey: 'destination_id' });
-// Restaurant.hasOne(Destination);
-// Destination.hasMany(Restaurant);
 
 
 //Create Tables

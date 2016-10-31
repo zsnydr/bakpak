@@ -17,7 +17,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   cookie: {maxAge: 300*300*300}
-}))
+}));
 routes.router(app);
 
 app.listen(process.env.PORT || 3000);

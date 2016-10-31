@@ -7,7 +7,7 @@ var bcrypt = require('bcrypt');
 var QPXClient = require('qpx-client'); //for qpx
 var util = require('util'); //for qpx
 
-// require postgres models
+//Require postgres models
 var User = require('./schema').User;
 var Trip = require('./schema').Trip;
 var Hotel = require('./schema').Hotel;
@@ -17,24 +17,23 @@ var Flight = require('./schema').Flight;
 var Restaurant = require('./schema').Restaurant;
 var Destination = require('./schema').Destination;
 
-// set up new postgres instance
+//Set up new postgres instance
 var pg = require('pg')
 var Sequelize = require('sequelize');
 var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
   dialect: 'postgres'
 });
 
-// Establishes the connection to the database
+//Establishes the connection to the database
 db.authenticate().then(function(err) {
   console.log('Connection established');
 }).catch(function(err) {
   console.log('Unable to connect: ', err);
 });
 
-
+//Retrieves or creates destination
 var findOrCreateDest = function(req, res) {
   return new Promise(function(resolve, reject) {
-    console.log('in find or create', req.session)
     req.session.trip_id = req.body.trip_id;
     if (req.body.city !== req.session.destination_name) {
       Destination.findOrCreate({ where: { name: req.body.city, trip_id: req.session.trip_id } })
@@ -52,6 +51,7 @@ var findOrCreateDest = function(req, res) {
 
 module.exports = {
 
+  //Creates new trip
   newTrip: function(req, res) {
     console.log('new trip');
     Trip.findOrCreate({ where: { title: req.body.title, owner_id: req.session.user_id } })
@@ -74,8 +74,8 @@ module.exports = {
     });
   },
 
+  //Saves places info in the DB Places table
   savePlace: function(req, res) {
-    //save places info in the DB Places table
     findOrCreateDest(req, res)
     .then(function() {
       Place.findOrCreate({
@@ -98,8 +98,8 @@ module.exports = {
     });
   },
 
+  //Saves events info in the DB Events table
   saveEvent: function(req, res) {
-    //save events info in the DB Events table
     findOrCreateDest(req, res)
     .then(function() {
       Event.findOrCreate({
@@ -121,9 +121,8 @@ module.exports = {
     });
   },
 
+  //Saves restaurants info in the DB Restaurants table
   saveRestaurant: function(req, res) {
-    console.log('save rest', req.body)
-    //save restaurants info in the DB Restaurants table
     findOrCreateDest(req, res)
     .then(function() {
       Restaurant.findOrCreate({
@@ -146,8 +145,8 @@ module.exports = {
     });
   },
 
+  //Saves hotels info in the DB Hotels table
   saveHotel: function(req, res) {
-    //save hotels info in the DB Hotels table
     findOrCreateDest(req, res)
     .then(function() {
       Hotel.findOrCreate({
@@ -170,8 +169,8 @@ module.exports = {
     });
   },
 
+  //Saves flight info in the DB Flights table
   saveFlight: function(req, res) {
-    //save flight info in the DB Flights table
     findOrCreateDest(req, res)
     .then(function() {
       Flight.findOrCreate({
@@ -179,7 +178,6 @@ module.exports = {
           origin: req.body.flight.slice[0].segment[0].leg[0].origin,
           destination: req.body.flight.slice[0].segment[0].leg[0].destination,
           duration: req.body.flight.slice[0].segment[0].leg[0].duration,
-          // flightNo: req.body.flightNo,
           departure: req.body.flight.slice[0].segment[0].leg[0].departureTime,
           arrival: req.body.flight.slice[0].segment[0].leg[0].arrivalTime,
           carrier: req.body.flight.slice[0].segment[0].flight.carrier,
@@ -200,6 +198,7 @@ module.exports = {
     });
   },
 
+  //Retrieves all trips for user from the DB
   getTrips: function(req, res) {
     Trip.findAll({
       where: { owner_id: req.session.user_id },
@@ -211,6 +210,7 @@ module.exports = {
     });
   },
 
+  //Compares user's info to info in the DB User table
   signIn: function(req, res) {
     User.find({ where: { username: req.body.username } })
     .then(function(user) {
@@ -231,6 +231,7 @@ module.exports = {
     });
   },
 
+  //Creates new user in the DB User table
   signUp: function(req, res) {
     User.find({ where: { username: req.body.username } })
     .then(function(user) {
@@ -249,6 +250,7 @@ module.exports = {
     });
   },
 
+  //Deletes current session on log out event
   signOut: function(req, res) {
     delete req.session.user;
     delete req.session.user_id;
@@ -258,19 +260,17 @@ module.exports = {
     res.end('terminated');
   },
 
+  //Checks if user is currently logged in
   isLoggedIn: function(req, res, next){
-    console.log('req.session: ', req.session)
     if (req.session.user){
-      console.log('session user')
       next();
     } else {
-      console.log('no user')
       res.end('no user');
     }
   },
 
+  //Retrieves hotel info using API
   postHotels: function(req, res) {
-    //save destination city in the DB for current user
    if(req.body.city !== ''){
       query.city = req.body.city;
       var queryHotels = query.hotels + query.city + '&key=' + process.env.GOOGLE;
@@ -283,6 +283,7 @@ module.exports = {
     }
   },
 
+  //Retrieves restaurants info using API
   postRestaurants: function(req, res) {
     query.city = req.body.city;
     var queryRestaurants = query.restaurants + query.city + '&key=' + process.env.GOOGLE;
@@ -295,6 +296,7 @@ module.exports = {
     })
   },
 
+  //Retrieves places info using API
   postArts: function(req, res) {
     query.city = req.body.city;
     var queryArts = query.museum + query.city + '&key=' + process.env.GOOGLE;
@@ -307,6 +309,7 @@ module.exports = {
     })
   },
 
+  //Retrieves weather info using API
   postWeather: function(req, res) {
     query.city = req.body.city;
     var queryWeather = query.weather + query.city + '&appid=' + process.env.WEATHER;
@@ -319,9 +322,11 @@ module.exports = {
     })
   },
 
+  //Retrieves deals info using API
   postPromos: function(req, res) {
     query.city = req.body.city;
     var queryPromos = query.promos + process.env.SQOOT + '&location=' + query.city;
+
     request(queryPromos, function(error, resp, body) {
       if (error) {
         console.log(error);
@@ -330,23 +335,23 @@ module.exports = {
     })
   },
 
+  //Retrieves events info using API
   postEvents: function(req, res) {
     query.city = req.body.city;
     var queryEvents = query.events + process.env.EVENTFUL + '&location=' + query.city + '&date=Future';
+
     request(queryEvents, function(error, resp, body) {
       if (error) {
         console.log(error);
       }
 
       parseString(resp.body, function(err, result) {
-        // console.log(result);
         res.end(JSON.stringify(result));
       });
-
     })
   },
 
-
+  //Retrieves flights info using API
   postFlights: function(req, res) {
 
     options = { //for qpx
@@ -380,6 +385,7 @@ module.exports = {
     })
   },
 
+  //Retrieves images using API
   postImages: function(req, res) {
     query.city = req.body.city;
     var options = {

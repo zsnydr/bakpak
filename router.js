@@ -34,7 +34,7 @@ module.exports.router = function (app) {
 
   app.post('/signout', helpers.signOut);
 
-  //User's trips
+  //Add info to personal trip
   app.post('/newTrip', helpers.newTrip);
 
   app.get('/trips', helpers.getTrips);
