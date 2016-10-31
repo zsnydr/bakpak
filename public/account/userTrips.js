@@ -1,6 +1,6 @@
 angular.module('bakpak.trips', [])
 
-.controller('tripsController', ['$scope', 'Trips', 'CityService', 'Auth', 'IdService', 'Remove', function($scope, Trips, CityService, Auth, IdService, Remove){
+.controller('tripsController', ['$scope', 'Trips', 'CityService', 'Auth', 'Remove', function($scope, Trips, CityService, Auth, Remove){
 
   $scope.city = '';
   $scope.tripTitle = '';
