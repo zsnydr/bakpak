@@ -1,6 +1,6 @@
 angular.module('bakpak.explore', [])
 
-.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', 'IdService', 'Save', function($scope, $http, Trips, CityService, $timeout, Auth, IdService, Save){
+.controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', 'Save', function($scope, $http, Trips, CityService, $timeout, Auth, Save){
 
   $scope.results = [];
   $scope.weather;
