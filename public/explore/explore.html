@@ -1,0 +1,63 @@
+<style>
+  html{background-image: url({{images[0].contentUrl}});},
+</style>
+<style>
+  label{color: white;}
+</style>
+
+<div>
+  <div class="container" id="inputarea">
+    <LABEL id="label">Where are we going?</LABEL>
+    <div class="center-align">
+      <form autocomplete="off" name='cityForm' novalidate>
+        <input name='city' id="input" type="text" ng-model='city' placeholder="Example: San Francisco, CA" required />
+      </form>
+      <a href="/#/explore" ng-disabled='cityForm.$invalid' id='explorebtn' class="waves-effect btn" ng-click='setCity(); weatherApi(); restaurantsApi(); artsApi(); promosApi(); eventsApi(); imagesApi(); called=true'> EXPLORE </a>
+      <a href="/#/reserve" ng-disabled='cityForm.$invalid' class="waves-effect btn" ng-click="setCity(); hotelsApi(); imagesApi();">RESERVE </a>
+    </div>
+  </div>
+  <br>
+  <div class="row"  ng-hide='!called' >
+    <div class="col s4 offset-s4 center explore2"><h4 class="label"> {{weather.weather[0].description}}</h4><h5> {{weather.main.temp}} </h5></div>
+  </div>
+  <div class="row" ng-hide='!called' >
+    <div id="left" class="col s5 offset-s1 explore">
+      <h4 class="label"> Restaurants </h4>
+      <div ng-repeat="result in results | limitTo: 10" ng-model = 'selectedRestaurant'>
+        <img class="icon" src={{result.icon}}  ng-show='!tripId'></img>
+        <a class=' addbtn waves-effect btn' ng-click='saveRestaurant(result); result.clicked=true'  ng-show='tripId'  ng-disabled='result.clicked'> Save </a>
+        <a class="google" href="https://www.google.com/#q={{result.name}}" target="_blank"> <b> {{result.name}} </b> </a> <br> {{result.formatted_address}} <br> Rating :
+        {{result.rating}} </br>
+      </div><br>
+    </div>
+
+    <div class="col s5 explore">
+      <h4 class="label"> Places to Visit </h4>
+      <div ng-repeat="art in arts | limitTo: 10" ng-model='selectedPlace'>
+        <img class="icon" src={{art.icon}}  ng-show='!tripId'></img>
+        <a class="google" href="https://www.google.com/#q={{art.name}}" target="_blank"> <b> {{art.name}}  </b> </a>
+        <div class='addbtn'><a class='waves-effect btn' ng-click='savePlace(art); art.clicked=true'  ng-show='tripId' ng-disabled='art.clicked'> Save </a></div>
+        <br>{{art.formatted_address}} </br>
+        Place Type: {{art.types[0]}} </br> Open Now? {{art.opening_hours.open_now}}
+      </div><br>
+    </div>
+  </div>
+</div>
+
+<div class ="row" ng-hide='!called' >
+  <div id="left" class="col s5 offset-s1 explore">
+    <h4 class="label"> Deals </h4>
+    <div ng-repeat="deal in promos | limitTo: 10"> <b><a class="google" href ={{deal.deal.url}} target="_blank"> {{deal.deal.title}} </a>  </b>
+      </br> {{deal.deal.short_title}} </div><br>
+  </div>
+
+  <div class="col s5 explore">
+    <h4 class="label"> Events </h4>
+    <div ng-repeat="event in events | limitTo: 10" ng-model='selectedEvent'>
+      <b> <a class="google" href = {{event.url[0]}} target="_blank">{{event.title[0]}} </a></b>
+      <div class='addbtn'><a class='waves-effect btn' ng-click='saveEvent(event); event.clicked=true' ng-show='tripId' ng-disabled='event.clicked'> Save </a></div>
+      </br>
+      Venue: <a class="google" href = {{event.venue_url[0]}} target="_blank"> {{event.venue_name[0]}}</a>
+    </div><br>
+  </div>
+</div>
