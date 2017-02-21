@@ -1,14 +1,16 @@
 # Bakpak 
 
-Personal itinerary builder that helps to organize your trip.
+Personal itinerary builder and travel companion.
 
 http://bakpakattak.herokuapp.com/
+
+DEMO: https://youtu.be/GrLjyVXTu6Q
 
 ## Team
 
   - __Product Owner__: Natasha Thapliyal
-  - __Scrum Master__: Zack Snyder
-  - __Development Team Members__: Alina Lobastova, Conor O'Leary
+  - __Scrum Master, Engineer__: Zack Snyder
+  - __Engineers__: Alina Lobastova, Conor O'Leary
 
 ##Table of Contents
 
