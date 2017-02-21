@@ -1,14 +1,13 @@
-
 <div class='container' id='inputarea'>
   <h4 class='label'>Sign Up</h4>
-  <LABEL id='who'>Who are you?</LABEL>
+  <label id='who'>Who are you?</label>
   <div class='center-align'>
-    <input id="input"  class='username' type='text' ng-model='username' placeholder="Username"/>
+    <input id="input" class='username' type='text' ng-model='username' placeholder="Username"/>
     <input id="input" class='password' type='password' ng-model='password' placeholder="Password"/>
   </div>
   <div class='authbtns'>
     <a class="signup waves-effect waves-light btn" ng-click="addUser(username, password)">SIGN UP </a>
-    <LABEL class='errmsg'  ng-show="userAlreadyExists">User already exists</LABEL>
-    <LABEL class='errmsg'  ng-show="noData">Please enter valid username and password!</LABEL>
+    <label class='errmsg' ng-show="userAlreadyExists">User already exists</label>
+    <label class='errmsg' ng-show="noData">Please enter valid username and password!</label>
   </div>
 </div>

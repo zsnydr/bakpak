@@ -21,11 +21,11 @@
 
   <div ng-repeat='trip in trips'>
     <div class="row center-align">
-      <h5 class="label" > {{trip.title}} </h5>
+      <h5 class="label"> {{trip.title}} </h5>
     </div>
 
     <div class='center-align'>
-      <a  ng-repeat='destination in trip.destinations' ng-click='trip.showInfo = true; trip.destID = destination.id' ng-class='{"waves-effect waves-light btn": trip.destinations.length === 1, "dest waves-effect waves-light btn": trip.destinations.length > 1,}'>{{destination.name}}</a>
+      <a ng-repeat='destination in trip.destinations' ng-click='trip.showInfo = true; trip.destID = destination.id' ng-class='{"waves-effect waves-light btn": trip.destinations.length === 1, "dest waves-effect waves-light btn": trip.destinations.length > 1,}'>{{destination.name}}</a>
     </div>
     <br>
 
@@ -100,16 +100,16 @@
       </div>
 
       <div id='showTripBtn' class="center-align">
-        <a  ng-click='removeDestination(trip.destID)'> Remove City</a><br>
+        <a ng-click='removeDestination(trip.destID)'> Remove City</a><br>
       </div>
     </div>
 
-    <div class=' center-align '>
-      <a class='addcitya  ' href='/#/explore' ng-click='setTripId(trip.id); clearCity()'> Add a city</a>
+    <div class='center-align '>
+      <a class='addcity' href='/#/explore' ng-click='setTripId(trip.id); clearCity()'> Add a city</a>
     </div>
 
     <div id='showTripBtn' class="center-align">
-      <a  ng-click='removeTrip(trip)'> Remove Trip</a><br>
+      <a ng-click='removeTrip(trip)'> Remove Trip</a><br>
     </div>
 
   </div>

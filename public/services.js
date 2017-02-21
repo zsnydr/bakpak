@@ -1,10 +1,8 @@
 angular.module('app-services', ['app-services'])
+.factory('Auth', ['$http', '$window', function($http, $window, username, password) {
+  let isSignedIn;
 
-.factory('Auth', ['$http', '$window', function($http, $window, username, password){
-
-  var isSignedIn;
-
-  var signin = function(username, password) {
+  const signin = (username, password) => {
     return $http({
       method: 'POST',
       url: '/signin',
@@ -12,7 +10,7 @@ angular.module('app-services', ['app-services'])
         username: username,
         password: password
       }
-    }).then(function(res){
+    }).then((res) => {
       if(res.data === 'matched'){
         isSignedIn = true;
         $window.location = '/#/explore';
@@ -23,7 +21,7 @@ angular.module('app-services', ['app-services'])
     });
   };
 
-  var signup = function(username, password) {
+  const signup = (username, password) => {
     return $http({
       method: 'POST',
       url: '/signup',
@@ -31,7 +29,7 @@ angular.module('app-services', ['app-services'])
         username: username,
         password: password
       }
-    }).then(function(res){
+    }).then((res) => {
       if(res.data === 'user already exists' || res.data === 'no user'){
         return res.data;
       } else {
@@ -40,45 +38,43 @@ angular.module('app-services', ['app-services'])
         return res.data;
       }
     })
-    .catch(function(err){
+    .catch((err) => {
       console.error(err)
     });
   };
 
-  var signout = function () {
+  const signout = () => {
     return $http({
       method: 'POST',
       url: '/signout',
       data: {}
-    }).then(function(data){
+    }).then((data) => {
       isSignedIn = false;
       $window.location = '/#/signin';
     });
   };
 
-  var signedIn = function(){
+  const signedIn = () => {
     return isSignedIn;
   };
 
   return {
-    signin: signin,
-    signup: signup,
-    signout: signout,
-    isSignedIn: signedIn
-  }
-
+    signin,
+    signup,
+    signout,
+    isSignedIn
+  };
 }])
 
 .factory('Trips', ['$http', '$location', '$timeout', function($http, $location, $timeout){
+  let tripId;
 
-  var tripId;
-
-  var isLoggedIn = function() {
+  const isLoggedIn = () => {
     return $http({
       method: 'GET',
       url: '/validateLogIn'
     })
-    .then(function(data) {
+    .then((data) => {
       if (data.data === 'no user') {
         $location.path('/signin');
       }
@@ -86,33 +82,33 @@ angular.module('app-services', ['app-services'])
     });
   };
 
-  var saveTrip = function(city, tripTitle) {
+  const saveTrip = (city, tripTitle) => {
     return $http({
       method: 'POST',
       url: '/newTrip',
       data: {city: city, title: tripTitle}
     })
-    .then(function(tripData){
+    .then((tripData) => {
       tripId = tripData.data.trip_id;
       $location.path('/explore');
       return tripData;
     });
   };
 
-  var setTripId = function(data) {
+  const setTripId = (data) => {
     tripId = data;
   };
 
-  var getTripId = function() {
+  const getTripId = () => {
     return tripId;
   };
 
-  var getTrips = function() {
+  const getTrips = () => {
     return $http({
       method: 'GET',
       url: '/trips'
     })
-    .then(function(trips){
+    .then((trips) => {
       if (trips.data === 'no user') {
         $window.location = '/#/signin';
       }
@@ -121,185 +117,184 @@ angular.module('app-services', ['app-services'])
   };
 
   return {
-    isLoggedIn: isLoggedIn,
-    saveTrip: saveTrip,
-    getTripId: getTripId,
-    tripId: tripId,
-    getTrips: getTrips,
-    setTripId: setTripId
-  }
-
+    isLoggedIn,
+    saveTrip,
+    getTripId,
+    tripId,
+    getTrips,
+    setTripId
+  };
 }])
 
 .factory('CityService', function() {
-  var city = '';
+  let city = '';
 
-  var setCity = function(data) {
+  const setCity = (data) => {
     city = data;
   };
 
-  var getCity = function() {
+  const getCity = () => {
     return city;
   };
 
   return {
-    setCity: setCity,
-    getCity: getCity
-  }
+    setCity,
+    getCity
+  };
 })
 
-.factory('Save', ['$http', function ($http) {
+.factory('Save', ['$http', function($http) {
 
-  var savePlace = function (object) {
+  const savePlace = (object) => {
     $http({
       method: 'POST',
       url: '/savePlace',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var saveRestaurant = function (object) {
+  const saveRestaurant = (object) => {
     $http({
       method: 'POST',
       url: '/saveRestaurant',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var saveEvent = function (object) {
+  const saveEvent = (object) => {
     $http({
       method: 'POST',
       url: '/saveEvent',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var saveHotel = function (object) {
+  const saveHotel = (object) => {
     $http({
       method: 'POST',
       url: '/saveHotel',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var saveFlight = function (object) {
+  const saveFlight = (object) => {
     $http({
       method: 'POST',
       url: '/saveFlight',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
   return {
-    savePlace: savePlace,
-    saveRestaurant: saveRestaurant,
-    saveEvent: saveEvent,
-    saveHotel: saveHotel,
-    saveFlight: saveFlight
-  }
+    savePlace,
+    saveRestaurant,
+    saveEvent,
+    saveHotel,
+    saveFlight
+  };
 }])
 
-.factory('Remove', ['$http', function ($http) {
+.factory('Remove', ['$http', function($http) {
 
-  var removePlace = function (object) {
+  const removePlace = (object) => {
     return $http({
       method: 'PUT',
       url: '/removePlace',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var removeRestaurant = function (object) {
+  const removeRestaurant = (object) => {
     return $http({
       method: 'PUT',
       url: '/removeRestaurant',
       data: object
     })
-    .then(function (data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var removeEvent = function (object) {
+  const removeEvent = (object) => {
     return $http({
       method: 'PUT',
       url: '/removeEvent',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var removeHotel = function (object) {
+  const removeHotel = (object) => {
     return $http({
       method: 'PUT',
       url: '/removeHotel',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var removeFlight = function (object) {
+  const removeFlight = (object) => {
     return $http({
       method: 'PUT',
       url: '/removeFlight',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var removeTrip = function (object) {
+  const removeTrip = (object) => {
     return $http({
       method: 'PUT',
       url: '/removeTrip',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
-  var removeDestination = function (object) {
+  const removeDestination = (object) => {
     return $http({
       method: 'PUT',
       url: '/removeDestination',
       data: object
     })
-    .then(function(data) {
+    .then((data) => {
       return data;
     });
   };
 
   return {
-    removePlace: removePlace,
-    removeRestaurant: removeRestaurant,
-    removeEvent: removeEvent,
-    removeHotel: removeHotel,
-    removeFlight: removeFlight,
-    removeTrip: removeTrip,
-    removeDestination: removeDestination
-  }
+    removePlace,
+    removeRestaurant,
+    removeEvent,
+    removeHotel,
+    removeFlight,
+    removeTrip,
+    removeDestination
+  };
 }]);

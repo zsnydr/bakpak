@@ -1,7 +1,6 @@
-var app = angular.module('bakpak', [
-  'ngRoute', 'bakpak.explore', 'app-services', 'bakpak.auth', 'bakpak.trips', 'bakpak.nav'])
+const app = angular.module('bakpak', ['ngRoute', 'bakpak.explore', 'app-services', 'bakpak.auth', 'bakpak.trips', 'bakpak.nav'])
 
-app.config(function ($routeProvider) {
+app.config(function($routeProvider) {
   $routeProvider
     .when('/explore', {
       templateUrl: './public/explore/explore.html',
@@ -25,5 +24,5 @@ app.config(function ($routeProvider) {
     })
     .otherwise({
       redirectTo: '/explore',
-    })
-})
+    });
+});

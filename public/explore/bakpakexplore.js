@@ -1,7 +1,5 @@
 angular.module('bakpak.explore', [])
-
 .controller('exploreController', ['$scope', '$http', 'Trips', 'CityService', '$timeout', 'Auth', 'Save', function($scope, $http, Trips, CityService, $timeout, Auth, Save){
-
   $scope.results = [];
   $scope.weather;
   $scope.arts;
@@ -12,142 +10,166 @@ angular.module('bakpak.explore', [])
 
   $scope.city = CityService.getCity();
 
-  $scope.clearCity = function() {
-      CityService.setCity('');
+  $scope.clearCity = () => {
+    CityService.setCity('');
   };
 
-	$scope.hotelsApi = function(){
+	$scope.hotelsApi = () => {
     if($scope.city !== '') {
   		$http({
   		  method: 'POST',
   		  url: '/hotels',
   		  data: {city: $scope.city}
   		})
-  		.then(function(data){
+  		.then((data) => {
   		  $scope.hotels = data.data.results;
-  		});
+  		})
+      .catch((err) => {
+        console.log(`Error in hotelsApi in explore Controller: ${err}`);
+      });
     }
   };
 
-	$scope.restaurantsApi = function(){
+	$scope.restaurantsApi = () => {
 		$http({
 		  method: 'POST',
 		  url: '/restaurants',
 		  data: {city: $scope.city}
 		})
-		.then(function(data){
+		.then((data) => {
 		  $scope.results = data.data.results;
-		});
+		})
+    .catch((err) => {
+      console.log(`Error in restaurantsApi in explore Controller: ${err}`);
+    });
 	};
 
-	$scope.weatherApi = function(){
+	$scope.weatherApi = () => {
 		$http({
 		  method: 'POST',
 		  url: '/weather',
 		  data: {city: $scope.city}
 		})
-		.then(function(data){
+		.then((data) => {
 		  $scope.weather = data.data;
 		  $scope.weather.main.temp = Math.round($scope.weather.main.temp * (9 / 5) - 459.67) + '˚F';
-		});
+		})
+    .catch((err) => {
+      console.log(`Error in weatherApi in explore Controller: ${err}`);
+    });
 	};
 
-	$scope.artsApi = function(){
+	$scope.artsApi = () => {
 		$http({
 		  method: 'POST',
 		  url: '/arts',
 		  data: {city: $scope.city}
 		})
-		.then(function(data){
+		.then((data) => {
 		  $scope.arts = data.data.results;
-		});
+		})
+    .catch((err) => {
+      console.log(`Error in artsApi in explore Controller: ${err}`);
+    });
 	};
 
-	$scope.promosApi = function(){
+	$scope.promosApi = () => {
 		$http({
 		  method: 'POST',
 		  url: '/promos',
 		  data: {city: $scope.city}
 		})
-		.then(function(data){
+		.then((data) => {
 		  $scope.promos = data.data.deals;
-		});
+		})
+    .catch((err) => {
+      console.log(`Error in promosApi in explore Controller: ${err}`);
+    });
 	};
 
-	$scope.eventsApi = function(){
+	$scope.eventsApi = () => {
 		$http({
 		  method: 'POST',
 		  url: '/events',
 		  data: {city: $scope.city}
 		})
-		.then(function(data){
+		.then((data) => {
 		  $scope.events = data.data.search.events[0].event;
-		});
+		})
+    .catch((err) => {
+      console.log(`Error in eventsApi in explore Controller: ${err}`);
+    });
 	};
 
-	$scope.imagesApi = function(){
+	$scope.imagesApi = () => {
 		$http({
 		  method: 'POST',
 		  url: '/images',
 		  data: {city: $scope.city}
 		})
-		.then(function(data){
+		.then((data) => {
 		  $scope.images = data.data.value;
-		});
+		})
+    .catch((err) => {
+      console.log(`Error in imagesApi in explore Controller: ${err}`);
+    });
 	};
 
-	$scope.flightsApi = function(){
+	$scope.flightsApi = () => {
 		$http({
 			method: 'POST',
 			url: '/flights',
 			data:{origin: $scope.origin, destination: $scope.destination, date: $scope.date}
 		})
-		.then(function(data){
+		.then((data) => {
 			$scope.flights = data.data.trips.tripOption;
-		});
+		})
+    .catch((err) => {
+      console.log(`Error in flightsApi in explore Controller: ${err}`);
+    });
 	};
 
-  $scope.signout = function () {
+  $scope.signout = () => {
     Auth.signout();
     CityService.setCity('');
   };
 
-  $scope.savePlace = function (place) {
+  $scope.savePlace = (place) => {
     Save.savePlace({place: place, city: $scope.city, trip_id: $scope.tripId});
   };
 
-  $scope.saveRestaurant = function (restaurant) {
+  $scope.saveRestaurant = (restaurant) => {
     Save.saveRestaurant({restaurant: restaurant, city: $scope.city, trip_id: $scope.tripId});
   };
 
-  $scope.saveEvent = function (event) {
+  $scope.saveEvent = (event) => {
     Save.saveEvent({event: event, city: $scope.city, trip_id: $scope.tripId});
   };
 
-  $scope.saveHotel = function (hotel) {
+  $scope.saveHotel = (hotel) => {
     Save.saveHotel({hotel: hotel, city: $scope.city, trip_id: $scope.tripId});
   };
 
-  $scope.saveFlight = function (flight) {
+  $scope.saveFlight = (flight) => {
     Save.saveFlight({flight: flight, city: $scope.city, trip_id: $scope.tripId});
   };
 
-  var triggerClick = function() {
-    $timeout(function() {
+  const triggerClick = () => {
+    $timeout(() => {
       angular.element(document.querySelector('#explorebtn')).triggerHandler('click');
     });
   };
 
   //TRIP MODE
-  $scope.setCity = function() {
+  $scope.setCity = () => {
     CityService.setCity($scope.city);
   };
 
-  var newTripTriggered = false;
+  let newTripTriggered = false;
 
-  $scope.$watch(function () {
+  $scope.$watch(() => {
      return Trips.getTripId();
-  }, function () {
+  }, () => {
     $scope.tripId = Trips.getTripId();
     if(!newTripTriggered && $scope.tripId !== undefined) {
       $scope.city = CityService.getCity();
@@ -157,5 +179,4 @@ angular.module('bakpak.explore', [])
       newTripTriggered = true;
     }
   });
-
 }]);

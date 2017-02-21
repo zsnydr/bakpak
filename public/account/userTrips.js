@@ -1,94 +1,118 @@
 angular.module('bakpak.trips', [])
-
 .controller('tripsController', ['$scope', 'Trips', 'CityService', 'Auth', 'Remove', function($scope, Trips, CityService, Auth, Remove){
-
   $scope.city = '';
   $scope.tripTitle = '';
   $scope.showInfo = false;
 
-  $scope.isLoggedIn = function() {
+  $scope.isLoggedIn = () => {
     Trips.isLoggedIn()
-    .then(function() {});
-  };
-
-  $scope.saveTrip = function() {
-    Trips.saveTrip($scope.city, $scope.tripTitle)
-    .then(function(tripData){
-      $scope.tripData = tripData;
+    .then(() => {})
+    .catch((err) => {
+      console.log(`Error logging in in trips Contoller: ${err}`);
     });
   };
 
-  $scope.setCity = function() {
+  $scope.saveTrip = () => {
+    Trips.saveTrip($scope.city, $scope.tripTitle)
+    .then((tripData) => {
+      $scope.tripData = tripData;
+    })
+    .catch((err) => {
+      console.log(`Error saving trip in trips Contoller: ${err}`);
+    });
+  };
+
+  $scope.setCity = () => {
     CityService.setCity($scope.city);
   };
 
-  $scope.getTrips = function() {
+  $scope.getTrips = () => {
     Trips.getTrips()
-    .then(function(info){
+    .then((info) => {
       $scope.trips = info.data;
+    })
+    .catch((err) => {
+      console.log(`Error getting trips in trips Contoller: ${err}`);
     });
   };
 
-  $scope.showInfoFunc = function () {
+  $scope.showInfoFunc = () => {
     $scope.showInfo = !$scope.showInfo;
   };
 
-  $scope.setTripId = function (data) {
+  $scope.setTripId = (data) => {
     Trips.setTripId(data);
   };
 
-  $scope.removeHotel = function (hotel) {
+  $scope.removeHotel = (hotel) => {
     Remove.removeHotel(hotel)
-    .then(function (data) {
+    .then((data) => {
       $scope.getTrips();
+    })
+    .catch((err) => {
+      console.log(`Error removing hotel in trips Contoller: ${err}`);
     });
   }
 
-  $scope.removeRestaurant = function (restaurant) {
+  $scope.removeRestaurant = (restaurant) => {
     Remove.removeRestaurant(restaurant)
-    .then(function (res) {
+    .then((res) => {
       $scope.getTrips();
     })
-    .catch(function (err) {
-      console.log('ERR', err);
+    .catch((err) => {
+      console.log(`Error removing restaurant in trips Contoller: ${err}`);
     });
   };
 
-  $scope.removePlace = function (Place) {
+  $scope.removePlace = (Place) => {
     Remove.removePlace(Place)
-    .then(function () {
+    .then(() => {
       $scope.getTrips();
+    })
+    .catch((err) => {
+      console.log(`Error removing place in trips Contoller: ${err}`);
     });
   };
 
-  $scope.removeEvent = function (Event) {
+  $scope.removeEvent = (Event) => {
     Remove.removeEvent(Event)
-    .then(function () {
+    .then(() => {
       $scope.getTrips();
+    })
+    .catch((err) => {
+      console.log(`Error removing event in trips Contoller: ${err}`);
     });
   };
 
-  $scope.removeFlight = function (Flight) {
+  $scope.removeFlight = (Flight) => {
     Remove.removeFlight(Flight)
-    .then(function () {
+    .then(() => {
       $scope.getTrips();
+    })
+    .catch((err) => {
+      console.log(`Error removing flight in trips Contoller: ${err}`);
     });
   };
 
-  $scope.removeTrip = function (trip) {
+  $scope.removeTrip = (trip) => {
     Remove.removeTrip(trip)
-    .then(function () {
+    .then(() => {
       $scope.getTrips();
+    })
+    .catch((err) => {
+      console.log(`Error removing trip in trips Contoller: ${err}`);
     });
   };
 
-  $scope.removeDestination = function (Destination) {
+  $scope.removeDestination = (Destination) => {
     Remove.removeDestination({id: Destination})
-    .then(function () {
+    .then(() => {
       $scope.getTrips();
+    })
+    .catch((err) => {
+      console.log(`Error removing destination in trips Contoller: ${err}`);
     });
   };
 
 $scope.isLoggedIn();
-
 }]);

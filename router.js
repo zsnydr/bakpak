@@ -1,11 +1,10 @@
-var helpers = require('./routeHelpers');
-var removers = require('./routeHelpersRemovers');
+const helpers = require('./routeHelpers');
+const removers = require('./routeHelpersRemovers');
 
+module.exports.router = (app) => {
 
-module.exports.router = function (app) {
-
-  app.get('/', function(req,res){
-      res.send(200).end();
+  app.get('/', (req,res) => {
+    res.send(200).end();
   });
 
   //API calls
@@ -26,7 +25,7 @@ module.exports.router = function (app) {
   app.post('/images', helpers.postImages);
 
   //Authentication
-  app.get('/validateLogIn', helpers.isLoggedIn, function(req, res) { res.end(); });
+  app.get('/validateLogIn', helpers.isLoggedIn, (req, res) => { res.end(); });
 
   app.post('/signin', helpers.signIn);
 
@@ -63,5 +62,4 @@ module.exports.router = function (app) {
   app.put('/removePlace', removers.removePlace);
 
   app.put('/removeDestination', removers.removeDestination);
-
 };

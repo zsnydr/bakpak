@@ -1,22 +1,21 @@
-var pg = require('pg');
-var Sequelize = require('sequelize');
-var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
+const pg = require('pg');
+const Sequelize = require('sequelize');
+const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/bakpakattak', {
   dialect: 'postgres'
 });
 
 //Establishes the connection to the database
-db
-  .authenticate()
-  .then(function (err) {
-    console.log('Connection established');
-  })
-  .catch(function (err) {
-    console.log('Unable to connect: ', err);
-  });
+db.authenticate()
+.then((err) => {
+  console.log('Connection established');
+})
+.catch((err) => {
+  console.log('Unable to connect: ', err);
+});
 
 
 //Creates table of users
-var User = db.define('user', {
+const User = db.define('user', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -30,7 +29,7 @@ var User = db.define('user', {
 });
 
 //Creates table of trips
-var Trip = db.define('trip', {
+const Trip = db.define('trip', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -49,7 +48,7 @@ var Trip = db.define('trip', {
 });
 
 //Creates table of destinations
-var Destination = db.define('destination', {
+const Destination = db.define('destination', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -59,7 +58,7 @@ var Destination = db.define('destination', {
 });
 
 //Creates table of flights
-var Flight = db.define('flight', {
+const Flight = db.define('flight', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -77,7 +76,7 @@ var Flight = db.define('flight', {
 });
 
 //Creates table of hotels
-var Hotel = db.define('hotel', {
+const Hotel = db.define('hotel', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -89,7 +88,7 @@ var Hotel = db.define('hotel', {
 });
 
 //Creates table of places
-var Place = db.define('place', {
+const Place = db.define('place', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -101,7 +100,7 @@ var Place = db.define('place', {
 });
 
 //Creates table of restaurants
-var Restaurant = db.define('restaurant', {
+const Restaurant = db.define('restaurant', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -113,7 +112,7 @@ var Restaurant = db.define('restaurant', {
 });
 
 //Creates table of events
-var Event = db.define('event', {
+const Event = db.define('event', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -124,7 +123,7 @@ var Event = db.define('event', {
 });
 
 //Creates table of users/trips
-var UserTrip = db.define('users_trip', {
+const UserTrip = db.define('users_trip', {
   trip_id: {
     type: Sequelize.INTEGER,
     references: {
@@ -164,19 +163,21 @@ Destination.hasMany(Restaurant, { foreignKey: 'destination_id' });
 
 
 //Create Tables
-db
-  .sync({force: false})
-  .then(function() {
-    console.log('Tables created');
- });
+db.sync({force: false})
+.then(() => {
+  console.log('Tables synced');
+})
+.catch((err) => {
+  console.log('Error syncing tables');
+});
 
 module.exports = {
-  User: User,
-  Trip: Trip,
-  Destination: Destination,
-  Flight: Flight,
-  Hotel: Hotel,
-  Place: Place,
-  Event: Event,
-  Restaurant: Restaurant
+  User,
+  Trip,
+  Destination,
+  Flight,
+  Hotel,
+  Place,
+  Event,
+  Restaurant
 };
